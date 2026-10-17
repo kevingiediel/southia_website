@@ -28,7 +28,7 @@ export function runChecks(distDir = path.join(root, 'dist')) {
   if (!fs.existsSync(indexFile)) return { errors: ['dist/index.html missing'], warnings };
 
   const site = JSON.parse(read(path.join(root, 'src/data/site.json')));
-  const known = new Set(slotIds(site));
+  const known = new Set([...slotIds(site), ...(site.film?.stops ?? []).map((s) => `film/${s.id}`)]);
   const missingMedia = new Set();
   const htmlFiles = fs.readdirSync(distDir).filter((f) => f.endsWith('.html'));
 
@@ -39,7 +39,7 @@ export function runChecks(distDir = path.join(root, 'dist')) {
       if (hash && !ids.has(hash)) errors.push(`${file}: anchor #${hash} has no matching id`);
     }
     for (const [, attr, ref] of html.matchAll(/\s(src|href|poster|data-src|data-poster)="(\/[^"/][^"]*)"/g)) {
-      const mediaId = ref.match(/^\/media\/([^/.]+)\.\w+$/)?.[1];
+      const mediaId = ref.match(/^\/media\/((?:film\/)?[^/.]+)\.\w+$/)?.[1];
       if (mediaId && !known.has(mediaId)) errors.push(`${file}: ${attr}="${ref}" references unknown slot "${mediaId}"`);
       if (exists(distDir, ref)) continue;
       if (mediaId && ['poster', 'data-src', 'data-poster'].includes(attr)) missingMedia.add(mediaId);

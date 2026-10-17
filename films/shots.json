@@ -1,0 +1,443 @@
+{
+  "style": "Photorealistic cinematic still, warm natural light, contemporary Brazilian small business, real diverse Brazilian people, wardrobe and props in deep forest green (#1C3322), herb green (#3E6A3B) and sage (#A3C08A) with a single warm yellow (#F2C230) accent, cream walls, shallow depth of field, soft film grain, authentic friendly mood, 35mm lens, no text, no logos, no watermarks.",
+  "motion": "Smooth cinematic camera, natural human motion, no cuts, no on-screen text added, no logo changes, keep faces consistent, 24fps film look.",
+  "shots": [
+    {
+      "id": "F1-barbearia",
+      "gate": 1,
+      "kind": "still",
+      "model": "text2image_soul_v2",
+      "text": false,
+      "prompt": "Warm neighbourhood barbershop in Porto Alegre, a barber giving a man a fade haircut, two friends laughing on a green bench, vintage mirrors, plants, afternoon sun."
+    },
+    {
+      "id": "F1-chat",
+      "gate": 1,
+      "kind": "still",
+      "model": "gpt_image_2_5",
+      "text": true,
+      "prompt": "Photorealistic close-up of a smartphone held by a hand in a warm barbershop, shallow depth of field. The screen shows a WhatsApp-style chat titled \"Barbearia do Rafa\" with exactly these messages, in order: customer on the right in a light green bubble \"Oi! Tem horário amanhã às 15h?\"; business on the left in a white bubble \"Tem sim! 15h com o Rafa. Confirmo pra você?\"; customer \"Pode confirmar 👍\"; business \"Prontinho ✅ Te lembro amanhã.\" Perfectly legible Brazilian Portuguese text, no other text."
+    },
+    {
+      "id": "F1-01",
+      "gate": 1,
+      "kind": "video",
+      "duration": 4,
+      "start": "frame:logo-full",
+      "prompt": "Very slow push-in on a flat brand symbol on a deep forest green background toward its top circle. The brand symbol is a flat graphic: it stays perfectly still and unchanged, it never rotates, distorts, glows or casts shadows; only the camera moves.",
+      "end": "frame:logo-zoom-barbearia"
+    },
+    {
+      "id": "F1-02",
+      "gate": 1,
+      "kind": "video",
+      "duration": 4,
+      "start": "frame:logo-zoom-barbearia",
+      "prompt": "The camera flies through the round circle of the flat graphic and lands inside a warm neighbourhood barbershop; seamless match-cut transition through the round shape.",
+      "end": "still:F1-barbearia"
+    },
+    {
+      "id": "F1-03",
+      "gate": 1,
+      "kind": "video",
+      "duration": 8,
+      "start": "still:F1-barbearia",
+      "prompt": "A barber gives a man a fade haircut, friends laugh on the waiting bench, warm afternoon light through the window, relaxed joyful mood. Slow dolly left."
+    },
+    {
+      "id": "F1-04",
+      "gate": 1,
+      "kind": "video",
+      "duration": 5,
+      "start": "still:F1-chat",
+      "prompt": "Close-up of a phone in a customer's hand; the chat on screen stays sharp, unchanged and readable; gentle handheld drift; the barbershop blurred behind."
+    },
+    {
+      "id": "F1-05",
+      "gate": 1,
+      "kind": "video",
+      "duration": 4,
+      "start": "still:F1-barbearia",
+      "prompt": "The camera pulls back out of the barbershop through a circular opening and lands on the flat brand symbol, ending exactly on the provided final frame. The brand symbol is a flat graphic: it stays perfectly still and unchanged, it never rotates, distorts, glows or casts shadows; only the camera moves.",
+      "end": "frame:logo-zoom-barbearia"
+    },
+    {
+      "id": "F1-clinica",
+      "gate": 2,
+      "kind": "still",
+      "model": "text2image_soul_v2",
+      "text": false,
+      "prompt": "Bright physical therapy clinic with wooden floor and plants, a physiotherapist and a receptionist smiling at a tablet, a patient doing elastic band exercises in the background."
+    },
+    {
+      "id": "F1-instagram",
+      "gate": 2,
+      "kind": "still",
+      "model": "gpt_image_2_5",
+      "text": true,
+      "prompt": "Photorealistic over-the-shoulder close-up of a tablet in a bright physiotherapy clinic. The screen shows an Instagram profile grid for \"Clínica Movimento\" with nine cohesive green-and-cream posts about posture and exercise, and a floating card that reads exactly \"Campanha criada automaticamente\". Perfectly legible Brazilian Portuguese text, no other text."
+    },
+    {
+      "id": "F1-06",
+      "gate": 2,
+      "kind": "video",
+      "duration": 4,
+      "start": "frame:logo-zoom-clinica",
+      "prompt": "Fly through the right circle of the flat graphic into a bright physical therapy clinic; seamless round match-cut.",
+      "end": "still:F1-clinica"
+    },
+    {
+      "id": "F1-07",
+      "gate": 2,
+      "kind": "video",
+      "duration": 8,
+      "start": "still:F1-clinica",
+      "prompt": "In a bright physical therapy clinic, a physiotherapist and the receptionist smile at a tablet showing their new Instagram posts; a patient exercises with an elastic band in the background. Slow push-in."
+    },
+    {
+      "id": "F1-08",
+      "gate": 2,
+      "kind": "video",
+      "duration": 5,
+      "start": "still:F1-instagram",
+      "prompt": "Over-the-shoulder close-up of the tablet; the Instagram grid and the card stay sharp and unchanged; the physiotherapist's thumbs-up enters frame."
+    },
+    {
+      "id": "F1-09",
+      "gate": 2,
+      "kind": "video",
+      "duration": 4,
+      "start": "still:F1-clinica",
+      "prompt": "Pull back out of the clinic through a circular opening into the flat brand symbol, ending exactly on the provided final frame. The brand symbol is a flat graphic: it stays perfectly still and unchanged, it never rotates, distorts, glows or casts shadows; only the camera moves.",
+      "end": "frame:logo-zoom-clinica"
+    },
+    {
+      "id": "F1-advocacia",
+      "gate": 2,
+      "kind": "still",
+      "model": "text2image_soul_v2",
+      "text": false,
+      "prompt": "Calm law office with wooden bookshelves, a Brazilian lawyer in her 40s leaning back with a relieved smile in front of a monitor, a colleague bringing coffee, golden late-afternoon light."
+    },
+    {
+      "id": "F1-dados",
+      "gate": 2,
+      "kind": "still",
+      "model": "gpt_image_2_5",
+      "text": true,
+      "prompt": "Photorealistic close-up of a computer monitor in a law office. The screen shows a clean dashboard titled \"Jurisprudência\" with source cards \"Diário Oficial\", \"STJ\" and \"TJSP\" and a list of new decisions with green check marks and the label \"Atualizado agora\". Deep green and cream interface. Perfectly legible Brazilian Portuguese text, no other text."
+    },
+    {
+      "id": "F1-10",
+      "gate": 2,
+      "kind": "video",
+      "duration": 4,
+      "start": "frame:logo-zoom-advocacia",
+      "prompt": "Fly through the lower-left circle of the flat graphic into a calm law office with wooden shelves; seamless round match-cut.",
+      "end": "still:F1-advocacia"
+    },
+    {
+      "id": "F1-11",
+      "gate": 2,
+      "kind": "video",
+      "duration": 8,
+      "start": "still:F1-advocacia",
+      "prompt": "A lawyer in her 40s leans back with a relieved smile as her monitor updates on its own with new court decisions; a colleague brings coffee; late-afternoon light. Slow orbit."
+    },
+    {
+      "id": "F1-12",
+      "gate": 2,
+      "kind": "video",
+      "duration": 5,
+      "start": "still:F1-dados",
+      "prompt": "Close-up of the monitor; the dashboard stays sharp and unchanged while a soft screen glow pulses; tiny cursor movement."
+    },
+    {
+      "id": "F1-13",
+      "gate": 2,
+      "kind": "video",
+      "duration": 4,
+      "start": "still:F1-advocacia",
+      "prompt": "Pull back out of the office into the flat brand symbol, ending centred on the yellow diamond, exactly on the provided final frame. The brand symbol is a flat graphic: it stays perfectly still and unchanged, it never rotates, distorts, glows or casts shadows; only the camera moves.",
+      "end": "frame:logo-zoom-centelha"
+    },
+    {
+      "id": "F1-roda",
+      "gate": 2,
+      "kind": "still",
+      "model": "text2image_soul_v2",
+      "text": false,
+      "prompt": "Night in the Rio Grande do Sul countryside, eight people sitting in a circle around a fogo de chão campfire, laughing and talking, one man drinking chimarrão from a cuia with a bomba, warm firelight on faces, sparks rising, starry sky."
+    },
+    {
+      "id": "F1-14",
+      "gate": 2,
+      "kind": "video",
+      "duration": 4,
+      "start": "frame:logo-zoom-centelha",
+      "prompt": "Push into the yellow diamond of the flat graphic, which becomes the glow of a campfire at night; seamless match-cut.",
+      "end": "still:F1-roda"
+    },
+    {
+      "id": "F1-15",
+      "gate": 2,
+      "kind": "video",
+      "duration": 10,
+      "start": "still:F1-roda",
+      "prompt": "Friends and business owners sit in a circle around a fogo de chão, laughing and talking; one man drinks chimarrão from a gourd; sparks rise. The camera rises slowly above the circle and the scene resolves into the flat brand symbol on deep green, ending exactly on the provided final frame. The brand symbol is a flat graphic: it stays perfectly still and unchanged, it never rotates, distorts, glows or casts shadows; only the camera moves.",
+      "end": "frame:logo-full"
+    },
+    {
+      "id": "F1-som",
+      "gate": 2,
+      "kind": "audio",
+      "prompt": "Warm acoustic Brazilian guitar and soft percussion, optimistic, building gently, 50 seconds, subtle clipper buzz at 0:12, a message ping at 0:17, campfire crackle from 0:40."
+    },
+    {
+      "id": "F2-amanhecer",
+      "gate": 2,
+      "kind": "still",
+      "model": "text2image_soul_v2",
+      "text": false,
+      "prompt": "Dawn over a Brazilian city neighbourhood, a shop owner rolling up a metal shutter, golden light flooding the street."
+    },
+    {
+      "id": "F2-padaria",
+      "gate": 2,
+      "kind": "still",
+      "model": "text2image_soul_v2",
+      "text": false,
+      "prompt": "A baker handing warm bread to a smiling regular customer across a wooden counter, early morning."
+    },
+    {
+      "id": "F2-equipe",
+      "gate": 2,
+      "kind": "still",
+      "model": "text2image_soul_v2",
+      "text": false,
+      "prompt": "Southia consulting team of six in a bright studio sitting in a circle around a round table with laptops and notebooks, listening to a small-business owner, warm collaborative atmosphere."
+    },
+    {
+      "id": "F2-calma",
+      "gate": 2,
+      "kind": "still",
+      "model": "text2image_soul_v2",
+      "text": false,
+      "prompt": "End of the day in a small Brazilian shop: the owner smiles calmly at a phone showing confirmations, closing up, warm golden light."
+    },
+    {
+      "id": "F2-titulo-1",
+      "gate": 2,
+      "kind": "still",
+      "model": "gpt_image_2_5",
+      "text": true,
+      "prompt": "Cinematic dawn street in a Brazilian neighbourhood with the headline \"Todo negócio começa com gente.\" in a large rounded geometric sans serif, cream colour, centred lower third. Perfectly legible Brazilian Portuguese text, no other text."
+    },
+    {
+      "id": "F2-titulo-2",
+      "gate": 2,
+      "kind": "still",
+      "model": "gpt_image_2_5",
+      "text": true,
+      "prompt": "A bright studio with people sitting in a circle around a round table, and the headline \"Pessoas, dados e IA na mesma roda.\" in a large rounded geometric sans serif, cream colour with the word \"roda\" in warm yellow #F2C230. Perfectly legible Brazilian Portuguese text, no other text."
+    },
+    {
+      "id": "F2-01",
+      "gate": 2,
+      "kind": "video",
+      "duration": 6,
+      "start": "still:F2-amanhecer",
+      "prompt": "A shop owner rolls up a metal shutter at dawn; golden light floods the street. Slow crane down."
+    },
+    {
+      "id": "F2-02",
+      "gate": 2,
+      "kind": "video",
+      "duration": 5,
+      "start": "still:F2-titulo-1",
+      "prompt": "The headline stays sharp and unchanged while the dawn light slowly warms the street behind it."
+    },
+    {
+      "id": "F2-03",
+      "gate": 2,
+      "kind": "video",
+      "duration": 4,
+      "start": "still:F2-padaria",
+      "prompt": "A baker hands warm bread to a smiling regular customer across the counter."
+    },
+    {
+      "id": "F2-04",
+      "gate": 2,
+      "kind": "video",
+      "duration": 4,
+      "start": "still:F1-barbearia",
+      "prompt": "The barber greets a client with a handshake and a laugh."
+    },
+    {
+      "id": "F2-05",
+      "gate": 2,
+      "kind": "video",
+      "duration": 4,
+      "start": "still:F1-clinica",
+      "prompt": "The physiotherapist guides a patient's arm movement, both smiling."
+    },
+    {
+      "id": "F2-06",
+      "gate": 2,
+      "kind": "video",
+      "duration": 4,
+      "start": "still:F1-advocacia",
+      "prompt": "The lawyer welcomes a family into her office with a warm smile."
+    },
+    {
+      "id": "F2-07",
+      "gate": 2,
+      "kind": "video",
+      "duration": 10,
+      "start": "still:F2-equipe",
+      "prompt": "The team listens to a small-business owner around the round table; a slow 180-degree orbit around the circle."
+    },
+    {
+      "id": "F2-08",
+      "gate": 2,
+      "kind": "video",
+      "duration": 5,
+      "start": "still:F2-titulo-2",
+      "prompt": "The headline stays sharp and unchanged; the people around the table move naturally behind it."
+    },
+    {
+      "id": "F2-09",
+      "gate": 2,
+      "kind": "video",
+      "duration": 6,
+      "start": "still:F2-calma",
+      "prompt": "At the end of the day the owner smiles at the phone and closes up the shop; gentle drift."
+    },
+    {
+      "id": "F2-10",
+      "gate": 2,
+      "kind": "video",
+      "duration": 6,
+      "start": "frame:logo-full",
+      "prompt": "The flat brand symbol on deep forest green; the camera slowly pulls back and the composition settles exactly on the provided final frame with the full horizontal logo. The brand symbol is a flat graphic: it stays perfectly still and unchanged, it never rotates, distorts, glows or casts shadows; only the camera moves.",
+      "end": "frame:logo-horizontal"
+    },
+    {
+      "id": "F2-som",
+      "gate": 2,
+      "kind": "audio",
+      "prompt": "Cinematic, warm, hopeful score with piano and strings and a Brazilian acoustic guitar motif, 45 seconds, soft ending."
+    },
+    {
+      "id": "F3-sufoco",
+      "gate": 2,
+      "kind": "still",
+      "model": "text2image_soul_v2",
+      "text": false,
+      "prompt": "Night in a small clothing shop, the tired owner scrolling a phone flooded with unanswered messages, spreadsheets on a laptop, cold blue screen light."
+    },
+    {
+      "id": "F3-contador",
+      "gate": 2,
+      "kind": "still",
+      "model": "gpt_image_2_5",
+      "text": true,
+      "prompt": "Photorealistic close-up of a smartphone screen at night showing a red notification counter and the label exactly \"47 mensagens sem resposta\". Perfectly legible Brazilian Portuguese text, no other text."
+    },
+    {
+      "id": "F3-agente",
+      "gate": 2,
+      "kind": "still",
+      "model": "gpt_image_2_5",
+      "text": true,
+      "prompt": "A laptop screen with a deep green (#1C3322) chat interface where an AI agent answers customer messages, several chat bubbles, and a label reading exactly \"Atendimento 24h\". Perfectly legible Brazilian Portuguese text, no other text."
+    },
+    {
+      "id": "F3-campanhas",
+      "gate": 2,
+      "kind": "still",
+      "model": "gpt_image_2_5",
+      "text": true,
+      "prompt": "A screen with a grid of nine social media ads in green and cream for a clothing shop, and a label reading exactly \"Campanhas no automático\". Perfectly legible Brazilian Portuguese text, no other text."
+    },
+    {
+      "id": "F3-painel",
+      "gate": 2,
+      "kind": "still",
+      "model": "gpt_image_2_5",
+      "text": true,
+      "prompt": "A clean sales dashboard on a monitor with counters and a rising line chart, the main number highlighted in warm yellow #F2C230, and a title reading exactly \"Decisões com dados\". Perfectly legible Brazilian Portuguese text, no other text."
+    },
+    {
+      "id": "F3-manha",
+      "gate": 2,
+      "kind": "still",
+      "model": "gpt_image_2_5",
+      "text": true,
+      "prompt": "Next morning in the same small clothing shop, the owner relaxed with a coffee in the sunlight, staff serving customers. A small caption at the bottom reads exactly \"Exemplo ilustrativo: +38% vendas · 4h/dia de volta\". Perfectly legible Brazilian Portuguese."
+    },
+    {
+      "id": "F3-01",
+      "gate": 2,
+      "kind": "video",
+      "duration": 6,
+      "start": "still:F3-sufoco",
+      "prompt": "The tired owner scrolls a phone flooded with unanswered messages at night; cold blue screen light. Slow push-in."
+    },
+    {
+      "id": "F3-02",
+      "gate": 2,
+      "kind": "video",
+      "duration": 4,
+      "start": "still:F3-contador",
+      "prompt": "The counter on screen stays sharp and unchanged; the screen glows in the dark."
+    },
+    {
+      "id": "F3-03",
+      "gate": 2,
+      "kind": "video",
+      "duration": 6,
+      "start": "still:F3-agente",
+      "prompt": "Chat bubbles on the screen stay sharp; gentle push-in and soft screen glow, as if replies just arrived."
+    },
+    {
+      "id": "F3-04",
+      "gate": 2,
+      "kind": "video",
+      "duration": 6,
+      "start": "still:F3-campanhas",
+      "prompt": "The ad grid stays sharp and unchanged; slow parallax push-in across the screen."
+    },
+    {
+      "id": "F3-05",
+      "gate": 2,
+      "kind": "video",
+      "duration": 6,
+      "start": "still:F3-painel",
+      "prompt": "The dashboard stays sharp and unchanged; slow push-in toward the highlighted yellow number."
+    },
+    {
+      "id": "F3-06",
+      "gate": 2,
+      "kind": "video",
+      "duration": 8,
+      "start": "still:F3-manha",
+      "prompt": "The owner sips coffee and smiles while staff serve customers; morning sun; the caption stays sharp and unchanged."
+    },
+    {
+      "id": "F3-07",
+      "gate": 2,
+      "kind": "video",
+      "duration": 6,
+      "start": "frame:logo-horizontal",
+      "prompt": "The flat horizontal brand logo on deep forest green stays perfectly still while the camera slowly pushes in, ending exactly on the provided final frame with the yellow button below. The brand symbol is a flat graphic: it stays perfectly still and unchanged, it never rotates, distorts, glows or casts shadows; only the camera moves.",
+      "end": "frame:logo-horizontal-cta"
+    },
+    {
+      "id": "F3-som",
+      "gate": 2,
+      "kind": "audio",
+      "prompt": "Modern upbeat electronic track with a building rhythm, tense start, release at 0:24, confident ending, 45 seconds, light notification pings."
+    }
+  ]
+}
