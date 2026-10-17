@@ -1,0 +1,10 @@
+@import './tokens.css';
+@import './base.css';
+@import './components.css';
+@import './sections/header.css';
+@import './sections/hero.css';
+@import './sections/pessoas.css';
+@import './sections/solucoes.css';
+@import './sections/como.css';
+@import './sections/contato.css';
+@import './sections/footer.css';

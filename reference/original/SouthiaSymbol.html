@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<sc-if value="{{ isHybrid }}" hint-placeholder-val="{{ true }}">
+<svg viewBox="0 0 200 200" width="100%" height="100%" style="display:block;overflow:visible">
+  <path d="{{ formPath }}" fill="{{ formFill }}" stroke="{{ ink }}" style="stroke-width:{{ formStroke }};fill-opacity:{{ formOpacity }};stroke-linecap:round;stroke-linejoin:round"></path>
+  <g stroke="{{ ink }}" style="stroke-width:3;stroke-linecap:round">
+    <line x1="100" y1="47" x2="100" y2="56"></line>
+    <line x1="137.48" y1="62.52" x2="131.1" y2="68.9"></line>
+    <line x1="153" y1="100" x2="144" y2="100"></line>
+    <line x1="137.48" y1="137.48" x2="131.1" y2="131.1"></line>
+    <line x1="62.52" y1="137.48" x2="68.9" y2="131.1"></line>
+    <line x1="47" y1="100" x2="56" y2="100"></line>
+    <line x1="62.52" y1="62.52" x2="68.9" y2="68.9"></line>
+  </g>
+  <g fill="{{ ink }}">
+    <circle cx="100" cy="58" r="3.5"></circle>
+    <circle cx="129.7" cy="70.3" r="3.5"></circle>
+    <circle cx="142" cy="100" r="3.5"></circle>
+    <circle cx="129.7" cy="129.7" r="3.5"></circle>
+    <circle cx="70.3" cy="129.7" r="3.5"></circle>
+    <circle cx="58" cy="100" r="3.5"></circle>
+    <circle cx="70.3" cy="70.3" r="3.5"></circle>
+    <circle cx="100" cy="32" r="16"></circle>
+    <circle cx="148.08" cy="51.92" r="16"></circle>
+    <circle cx="168" cy="100" r="16"></circle>
+    <circle cx="148.08" cy="148.08" r="16"></circle>
+    <circle cx="51.92" cy="148.08" r="16"></circle>
+    <circle cx="32" cy="100" r="16"></circle>
+    <circle cx="51.92" cy="51.92" r="16"></circle>
+  </g>
+  <g fill="{{ bg }}">
+    <circle cx="100" cy="32" r="4.5"></circle>
+    <circle cx="148.08" cy="51.92" r="4.5"></circle>
+    <circle cx="168" cy="100" r="4.5"></circle>
+    <circle cx="148.08" cy="148.08" r="4.5"></circle>
+    <circle cx="51.92" cy="148.08" r="4.5"></circle>
+    <circle cx="32" cy="100" r="4.5"></circle>
+    <circle cx="51.92" cy="51.92" r="4.5"></circle>
+  </g>
+  <circle cx="100" cy="168" r="14" fill="{{ bg }}" stroke="{{ ink }}" style="stroke-width:5"></circle>
+  <polygon points="100,74 114,102 100,124 86,102" fill="{{ ember }}" style="stroke-linejoin:round"></polygon>
+</svg>
+</sc-if>
+<sc-if value="{{ isTech }}" hint-placeholder-val="{{ false }}">
+<svg viewBox="0 0 200 200" width="100%" height="100%" style="display:block;overflow:visible">
+  <polygon points="100,32 148.08,51.92 168,100 148.08,148.08 100,168 51.92,148.08 32,100 51.92,51.92" fill="none" stroke="{{ ink }}" style="stroke-width:{{ ring }};stroke-linejoin:round"></polygon>
+  <g stroke="{{ ink }}" style="stroke-width:3;stroke-linecap:round">
+    <line x1="100" y1="45" x2="100" y2="56"></line>
+    <line x1="138.89" y1="61.11" x2="131.11" y2="68.89"></line>
+    <line x1="155" y1="100" x2="144" y2="100"></line>
+    <line x1="138.89" y1="138.89" x2="131.11" y2="131.11"></line>
+    <line x1="61.11" y1="138.89" x2="68.89" y2="131.11"></line>
+    <line x1="45" y1="100" x2="56" y2="100"></line>
+    <line x1="61.11" y1="61.11" x2="68.89" y2="68.89"></line>
+  </g>
+  <circle cx="100" cy="32" r="14" fill="{{ ink }}"></circle>
+  <circle cx="148.08" cy="51.92" r="14" fill="{{ ink }}"></circle>
+  <circle cx="168" cy="100" r="14" fill="{{ ink }}"></circle>
+  <circle cx="148.08" cy="148.08" r="14" fill="{{ ink }}"></circle>
+  <circle cx="51.92" cy="148.08" r="14" fill="{{ ink }}"></circle>
+  <circle cx="32" cy="100" r="14" fill="{{ ink }}"></circle>
+  <circle cx="51.92" cy="51.92" r="14" fill="{{ ink }}"></circle>
+  <g fill="{{ bg }}">
+    <circle cx="100" cy="32" r="4.5"></circle>
+    <circle cx="148.08" cy="51.92" r="4.5"></circle>
+    <circle cx="168" cy="100" r="4.5"></circle>
+    <circle cx="148.08" cy="148.08" r="4.5"></circle>
+    <circle cx="51.92" cy="148.08" r="4.5"></circle>
+    <circle cx="32" cy="100" r="4.5"></circle>
+    <circle cx="51.92" cy="51.92" r="4.5"></circle>
+  </g>
+  <circle cx="100" cy="168" r="12" fill="{{ bg }}" stroke="{{ ink }}" style="stroke-width:4.5"></circle>
+  <polygon points="100,62 117,98 108,134 92,134 83,98" fill="{{ ember }}" style="stroke-linejoin:round"></polygon>
+  <polygon points="100,104 106,120 100,128 94,120" fill="{{ core }}"></polygon>
+</svg>
+</sc-if>
+<sc-if value="{{ isOrganic }}" hint-placeholder-val="{{ false }}">
+<svg viewBox="0 0 200 200" width="100%" height="100%" style="display:block;overflow:visible">
+  <circle cx="100" cy="100" r="68" fill="none" stroke="{{ ink }}" style="stroke-width:{{ ring }}"></circle>
+  <circle cx="100" cy="32" r="16" fill="{{ ink }}"></circle>
+  <circle cx="148.08" cy="51.92" r="16" fill="{{ ink }}"></circle>
+  <circle cx="168" cy="100" r="16" fill="{{ ink }}"></circle>
+  <circle cx="148.08" cy="148.08" r="16" fill="{{ ink }}"></circle>
+  <circle cx="100" cy="168" r="14" fill="{{ bg }}" stroke="{{ ink }}" style="stroke-width:5"></circle>
+  <circle cx="51.92" cy="148.08" r="16" fill="{{ ink }}"></circle>
+  <circle cx="32" cy="100" r="16" fill="{{ ink }}"></circle>
+  <circle cx="51.92" cy="51.92" r="16" fill="{{ ink }}"></circle>
+  <path d="M100 62 C118 84 125 104 118 120 C114 130 107 136 100 136 C93 136 86 130 82 120 C75 104 82 84 100 62 Z" fill="{{ ember }}"></path>
+  <path d="M100 96 C107 106 109 116 105 124 C103 128 101 129 100 129 C99 129 97 128 95 124 C91 116 93 106 100 96 Z" fill="{{ core }}"></path>
+</svg>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:240,&quot;height&quot;:240},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;tech&quot;,&quot;organic&quot;],&quot;default&quot;:&quot;tech&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;ink&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#1C3322&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;ember&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#E0912F&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;bg&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#F3EEE2&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;core&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#F3EEE2&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;ring&quot;:{&quot;editor&quot;:&quot;float&quot;,&quot;default&quot;:4,&quot;min&quot;:0,&quot;max&quot;:8,&quot;tsType&quot;:&quot;number&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    const v = p.variant ?? 'hybrid';
+    const form = p.form ?? 'ring';
+    const ink = p.ink ?? '#1C3322';
+    const ring = p.ring ?? 4;
+    const trace = (fn, a0, a1, close) => {
+      let d = '';
+      for (let a = a0; a <= a1 + 0.001; a += 1.5) {
+        const t = a * Math.PI / 180, r = fn(t);
+        d += (d ? ' L' : 'M') + (100 + r * Math.cos(t)).toFixed(2) + ' ' + (100 + r * Math.sin(t)).toFixed(2);
+      }
+      return d + (close ? ' Z' : '');
+    };
+    let formPath, formFill = 'none', formStroke = ring, formOpacity = 1;
+    if (form === 'membrane') {
+      formPath = trace(t => 77 + 13 * Math.cos(8 * (t + Math.PI / 2)) + 3 * Math.sin(3 * t + 0.6), 106, 434, false);
+    } else if (form === 'blob') {
+      formPath = trace(t => 70 + 9 * Math.cos(8 * (t + Math.PI / 2)) + 4 * Math.sin(3 * t + 0.6) + 2 * Math.cos(5 * t), 0, 360, true);
+      formFill = ink; formStroke = 0; formOpacity = 0.2;
+    } else {
+      formPath = trace(() => 68, 0, 360, true);
+    }
+    return {
+      formPath, formFill, formStroke, formOpacity,
+      isHybrid: v === 'hybrid',
+      isTech: v === 'tech',
+      isOrganic: v === 'organic',
+      ink: p.ink ?? '#1C3322',
+      ember: p.ember ?? '#E0912F',
+      bg: p.bg ?? '#F3EEE2',
+      core: p.core ?? p.bg ?? '#F3EEE2',
+      ring: p.ring ?? 4
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<section id="como" class="como" data-screen-label="Como trabalhamos">
+  <div class="container como__grid">
+    <div class="como__media" data-reveal>{{> media-slot id=como.media.id alt=como.media.alt shape="rounded"}}</div>
+    <div class="como__body">
+      <div class="como__head" data-reveal>
+        <p class="eyebrow">Como trabalhamos</p>
+        <h2 class="h2" data-split>A IA no centro, as pessoas em volta.</h2>
+      </div>
+      <ol class="steps">
+        {{#each steps}}
+        <li class="step" data-reveal>
+          <span class="step__num{{#if accent}} step__num--accent{{/if}}">{{n}}</span>
+          <div class="step__body"><h3 class="step__title">{{title}}</h3><p class="step__text">{{text}}</p></div>
+        </li>
+        {{/each}}
+      </ol>
+    </div>
+  </div>
+</section>

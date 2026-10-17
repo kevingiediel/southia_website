@@ -1,0 +1,28 @@
+.hero__grid { padding-top: 72px; padding-bottom: 96px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: 56px; align-items: center; }
+.hero__copy { display: flex; flex-direction: column; gap: 28px; }
+.hero__title { font-family: var(--font-display); font-weight: 500; font-size: var(--fs-h1); line-height: 1.02; letter-spacing: -.03em; text-wrap: balance; }
+.hero__lead { font-size: var(--fs-lead); line-height: 1.6; color: var(--sage-pale); max-width: 520px; text-wrap: pretty; }
+
+/* The "roda": ring of people around the spark */
+.hero__ring { position: relative; width: 100%; max-width: 560px; aspect-ratio: 1; justify-self: center; }
+.hero__rotor { position: absolute; inset: 0; }
+.hero__circle { position: absolute; border-radius: 50%; }
+.hero__circle--outer { inset: 8%; border: 2px solid var(--leaf); }
+.hero__circle--inner { inset: 30%; border: 1px dashed var(--leaf); }
+.hero__orbit { position: absolute; inset: 8%; }
+.hero__orbit--rev { inset: 30%; }
+.hero__orbit-dot { position: absolute; top: -7px; left: 50%; width: 14px; height: 14px; margin-left: -7px; border-radius: 50%; background: var(--yellow); box-shadow: 0 0 18px 4px rgba(242, 194, 48, .55); }
+.hero__orbit-dot--sm { top: auto; bottom: -4px; width: 8px; height: 8px; margin-left: -4px; background: var(--sage); box-shadow: none; }
+.hero__spark { position: absolute; left: 50%; top: 50%; width: 10%; height: 17%; margin-left: -5%; margin-top: -8.5%; background: var(--yellow); clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
+
+.hero__avatar, .hero__you { position: absolute; width: 19%; aspect-ratio: 1; transform: translate(-50%, -50%); }
+.hero__avatar--0 { left: 50%; top: 8%; }
+.hero__avatar--1 { left: 79.7%; top: 20.3%; }
+.hero__avatar--2 { left: 92%; top: 50%; }
+.hero__avatar--3 { left: 79.7%; top: 79.7%; }
+.hero__avatar--4 { left: 20.3%; top: 79.7%; }
+.hero__avatar--5 { left: 8%; top: 50%; }
+.hero__avatar--6 { left: 20.3%; top: 20.3%; }
+.hero__face { width: 100%; height: 100%; border-radius: 50%; border: 4px solid var(--sage); overflow: hidden; background: var(--green-mid); }
+.hero__you { left: 50%; top: 92%; width: 15%; }
+.hero__you-inner { width: 100%; height: 100%; border-radius: 50%; border: 3px dashed var(--yellow); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: var(--yellow); background: var(--green); }

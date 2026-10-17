@@ -1,0 +1,21 @@
+<section id="solucoes" class="solucoes" data-screen-label="Soluções">
+  <div class="container solucoes__inner">
+    <div class="solucoes__head" data-reveal>
+      <p class="eyebrow">Soluções</p>
+      <h2 class="h2" data-split>Seis formas de fazer o seu negócio girar.</h2>
+    </div>
+    <div class="cards">
+      {{#each solutions}}
+      <article class="card" data-reveal>
+        <div class="card__media">{{> media-slot id=media.id alt=media.alt shape="rect"}}</div>
+        <div class="card__body">
+          <div class="card__num"><span class="card__dot"></span><span>{{n}}</span></div>
+          <h3 class="card__title">{{title}}</h3>
+          <p class="card__text">{{text}}</p>
+          <ul class="card__tags">{{#each tags}}<li class="tag">{{this}}</li>{{/each}}</ul>
+        </div>
+      </article>
+      {{/each}}
+    </div>
+  </div>
+</section>

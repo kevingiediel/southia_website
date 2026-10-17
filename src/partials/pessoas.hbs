@@ -1,0 +1,13 @@
+<section class="pessoas" data-screen-label="Pessoas">
+  <div class="container pessoas__head" data-reveal>
+    <h2 class="h2 pessoas__title" data-split>Gente de verdade na frente. Tecnologia por trás.</h2>
+    <p class="lead pessoas__lead">Cada solução começa com quem está do outro lado: o cliente que espera uma resposta, a equipe que quer tempo para o que importa.</p>
+  </div>
+  <div class="marquee">
+    <div class="marquee__track">
+      {{#each marquee}}
+      <div class="marquee__item marquee__item--h{{h}}">{{> media-slot id=id alt=alt shape=shape}}</div>
+      {{/each}}
+    </div>
+  </div>
+</section>

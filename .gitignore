@@ -1,0 +1,8 @@
+node_modules/
+dist/
+media-src/
+test-results/
+playwright-report/
+.superpowers/
+.deploy/
+lighthouse.json

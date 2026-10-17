@@ -1,0 +1,42 @@
+:root {
+  --green: #1C3322;
+  --green-deep: #152819;
+  --green-mid: #2B4A30;
+  --leaf: #3E6A3B;
+  --sage: #A3C08A;
+  --sage-pale: #D9E2CC;
+  --sage-mute: #C9D6B8;
+  --yellow: #F2C230;
+  --yellow-light: #F7D35E;
+  --cream: #F3EEE2;
+  --paper: #FBF8F1;
+  --line: #E2DBCB;
+  --line-2: #D8D0BE;
+  --line-3: #CFC6B2;
+  --text: #1C3322;
+  --text-body: #3A4A3C;
+
+  --font-body: 'Figtree', system-ui, sans-serif;
+  --font-display: 'Montserrat Alternates', 'Figtree', sans-serif;
+  --fs-h1: clamp(44px, 6vw, 76px);
+  --fs-h2: clamp(32px, 4vw, 52px);
+  --fs-h2-xl: clamp(36px, 5vw, 64px);
+  --fs-h3: 24px;
+  --fs-lead: 19px;
+  --fs-body: 16px;
+  --fs-eyebrow: 13px;
+
+  --container: 1240px;
+  --gutter: 32px;
+  --section-y: 96px;
+  --radius-card: 20px;
+  --radius-pill: 999px;
+
+  --ease-out: cubic-bezier(.2, .7, .2, 1);
+  --dur-1: .3s;
+  --dur-2: .8s;
+}
+
+@media (max-width: 600px) {
+  :root { --gutter: 20px; --section-y: 72px; }
+}

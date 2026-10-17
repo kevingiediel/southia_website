@@ -1,0 +1,5 @@
+.site-header { position: sticky; top: 0; z-index: 20; background: rgba(28, 51, 34, .94); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.site-header__bar { padding-top: 16px; padding-bottom: 16px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.site-nav { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+.site-nav__link { font-size: 15px; font-weight: 500; color: var(--sage-pale); transition: color var(--dur-1) ease; }
+.site-nav__link:hover { color: var(--yellow); }
