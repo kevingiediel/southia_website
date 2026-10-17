@@ -12,6 +12,10 @@ export const SIZES = { circle: [360, 360], pill: [460, 640], rounded: [460, 640]
 export const BUDGET = { circle: 300_000, default: 800_000 };
 
 export function slotSpec(id, site) {
+  if (id.startsWith('film/')) {
+    if (!(site.film?.stops ?? []).some((s) => `film/${s.id}` === id)) throw new Error(`Unknown slot: ${id}`);
+    return { id, shape: 'circle', width: 720, height: 720, budget: 1_200_000 };
+  }
   let shape;
   if (site.hero.avatars.some((a) => a.id === id)) shape = 'circle';
   else if (site.marquee.some((m) => m.id === id)) shape = site.marquee.find((m) => m.id === id).shape;
@@ -36,7 +40,9 @@ function main() {
   const srcDir = path.join(root, 'media-src');
   const outDir = path.join(root, 'public/media');
   fs.mkdirSync(outDir, { recursive: true });
-  const raws = fs.existsSync(srcDir) ? fs.readdirSync(srcDir).filter((f) => /\.(mp4|mov|webm)$/i.test(f)) : [];
+  const list = (dir, prefix) => (fs.existsSync(dir) ? fs.readdirSync(dir).filter((f) => /\.(mp4|mov|webm)$/i.test(f)).map((f) => prefix + f) : []);
+  const raws = [...list(srcDir, ''), ...list(path.join(srcDir, 'film'), 'film/')];
+  fs.mkdirSync(path.join(outDir, 'film'), { recursive: true });
   if (!raws.length) {
     console.log('No raw clips in media-src/. Name them <slot-id>.mp4 (see docs/MEDIA.md).');
     return 0;
@@ -45,7 +51,7 @@ function main() {
   let failures = 0;
   const rows = [];
   for (const file of raws) {
-    const id = path.basename(file, path.extname(file));
+    const id = file.slice(0, -path.extname(file).length); // keeps a "film/" prefix
     let spec;
     try { spec = slotSpec(id, site); } catch (err) { console.error(`✖ ${file}: ${err.message}`); failures++; continue; }
     for (const format of ['mp4', 'webm', 'jpg']) {
