@@ -76,13 +76,15 @@ async function main(argv) {
 
   const paths = { frame: (n) => path.join(FRAMES, `${n}.png`), still: (n) => path.join(OUT, `${n}.png`) };
   fs.mkdirSync(OUT, { recursive: true });
-  const bin = process.platform === 'win32' ? 'higgsfield.cmd' : 'higgsfield';
+  // On Windows call the CLI's own executable: going through cmd.exe would mangle quotes in prompts.
+  const winExe = path.join(process.env.APPDATA ?? '', 'npm/node_modules/@higgsfield/cli/vendor/hf.exe');
+  const bin = process.platform === 'win32' && fs.existsSync(winExe) ? winExe : 'higgsfield';
 
   for (const shot of shots) {
     const args = shotArgs(shot, paths, spec);
     if (argv.includes('--cost')) {
       const costArgs = ['generate', 'cost', ...args.slice(2).filter((a, i, all) => !['--wait', '--json'].includes(a) && all[i - 1] !== '--wait-timeout' && a !== '--wait-timeout')];
-      const r = spawnSync(bin, costArgs, { encoding: 'utf8', shell: process.platform === 'win32' });
+      const r = spawnSync(bin, costArgs, { encoding: 'utf8' });
       console.log(`${shot.id.padEnd(14)} ${(r.stdout || r.stderr).trim().split('\n').pop()}`);
       continue;
     }
@@ -90,7 +92,7 @@ async function main(argv) {
     if (fs.existsSync(file)) { console.log(`✓ ${shot.id} (already generated)`); continue; }
     if (argv.includes('--dry-run')) { console.log(`higgsfield ${args.map((a) => (/\s/.test(a) ? JSON.stringify(a) : a)).join(' ')}`); continue; }
     console.log(`… ${shot.id}`);
-    const r = spawnSync(bin, args, { encoding: 'utf8', shell: process.platform === 'win32', maxBuffer: 64 * 1024 * 1024 });
+    const r = spawnSync(bin, args, { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
     if (r.status !== 0) { console.error(`✖ ${shot.id}: ${(r.stderr || r.stdout).trim()}`); return 1; }
     const url = resultUrl(JSON.parse(r.stdout));
     if (!url) { console.error(`✖ ${shot.id}: no media URL in response`); return 1; }
