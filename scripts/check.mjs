@@ -3,6 +3,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { execFileSync } from 'node:child_process';
+import zlib from 'node:zlib';
+
+export const JS_BUDGET = 61_440; // bytes, gzipped
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -58,6 +61,18 @@ export function runChecks(distDir = path.join(root, 'dist')) {
   const index = read(indexFile);
   for (const id of slotIds(site)) {
     if (!index.includes(`data-media="${id}"`)) errors.push(`media slot "${id}" missing from index.html`);
+  }
+
+  if (index.includes('wa.me/TODO')) errors.push('index.html links to a placeholder WhatsApp number');
+  if (!index.includes('<link rel="canonical" href="https://southia.com.br/">')) errors.push('canonical link missing');
+  if (!/property="og:image" content="https:\/\/southia\.com\.br\/og-image\.jpg"/.test(index)) errors.push('og:image missing');
+  for (const f of ['.htaccess', 'robots.txt', 'sitemap.xml', '404.html']) {
+    if (!fs.existsSync(path.join(distDir, f))) errors.push(`dist/${f} missing`);
+  }
+  if (fs.existsSync(assets)) {
+    const js = fs.readdirSync(assets).filter((n) => n.endsWith('.js'));
+    const gz = js.reduce((sum, n) => sum + zlib.gzipSync(fs.readFileSync(path.join(assets, n))).length, 0);
+    if (gz > JS_BUDGET) errors.push(`JS bundle ${gz} B gzipped exceeds ${JS_BUDGET} B`);
   }
 
   return { errors, warnings };

@@ -4,7 +4,8 @@
     <h2 class="h2 h2--xl" data-split>Tem lugar pra <em class="hl">você</em> na roda.</h2>
     <p class="contato__text">Conte o que o seu negócio precisa. A gente mostra onde pessoas, dados e IA podem trabalhar juntos.</p>
     <div class="btn-row btn-row--center">
-      <a class="btn btn--primary" href="mailto:{{site.email}}" data-magnetic>Agendar uma conversa</a>
+      <a class="btn btn--primary" href="mailto:{{site.email}}?subject=Quero%20conversar%20com%20a%20Southia" data-magnetic>Agendar uma conversa</a>
+      {{#if whatsappUrl}}<a class="btn btn--ghost" href="{{whatsappUrl}}" target="_blank" rel="noopener">Chamar no WhatsApp</a>{{/if}}
       <a class="btn btn--ghost" href="mailto:{{site.email}}">{{site.email}}</a>
     </div>
   </div>

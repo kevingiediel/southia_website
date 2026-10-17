@@ -127,3 +127,15 @@ test('video loads and plays when a clip exists', async ({ page }) => {
   await page.goto('/');
   await expect(page.locator('[data-media="hero-p2"]')).toHaveClass(/media--ready/, { timeout: 5000 });
 });
+
+test('no WhatsApp link while the number is a placeholder', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('a[href*="wa.me"]')).toHaveCount(0);
+  await expect(page.locator('#contato a[href^="mailto:ola@southia.com.br"]').first()).toBeVisible();
+});
+
+test('custom 404 page is served', async ({ page }) => {
+  const res = await page.goto('/404.html');
+  expect(res.status()).toBe(200);
+  await expect(page.locator('h1')).toHaveText('Página não encontrada');
+});

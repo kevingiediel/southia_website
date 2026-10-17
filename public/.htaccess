@@ -1,0 +1,47 @@
+# Southia — Apache config for Hostinger (public_html/)
+# Every block is wrapped in <IfModule> so a missing module never causes a 500 error.
+
+Options -Indexes
+ErrorDocument 404 /404.html
+
+# 1. Force HTTPS and the bare domain: https://southia.com.br
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} off [OR]
+  RewriteCond %{HTTP_HOST} ^www\. [NC]
+  RewriteRule ^ https://southia.com.br%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# 2. Correct types for fonts and video
+<IfModule mod_mime.c>
+  AddType video/webm .webm
+  AddType video/mp4 .mp4
+  AddType font/woff2 .woff2
+  AddType image/svg+xml .svg
+  AddType application/manifest+json .webmanifest
+</IfModule>
+
+# 3. Compression (brotli when available, gzip otherwise). Videos/fonts are already compressed.
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/css text/plain text/xml application/javascript application/json application/xml image/svg+xml
+</IfModule>
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript application/json application/xml image/svg+xml
+</IfModule>
+
+# 4. Caching: hashed build assets forever, media/fonts for 30 days, HTML always revalidated.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+  <FilesMatch "\.(mp4|webm|jpg|jpeg|png|webp|woff2|ico|svg)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+  # Hashed /assets/ files get "immutable" from assets/.htaccess (LiteSpeed-safe, no <If>).
+
+  # 5. Security headers
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>
