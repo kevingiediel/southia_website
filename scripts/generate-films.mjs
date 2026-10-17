@@ -71,6 +71,13 @@ export function findPreviousJob(jobs, args) {
   return jobs.find((j) => j.job_type === model && j.status === 'completed' && j.result_url && j.params?.prompt === prompt) ?? null;
 }
 
+// An identical job still queued or running: wait for it instead of paying for a duplicate.
+export function findPendingJob(jobs, args) {
+  const model = args[2];
+  const prompt = args[args.indexOf('--prompt') + 1];
+  return jobs.find((j) => j.job_type === model && ['queued', 'pending', 'in_progress', 'processing'].includes(j.status) && j.params?.prompt === prompt) ?? null;
+}
+
 const EXT = { still: 'png', video: 'mp4', audio: 'mp3' };
 const outFile = (shot) => path.join(OUT, `${shot.id}.${EXT[shot.kind]}`);
 
@@ -105,6 +112,7 @@ async function main(argv) {
   const bin = process.platform === 'win32' && fs.existsSync(winExe) ? winExe : 'higgsfield';
 
   let history = null;
+  const pending = (args) => { previous(args); return findPendingJob(history, args); };
   const previous = (args) => {
     if (history === null) {
       const r = spawnSync(bin, ['generate', 'list', '--json'], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
@@ -130,8 +138,11 @@ async function main(argv) {
       console.log(`✓ ${shot.id} → ${path.relative(root, file)} (recovered job ${done.id})`);
       continue;
     }
-    console.log(`… ${shot.id}`);
-    const r = spawnSync(bin, args, { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
+    const running = pending(args);
+    console.log(running ? `… ${shot.id} (waiting for job ${running.id} already in progress)` : `… ${shot.id}`);
+    const r = running
+      ? spawnSync(bin, ['generate', 'wait', running.id, '--wait-timeout', '30m', '--json'], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 })
+      : spawnSync(bin, args, { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
     if (r.status !== 0) { console.error(`✖ ${shot.id}: ${(r.stderr || r.stdout).trim()}`); return 1; }
     fs.writeFileSync(file.replace(/\.\w+$/, '.job.json'), r.stdout);
     const url = resultUrl(JSON.parse(r.stdout));

@@ -75,3 +75,16 @@ test('findPreviousJob reuses a completed job with the same model and prompt', as
   assert.equal(findPreviousJob(jobs, args)?.result_url, 'https://cdn.example/a.mp4');
   assert.equal(findPreviousJob(jobs, shotArgs({ id: 'Y', kind: 'video', start: 'frame:a', prompt: 'Other.' }, paths, {})), null);
 });
+
+test('findPendingJob finds an identical job still running', async () => {
+  const { findPendingJob } = await import('../../scripts/generate-films.mjs');
+  const args = shotArgs({ id: 'X', kind: 'video', start: 'frame:a', duration: 4, prompt: 'Fly in.' }, paths, {});
+  const prompt = args[args.indexOf('--prompt') + 1];
+  const jobs = [
+    { id: 'done', job_type: 'seedance_2_5', status: 'failed', params: { prompt } },
+    { id: 'run', job_type: 'seedance_2_5', status: 'in_progress', params: { prompt } },
+  ];
+  assert.equal(findPendingJob(jobs, args)?.id, 'run');
+  assert.equal(findPendingJob([{ id: 'q', job_type: 'seedance_2_5', status: 'queued', params: { prompt } }], args)?.id, 'q');
+  assert.equal(findPendingJob([], args), null);
+});
