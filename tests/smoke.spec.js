@@ -67,3 +67,13 @@ test('split headlines keep their text', async ({ page }) => {
   await expect(page.locator('#solucoes h2')).toHaveText('Seis formas de fazer o seu negócio girar.');
   await expect(page.locator('#solucoes h2 .word').first()).toBeVisible();
 });
+
+test('hero intro completes and loops pause off-screen', async ({ page }) => {
+  await page.goto('/?debug');
+  await expect(page.locator('#topo')).toHaveAttribute('data-intro-done', 'true', { timeout: 4000 });
+  await expect(page.locator('h1')).toBeVisible();
+  await page.locator('#contato').scrollIntoViewIfNeeded();
+  await page.waitForTimeout(800);
+  const paused = await page.evaluate(() => window.__southia?.heroLoops?.length > 0 && window.__southia.heroLoops.every((t) => t.paused()));
+  expect(paused).toBe(true);
+});

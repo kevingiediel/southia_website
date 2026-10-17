@@ -9,6 +9,7 @@ import * as smoothScroll from './motion/smooth-scroll.js';
 import * as header from './motion/header.js';
 import * as textReveal from './motion/text-reveal.js';
 import * as reveal from './motion/reveal.js';
+import * as heroRing from './motion/hero-ring.js';
 
 const html = document.documentElement;
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -20,6 +21,7 @@ const MOTION = [
   ['.site-header', header, 'self'],
   ['[data-split]', textReveal, 'doc'],
   ['[data-reveal]', reveal, 'doc'],
+  ['#topo', heroRing, 'self'],
 ];
 
 function boot(registry, ctx) {

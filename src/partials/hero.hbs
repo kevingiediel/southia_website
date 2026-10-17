@@ -1,6 +1,6 @@
 <section id="topo" class="hero section--dark" data-screen-label="Hero">
   <div class="container hero__grid">
-    <div class="hero__copy" data-reveal>
+    <div class="hero__copy">
       <p class="eyebrow eyebrow--sage">Tecnologia com gente dentro</p>
       <h1 class="hero__title" data-split="hero">Pessoas, dados e IA na mesma <em class="hl">roda</em>.</h1>
       <p class="hero__lead">A Southia une atendimento, automação, dados e inteligência artificial para que o seu negócio atenda melhor, venda mais e decida com clareza — sem perder o lado humano.</p>
@@ -15,17 +15,18 @@
         <svg class="hero__spokes" viewBox="0 0 100 100" preserveAspectRatio="none">
           {{#each hero.avatars}}<line x1="50" y1="50" x2="{{x}}" y2="{{y}}" pathLength="1"/>{{/each}}
         </svg>
-        <div class="hero__circle hero__circle--outer"></div>
+        <svg class="hero__ring-svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="42" pathLength="1"/></svg>
         <div class="hero__circle hero__circle--inner"></div>
         <div class="hero__orbit" data-orbit><span class="hero__orbit-dot"></span></div>
         <div class="hero__orbit hero__orbit--rev" data-orbit-rev><span class="hero__orbit-dot hero__orbit-dot--sm"></span></div>
+        <div class="hero__spark-glow"></div>
         <div class="hero__spark" data-spark></div>
         {{#each hero.avatars}}
-        <div class="hero__avatar hero__avatar--{{@index}}"><div class="hero__face" data-bob>{{> media-slot id=id alt=alt shape="circle"}}</div></div>
+        <div class="hero__avatar hero__avatar--{{@index}}"><div class="hero__pop"><div class="hero__face" data-bob>{{> media-slot id=id alt=alt shape="circle"}}</div></div></div>
         {{/each}}
-        <a class="hero__you" href="#contato" tabindex="-1"><span class="hero__you-inner" data-pulse>+ você</span></a>
+        <a class="hero__you" href="#contato" tabindex="-1"><span class="hero__pop"><span class="hero__you-inner" data-pulse>+ você</span></span></a>
       </div>
     </div>
   </div>
+  {{> divider from="none" to="cream"}}
 </section>
-{{> divider from="green" to="cream"}}
