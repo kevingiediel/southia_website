@@ -1,5 +1,27 @@
-.site-header { position: sticky; top: 0; z-index: 20; background: rgba(28, 51, 34, .94); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.site-header { position: sticky; top: 0; z-index: 20; }
+/* Blur lives on a pseudo-element: backdrop-filter on the header itself would trap the fixed mobile overlay. */
+.site-header::before { content: ''; position: absolute; inset: 0; z-index: -1; background: rgba(28, 51, 34, .94); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transition: opacity var(--dur-1) ease; }
 .site-header__bar { padding-top: 16px; padding-bottom: 16px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
 .site-nav { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
-.site-nav__link { font-size: 15px; font-weight: 500; color: var(--sage-pale); transition: color var(--dur-1) ease; }
+
+.site-nav__link { position: relative; font-size: 15px; font-weight: 500; color: var(--sage-pale); transition: color var(--dur-1) ease; }
+.site-nav__link::after { content: ''; position: absolute; left: 0; right: 0; bottom: -4px; height: 1.5px; background: var(--yellow); transform: scaleX(0); transform-origin: right; transition: transform var(--dur-1) var(--ease-out); }
 .site-nav__link:hover { color: var(--yellow); }
+.site-nav__link:hover::after { transform: scaleX(1); transform-origin: left; }
+
+.nav-toggle { display: none; position: relative; z-index: 2; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%; background: transparent; cursor: pointer; }
+.nav-toggle__bar { position: absolute; left: 11px; right: 11px; height: 2px; border-radius: 2px; background: var(--cream); transition: transform var(--dur-1) var(--ease-out); }
+.nav-toggle__bar:first-child { top: 17px; }
+.nav-toggle__bar:last-child { top: 25px; }
+.nav-open .nav-toggle__bar:first-child { transform: translateY(4px) rotate(45deg); }
+.nav-open .nav-toggle__bar:last-child { transform: translateY(-4px) rotate(-45deg); }
+
+/* Collapsed menu only when JS can open it; without JS the nav wraps as before. */
+@media (max-width: 759px) {
+  .js .site-header__bar { flex-wrap: nowrap; }
+  .js .nav-toggle { display: block; }
+  .js .site-nav { position: fixed; inset: 0; z-index: 1; flex-direction: column; justify-content: center; gap: 32px; background: var(--green); visibility: hidden; opacity: 0; transition: opacity var(--dur-1) ease, visibility 0s linear var(--dur-1); }
+  .js .site-nav__link { font-family: var(--font-display); font-size: 30px; color: var(--cream); }
+  .js.nav-open .site-nav { visibility: visible; opacity: 1; transition: opacity var(--dur-1) ease; }
+  .js.nav-open body { overflow: hidden; }
+}

@@ -2,7 +2,7 @@
   <div class="container hero__grid">
     <div class="hero__copy" data-reveal>
       <p class="eyebrow eyebrow--sage">Tecnologia com gente dentro</p>
-      <h1 class="hero__title" data-split="hero">Pessoas, dados e IA na mesma roda.</h1>
+      <h1 class="hero__title" data-split="hero">Pessoas, dados e IA na mesma <em class="hl">roda</em>.</h1>
       <p class="hero__lead">A Southia une atendimento, automação, dados e inteligência artificial para que o seu negócio atenda melhor, venda mais e decida com clareza — sem perder o lado humano.</p>
       <div class="btn-row">
         <a class="btn btn--primary" href="#contato" data-magnetic>Agendar uma conversa</a>
@@ -10,7 +10,11 @@
       </div>
     </div>
     <div class="hero__ring" aria-hidden="true">
+      <div class="hero__glow"></div>
       <div class="hero__rotor">
+        <svg class="hero__spokes" viewBox="0 0 100 100" preserveAspectRatio="none">
+          {{#each hero.avatars}}<line x1="50" y1="50" x2="{{x}}" y2="{{y}}" pathLength="1"/>{{/each}}
+        </svg>
         <div class="hero__circle hero__circle--outer"></div>
         <div class="hero__circle hero__circle--inner"></div>
         <div class="hero__orbit" data-orbit><span class="hero__orbit-dot"></span></div>
@@ -24,3 +28,4 @@
     </div>
   </div>
 </section>
+{{> divider from="green" to="cream"}}
