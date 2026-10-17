@@ -25,6 +25,8 @@ export function runChecks(distDir = path.join(root, 'dist')) {
   if (!fs.existsSync(indexFile)) return { errors: ['dist/index.html missing'], warnings };
 
   const site = JSON.parse(read(path.join(root, 'src/data/site.json')));
+  const known = new Set(slotIds(site));
+  const missingMedia = new Set();
   const htmlFiles = fs.readdirSync(distDir).filter((f) => f.endsWith('.html'));
 
   for (const file of htmlFiles) {
@@ -33,11 +35,12 @@ export function runChecks(distDir = path.join(root, 'dist')) {
     for (const [, hash] of html.matchAll(/href="#([^"]*)"/g)) {
       if (hash && !ids.has(hash)) errors.push(`${file}: anchor #${hash} has no matching id`);
     }
-    for (const [, attr, ref] of html.matchAll(/\s(src|href|poster|data-src)="(\/[^"/][^"]*)"/g)) {
+    for (const [, attr, ref] of html.matchAll(/\s(src|href|poster|data-src|data-poster)="(\/[^"/][^"]*)"/g)) {
+      const mediaId = ref.match(/^\/media\/([^/.]+)\.\w+$/)?.[1];
+      if (mediaId && !known.has(mediaId)) errors.push(`${file}: ${attr}="${ref}" references unknown slot "${mediaId}"`);
       if (exists(distDir, ref)) continue;
-      const msg = `${file}: ${attr}="${ref}" not found in dist`;
-      if (ref.startsWith('/media/') && (attr === 'poster' || attr === 'data-src')) warnings.push(msg);
-      else errors.push(msg);
+      if (mediaId && ['poster', 'data-src', 'data-poster'].includes(attr)) missingMedia.add(mediaId);
+      else errors.push(`${file}: ${attr}="${ref}" not found in dist`);
     }
   }
 
@@ -49,6 +52,8 @@ export function runChecks(distDir = path.join(root, 'dist')) {
       }
     }
   }
+
+  if (missingMedia.size) warnings.push(`media files missing for ${missingMedia.size} slot(s): ${[...missingMedia].join(', ')}`);
 
   const index = read(indexFile);
   for (const id of slotIds(site)) {

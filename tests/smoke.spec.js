@@ -98,3 +98,32 @@ test('steps activate on scroll', async ({ page }) => {
   await page.waitForTimeout(1000);
   await expect(page.locator('.step.is-active').first()).toBeVisible();
 });
+
+test('missing media falls back to placeholder', async ({ page }) => {
+  await page.route('**/media/prod-1.*', (r) => r.fulfill({ status: 404 }));
+  await page.goto('/');
+  const slot = page.locator('[data-media="prod-1"]');
+  await slot.scrollIntoViewIfNeeded();
+  await expect(slot).toHaveClass(/media--fallback/, { timeout: 4000 });
+});
+
+test('rejected autoplay keeps poster quietly', async ({ page }) => {
+  const errors = [];
+  page.on('console', (m) => m.type() === 'error' && errors.push(m.text()));
+  page.on('pageerror', (e) => errors.push(e.message));
+  await page.addInitScript(() => {
+    HTMLMediaElement.prototype.play = () => Promise.reject(new DOMException('blocked', 'NotAllowedError'));
+  });
+  await page.route('**/media/hero-p1.*', (r) => r.fulfill({ path: `tests/fixtures/tiny.${new URL(r.request().url()).pathname.split('.').pop()}` }));
+  await page.goto('/');
+  await page.waitForTimeout(1500);
+  await expect(page.locator('[data-media="hero-p1"]')).not.toHaveClass(/media--fallback/);
+  await expect(page.locator('[data-media="hero-p1"] video')).toHaveAttribute('poster', '/media/hero-p1.jpg');
+  expect(errors.filter((e) => !/404|Failed to load resource/.test(e))).toEqual([]);
+});
+
+test('video loads and plays when a clip exists', async ({ page }) => {
+  await page.route('**/media/hero-p2.*', (r) => r.fulfill({ path: `tests/fixtures/tiny.${new URL(r.request().url()).pathname.split('.').pop()}` }));
+  await page.goto('/');
+  await expect(page.locator('[data-media="hero-p2"]')).toHaveClass(/media--ready/, { timeout: 5000 });
+});

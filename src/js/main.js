@@ -15,12 +15,15 @@ import * as steps from './motion/steps.js';
 import * as tilt from './motion/tilt.js';
 import * as magnetic from './motion/magnetic.js';
 import * as contatoLogo from './motion/contato-logo.js';
+import * as videoSlot from './media/video-slot.js';
 
 const html = document.documentElement;
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // [selector, module, root]: root 'self' = the matched element, 'doc' = document (module handles many).
 const ALWAYS = [['.mobile-nav', mobileNav, 'self']];
+// Media boots last so it also sees the marquee's cloned slots.
+const MEDIA = [['[data-media]', videoSlot, 'doc']];
 const MOTION = [
   ['[data-smooth]', smoothScroll, 'doc'],
   ['.site-header', header, 'self'],
@@ -53,6 +56,7 @@ const ctx = {
   SplitText,
   lenis: null,
   speed: motion.speed,
+  reduced,
   finePointer: matchMedia('(hover: hover) and (pointer: fine)').matches,
 };
 
@@ -66,3 +70,5 @@ if (!reduced && html.classList.contains('js-motion')) {
     else gsap.globalTimeline.resume();
   });
 }
+
+boot(MEDIA, ctx);

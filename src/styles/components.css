@@ -37,6 +37,10 @@
 
 /* Media slot — the base style is the brand placeholder */
 .media { position: relative; width: 100%; height: 100%; overflow: hidden; background: linear-gradient(135deg, var(--green-mid), var(--green)); }
+.media::before { content: ''; position: absolute; inset: 0; background: url('../assets/logo-mark.svg') center / min(34%, 96px) no-repeat; opacity: .2; }
+.media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .6s ease; }
+.media--poster video, .media--ready video { opacity: 1; }
+.media--fallback video { display: none; }
 .media--circle { border-radius: 50%; }
 .media--pill { border-radius: var(--radius-pill); }
 .media--rounded { border-radius: 28px; }
