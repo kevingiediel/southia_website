@@ -74,10 +74,19 @@ export function findPreviousJob(jobs, args) {
 const EXT = { still: 'png', video: 'mp4', audio: 'mp3' };
 const outFile = (shot) => path.join(OUT, `${shot.id}.${EXT[shot.kind]}`);
 
-async function download(url, file) {
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`download ${res.status} ${url}`);
-  fs.writeFileSync(file, Buffer.from(await res.arrayBuffer()));
+async function download(url, file, tries = 4) {
+  for (let i = 1; ; i++) {
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`download ${res.status} ${url}`);
+      fs.writeFileSync(file, Buffer.from(await res.arrayBuffer()));
+      return;
+    } catch (err) {
+      if (i >= tries) throw err;
+      console.warn(`  retry download (${i}/${tries - 1}): ${err.cause?.code ?? err.message}`);
+      await new Promise((r) => setTimeout(r, 3000 * i));
+    }
+  }
 }
 
 async function main(argv) {
