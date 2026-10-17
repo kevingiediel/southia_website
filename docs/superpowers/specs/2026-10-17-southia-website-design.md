@@ -203,3 +203,48 @@ Higgsfield usage spends the user's credits. Estimated at about 23 videos plus 24
 4. Media slot system with placeholders and the `process-media` script.
 5. Higgsfield: 3 samples → user approval → remaining clips → process.
 6. SEO, `.htaccess`, 404, favicons, deploy docs, `check` + Playwright, Lighthouse pass.
+
+## 10. Amendment (2026-10-17): three films
+
+Approved in brainstorming after the user studied three Higgsfield launch reels. This **replaces §6 "Production workflow" steps 2–4** (the 3 generic sample loops). Slot markup, `video-slot.js`, budgets and `npm run media` from §6 stay.
+
+### Decisions
+
+| Topic | Decision |
+|---|---|
+| Placement | Film 1 runs live in the hero; Films 2 and 3 sit in a new **"Veja a Southia"** section (between Soluções and Como trabalhamos) and open in a full-screen player |
+| Film 1 build | Live in-page (GSAP + real HTML overlays over Higgsfield scene clips) **plus** MP4 exports 16:9 and 9:16 rendered from a composition page |
+| Films 2/3 direction | Film 2 cinematic (ref 3 look); Film 3 launch-style (ref 1 structure: person → UI → result → person) |
+| Audio | Generated music bed + SFX (Seed Audio); message carried by pt-BR on-screen type; hero Film 1 is silent on the site; Films 2/3 play sound in the player |
+| Logo, UI, text | Always code-built (never AI-generated) so the logo and copy stay exact |
+| Footage | Higgsfield stills (Soul 2.0 for people) → Seedance 2.5 image-to-video, 5–8 s, 16:9 1080p, subject centred; one recurring cast |
+| Slot loops | The 22 slots get short loops cut from the film footage (same cast and look) |
+| Numbers in Film 3 | "+38% vendas · 4h/dia de volta" are illustrative placeholders, labelled as an example |
+
+### Film 1 — "A roda" (hero, ~40 s loop)
+
+After the hero intro, the "camera" dives into a circle: the circle grows to fill the ring area as a circular window, a scene clip plays inside, an HTML overlay animates, then it pulls back to the logo. The left column (headline, CTAs) never moves.
+
+| # | Stop | Scene | Overlay | Tag |
+|---|---|---|---|---|
+| 1 | hero-p1 (top) | Neighbourhood barbershop, man getting a haircut, friends laughing | Chat: "Oi! Tem horário amanhã às 15h?" / "Tem sim! 15h com o Rafa. Confirmo?" / "Pode confirmar 👍" / "Prontinho ✅ Te lembro amanhã." | Agentes de atendimento |
+| 2 | hero-p3 (right) | Physical-therapy clinic, staff smiling at a phone | Instagram-style posts generate into a grid; "Campanha criada automaticamente" + schedule chips | Criativos e campanhas |
+| 3 | hero-p5 (lower-left) | Law office, lawyer relieved | Source cards (Diário Oficial, STJ, TJSP) fly into a dashboard list with ticks; "Atualizado agora" | Dados e IA |
+| 4 | Spark | Night, gaúcho fogo de chão, people in a circle, one drinking chimarrão | "Pessoas, dados e IA na mesma roda." | — |
+
+Behaviour: starts after the intro, only while the hero is on screen; pause/play button on the ring (WCAG 2.2.2); reduced motion or Save-Data → static ring, no scene clips; only the next scene clip is prefetched; scene clips ≤ 1.2 MB, 720×720 square crops.
+
+### Films 2 and 3
+
+- **Film 2 "Institucional" (~45 s):** dawn city / shutters ("Todo negócio começa com gente.") → montage of baker, barber, physio, lawyer, shop owner greeting customers → Southia team in a circle around a table ("Pessoas, dados e IA…") → the same businesses calm, phones buzzing ("…na mesma roda.") → code-built logo end card, southia.com.br.
+- **Film 3 "Acelere" (~45 s):** owner swamped at night (counter "47 mensagens sem resposta") → three UI beats on dark green with yellow accent (agent replying, campaign grid generating, dashboard counters) → owner relaxed next morning, illustrative results → end card "Acelere com a Southia".
+- **"Veja a Southia" section:** two cards (poster, title, duration); click opens a modal player with sound, controls and captions; video loads only on open; Esc closes; focus is trapped and returned to the card.
+
+### Production gates
+
+1. **Gate 1:** barbershop still + clip running live in the hero with the chat overlay, plus a Higgsfield credit estimate for the full shot list. Nothing else is generated before approval.
+2. **Gate 2:** all footage generated; user reviews Film 1 live and rough cuts of Films 2/3 before final renders and slot loops.
+
+### Testing additions
+
+Playwright with stubbed clips: hero visits the 4 stops in order and returns to the ring; pause stops the sequence; reduced motion → no film; scene clips not requested before the hero film starts; player opens, traps focus, closes on Esc and returns focus. Unit: stop timeline data and render-script ffmpeg arguments.

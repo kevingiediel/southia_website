@@ -359,3 +359,61 @@ export function init(root /* Element */, ctx /* MotionCtx */) { /* … */ return
 - [ ] **Step 3: Manual pass** in the built-in browser at 375px and 1440px: every section, keyboard-only tab through nav and CTAs, the reduced-motion emulation, and the JS-off view. Screenshot each for the report.
 - [ ] **Step 4: Update `README.md`** with a project overview, scripts, where to edit copy (`src/data/site.json`, partials), how to swap media, and links to `docs/MEDIA.md` and `docs/DEPLOY.md`.
 - [ ] **Step 5: Commit** `docs: README and final verification`.
+
+---
+
+## Amendment (2026-10-17): films — replaces Tasks 8 and 9
+
+Spec §10 replaces the 3 generic sample loops with three films. Tasks 8–9 are superseded by Tasks 12–17; Task 11 (final verification) runs last, after Task 17.
+
+### Shared interfaces (films)
+
+```js
+// site.json
+"film": { "stops": [ { "id": "barbearia", "circle": 0, "overlay": "chat", "tag": "Agentes de atendimento" },
+                     { "id": "clinica",   "circle": 2, "overlay": "instagram", "tag": "Criativos e campanhas" },
+                     { "id": "advocacia", "circle": 4, "overlay": "dados", "tag": "Dados e IA" },
+                     { "id": "roda",      "circle": "spark", "overlay": "headline", "tag": "" } ],
+          "chat": [ { "from": "cliente", "text": "Oi! Tem horário amanhã às 15h?" }, … ] }
+// src/js/motion/hero-film.js
+export function stopSchedule(stops, { zoomIn = 1.1, dwell = 7, zoomOut = 0.9, rest = 1.2 } = {}) // → [{ id, start, end }] seconds, contiguous, total = loop length
+export function init(heroSection, ctx) // waits for 'hero:intro-done', builds a repeating timeline; sets heroSection.dataset.filmStop = id | 'ring'
+// Clips: /media/film/<stop-id>.{webm,mp4,jpg}, 720×720
+```
+
+### Task 12: Hero film engine + chat overlay
+
+**Files:** Create `src/js/motion/hero-film.js`, `src/partials/hero-film.hbs`, `src/styles/sections/hero-film.css`, `tests/unit/hero-film.test.js`. Modify `hero.hbs`, `hero-ring.js` (dispatch `hero:intro-done` on the section), `main.js`, `site.json`, `smoke.spec.js`.
+
+- [ ] Unit (RED first): `stopSchedule` returns 4 contiguous entries in stop order; first start 0; each length = zoomIn+dwell+zoomOut+rest; total = 4× that.
+- [ ] Playwright (RED first), clips routed to fixtures, `/?debug&filmspeed=10`: records `data-film-stop` changes → sequence contains `barbearia, ring, clinica, ring, advocacia, ring, roda, ring` in order; pause button sets `aria-pressed="true"` and `data-film-stop` stops changing for 1.5s; reduced motion → no `.hero-film` playback and no `/media/film/` requests; no `/media/film/` request before `hero:intro-done`.
+- [ ] Implement: window = circular `.hero-film__window` the size of the outer ring; zoom = transform-only (scale + translate from the circle's centre, `x/y` from site.json avatar positions; spark = centre); scene `<video>` per stop with `data-src`, src set on enter, next stop prefetched; chat overlay types messages in sequence (typing dots → bubble); tag chip per stop; pause/play button (`aria-pressed`, label "Pausar animação"/"Retomar animação"); pauses when hero off-screen.
+- [ ] Commit `feat: hero film engine with chat overlay`.
+
+### Task 13: Gate 1 — barbershop sample (APPROVAL GATE)
+
+- [ ] Load `higgsfield-generate`; generate the barbershop still (Soul 2.0, 16:9, prompt from MEDIA.md film section), then Seedance 2.5 image-to-video 6–8 s, no audio; save `media-src/film/barbearia.mp4`.
+- [ ] Extend `npm run media` for `media-src/film/*` → `public/media/film/<id>.{mp4,webm,jpg}` 720×720 centre crop, budget 1.2 MB (unit test `slotSpec('film/barbearia')` first).
+- [ ] Run `higgsfield generate cost` for the full shot list (spec §10) and total it.
+- [ ] Show the user: hero screenshots/recording of stop 1, the raw still, credit estimate. **STOP until approved.**
+
+### Task 14: Remaining overlays — Instagram grid, data feed, headline
+
+- [ ] Playwright RED: each stop's overlay becomes visible during its stop (`.overlay--instagram`, `.overlay--dados`, `.overlay--headline`).
+- [ ] Implement overlays in `hero-film.hbs` + CSS + timeline hooks. Commit.
+
+### Task 15: Remaining footage + audio (Gate 2 prep)
+
+- [ ] Generate clinic, law office, fireside (Film 1); Film 2 ×6 shots; Film 3 ×3 shots; 7 portrait loops for hero circles; music beds ×3 and SFX. Raw files in `media-src/`, processed via `npm run media`.
+- [ ] Rough cuts of Films 2/3 via Task 17's renderer (draft quality). **STOP for Gate 2 review.**
+
+### Task 16: "Veja a Southia" section + film player
+
+- [ ] Playwright RED: two `.film-card`s; click opens `dialog.film-player` with a `<video controls>` whose src is set only on open; focus moves into the dialog; Esc closes; focus returns to the card; no `/media/films/` request before click.
+- [ ] Implement with native `<dialog>` (`showModal()` gives focus trap + Esc), captions `<track kind="captions" srclang="pt-BR">`. Commit.
+
+### Task 17: Composition pages, renderer, exports, slot loops
+
+- [ ] Unit RED: `renderArgs({ fps: 30, size: [1920,1080] })` builds the ffmpeg image2pipe → H.264 command with `-r 30`, `-pix_fmt yuv420p`, audio mux when given.
+- [ ] `films/film-1.html` (reuses hero-film timeline, deterministic `?render` mode driven by `gsap.globalTimeline.seek`), `films/film-2.html`, `films/film-3.html`; `scripts/render-film.mjs` steps frames via Playwright screenshots → ffmpeg; outputs `exports/film-{1,2,3}-{16x9,9x16}.mp4` (git-ignored) and web versions `public/media/films/film-{2,3}.{mp4,webm,jpg}`.
+- [ ] Cut slot loops from the footage into `media-src/<slot-id>.mp4` and run `npm run media`; `npm run build` shows no missing media. Commit.
