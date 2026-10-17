@@ -52,3 +52,26 @@ test('video resolution comes from the shot list (default 1080p)', () => {
   const args = shotArgs(shot, paths, { resolution: '720p' });
   assert.equal(args[args.indexOf('--resolution') + 1], '720p');
 });
+
+test('resultUrl prefers result_url and ignores input media inside params', () => {
+  const job = [{ params: { medias: [{ data: { url: 'https://cdn.example/in.png' } }] }, result_url: 'https://cdn.example/out.mp4', status: 'completed' }];
+  assert.equal(resultUrl(job), 'https://cdn.example/out.mp4');
+  assert.equal(resultUrl([{ params: { medias: [{ data: { url: 'https://cdn.example/in.png' } }] }, result_url: null }]), null);
+});
+
+test('video shots explicitly disable generated audio', () => {
+  const args = shotArgs({ id: 'X', kind: 'video', start: 'frame:a', duration: 4, prompt: 'p' }, paths, {});
+  assert.equal(args[args.indexOf('--generate_audio') + 1], 'false');
+});
+
+test('findPreviousJob reuses a completed job with the same model and prompt', async () => {
+  const { findPreviousJob } = await import('../../scripts/generate-films.mjs');
+  const args = shotArgs({ id: 'X', kind: 'video', start: 'frame:a', duration: 4, prompt: 'Fly in.' }, paths, { motion: 'M.' });
+  const jobs = [
+    { job_type: 'seedance_2_5', status: 'in_progress', params: { prompt: 'Fly in. M.' }, result_url: null },
+    { job_type: 'seedance_2_5', status: 'completed', params: { prompt: 'Fly in. M.' }, result_url: 'https://cdn.example/a.mp4' },
+    { job_type: 'kling3_0', status: 'completed', params: { prompt: 'Fly in. M.' }, result_url: 'https://cdn.example/b.mp4' },
+  ];
+  assert.equal(findPreviousJob(jobs, args)?.result_url, 'https://cdn.example/a.mp4');
+  assert.equal(findPreviousJob(jobs, shotArgs({ id: 'Y', kind: 'video', start: 'frame:a', prompt: 'Other.' }, paths, {})), null);
+});
