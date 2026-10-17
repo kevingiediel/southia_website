@@ -1,0 +1,45 @@
+/* Film 1 "A roda": scene windows grow out of the ring's circles. */
+.hero-film { position: absolute; inset: 8%; z-index: 3; pointer-events: none; }
+.hero-film__scene { position: absolute; inset: 0; border-radius: 50%; overflow: hidden; visibility: hidden; opacity: 0; border: 4px solid var(--sage); background: linear-gradient(135deg, var(--green-mid), var(--green)); box-shadow: 0 30px 80px rgba(0, 0, 0, .35); will-change: transform; }
+.hero-film__scene::before { content: ''; position: absolute; inset: 0; background: url('../../assets/brand/simbolo-negativa.svg') center / 22% no-repeat; opacity: .18; }
+.hero-film__scene video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .5s ease; }
+.hero-film__scene.is-ready video { opacity: 1; }
+.hero-film__scene--roda { border-color: var(--yellow); }
+
+.hero-film__overlays { position: absolute; inset: 0; z-index: 4; pointer-events: none; }
+.overlay, .hero-film__tag { visibility: hidden; opacity: 0; }
+.hero-film__tag { position: absolute; top: 4%; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 12px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--green); background: var(--yellow); padding: 7px 14px; border-radius: var(--radius-pill); }
+
+/* WhatsApp-like chat card */
+.overlay--chat { position: absolute; left: -14%; bottom: 4%; width: min(64%, 330px); background: #F7F5EE; color: var(--green); border-radius: 18px; box-shadow: 0 24px 60px rgba(0, 0, 0, .35); overflow: hidden; font-size: 13px; line-height: 1.4; }
+.chat__head { display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: var(--green); color: var(--cream); }
+.chat__avatar { width: 30px; height: 30px; flex: none; }
+.chat__name { display: flex; flex-direction: column; font-weight: 700; font-size: 13px; }
+.chat__name small { font-weight: 500; font-size: 11px; color: var(--sage); }
+.chat__body { display: flex; flex-direction: column; gap: 6px; padding: 12px; background: #EFEAD9; }
+.chat__msg, .chat__typing { display: none; }
+.chat__msg { max-width: 82%; padding: 7px 10px; border-radius: 12px; }
+.chat__msg--cliente { align-self: flex-end; background: #DCF3C8; border-bottom-right-radius: 4px; }
+.chat__msg--agente { align-self: flex-start; background: #fff; border-bottom-left-radius: 4px; }
+.chat__typing { align-self: flex-start; display: flex; gap: 4px; padding: 9px 11px; background: #fff; border-radius: 12px; }
+.chat__typing span { width: 6px; height: 6px; border-radius: 50%; background: var(--leaf); animation: chat-dot 1s infinite ease-in-out; }
+.chat__typing span:nth-child(2) { animation-delay: .15s; }
+.chat__typing span:nth-child(3) { animation-delay: .3s; }
+@keyframes chat-dot { 0%, 100% { transform: translateY(0); opacity: .4; } 50% { transform: translateY(-3px); opacity: 1; } }
+
+.overlay--headline { position: absolute; left: 50%; bottom: 10%; width: 86%; transform: translateX(-50%); text-align: center; font-family: var(--font-display); font-weight: 500; font-size: clamp(20px, 2.4vw, 32px); line-height: 1.1; color: var(--cream); text-shadow: 0 2px 24px rgba(0, 0, 0, .6); }
+.overlay--headline .hl { color: var(--yellow); }
+
+/* Pause / play (WCAG 2.2.2) */
+.hero-film__toggle { position: absolute; right: 2%; bottom: 2%; z-index: 5; width: 40px; height: 40px; display: none; place-items: center; padding: 0; border: 1.5px solid var(--leaf); border-radius: 50%; background: rgba(28, 51, 34, .8); color: var(--cream); cursor: pointer; transition: border-color var(--dur-1) ease; }
+.hero-film__toggle:hover { border-color: var(--sage); }
+.js-motion .hero-film__toggle { display: grid; }
+.hero-film__icon { width: 18px; height: 18px; fill: currentColor; }
+.hero-film__icon--play, .hero-film__toggle[aria-pressed="true"] .hero-film__icon--pause { display: none; }
+.hero-film__toggle[aria-pressed="true"] .hero-film__icon--play { display: block; }
+
+@media (max-width: 759px) {
+  .js-motion .hero__ring { margin-bottom: 26%; }
+  .overlay--chat { left: 50%; top: 78%; bottom: auto; transform: translateX(-50%); width: 84%; font-size: 12px; }
+  .hero-film__toggle { top: 0; bottom: auto; right: 0; }
+}

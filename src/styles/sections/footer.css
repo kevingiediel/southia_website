@@ -1,4 +1,4 @@
-.site-footer { background: var(--green-deep); color: var(--sage-mute); }
+.site-footer { background: var(--green); color: var(--sage-mute); border-top: 1px solid rgba(163, 192, 138, .18); }
 .site-footer__bar { padding-top: 40px; padding-bottom: 40px; display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
 .site-footer__tagline { font-size: 12px; font-weight: 600; letter-spacing: .28em; text-transform: uppercase; color: var(--sage); }
 .site-footer__copy { font-size: 14px; }

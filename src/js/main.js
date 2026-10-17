@@ -10,17 +10,17 @@ import * as header from './motion/header.js';
 import * as textReveal from './motion/text-reveal.js';
 import * as reveal from './motion/reveal.js';
 import * as heroRing from './motion/hero-ring.js';
+import * as heroFilm from './motion/hero-film.js';
 import * as marquee from './motion/marquee.js';
 import * as steps from './motion/steps.js';
 import * as tilt from './motion/tilt.js';
 import * as magnetic from './motion/magnetic.js';
-import * as contatoLogo from './motion/contato-logo.js';
 import * as videoSlot from './media/video-slot.js';
 
 const html = document.documentElement;
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// [selector, module, root]: root 'self' = the matched element, 'doc' = document (module handles many).
+// [selector, module, root]: 'self' = the matched element, 'section' = its <section>, 'doc' = document (module handles many).
 const ALWAYS = [['.mobile-nav', mobileNav, 'self']];
 // Media boots last so it also sees the marquee's cloned slots.
 const MEDIA = [['[data-media]', videoSlot, 'doc']];
@@ -30,11 +30,11 @@ const MOTION = [
   ['[data-split]', textReveal, 'doc'],
   ['[data-reveal]', reveal, 'doc'],
   ['#topo', heroRing, 'self'],
+  ['.hero-film', heroFilm, 'section'],
   ['.marquee', marquee, 'self'],
   ['.steps', steps, 'self'],
   ['.cards', tilt, 'self'],
   ['[data-magnetic]', magnetic, 'doc'],
-  ['.contato-logo', contatoLogo, 'self'],
 ];
 
 function boot(registry, ctx) {
@@ -42,7 +42,8 @@ function boot(registry, ctx) {
     const el = document.querySelector(selector);
     if (!el) continue;
     try {
-      mod.init(scope === 'doc' ? document.documentElement : el, ctx);
+      const root = scope === 'doc' ? document.documentElement : scope === 'section' ? el.closest('section') : el;
+      mod.init(root, ctx);
     } catch (err) {
       console.warn('[motion] disabled:', err);
       html.classList.remove('js-motion');

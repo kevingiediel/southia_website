@@ -1,0 +1,27 @@
+<div class="hero-film" aria-hidden="true">
+  {{#each film.stops}}
+  <div class="hero-film__scene hero-film__scene--{{id}}" data-stop="{{id}}" data-circle="{{circle}}" data-tag="{{tag}}">
+    <video muted loop playsinline preload="none" data-poster="/media/film/{{id}}.jpg">
+      <source data-src="/media/film/{{id}}.webm" type="video/webm">
+      <source data-src="/media/film/{{id}}.mp4" type="video/mp4">
+    </video>
+  </div>
+  {{/each}}
+</div>
+<div class="hero-film__overlays" aria-hidden="true">
+  <span class="hero-film__tag"></span>
+  <div class="overlay overlay--chat" data-for="barbearia">
+    <div class="chat__head"><img class="chat__avatar" src="/src/assets/brand/simbolo-negativa.svg" alt="" width="30" height="30"><span class="chat__name">Barbearia do Rafa<small>Agente Southia · online</small></span></div>
+    <div class="chat__body">
+      {{#each film.chat}}
+      <p class="chat__msg chat__msg--{{from}}">{{text}}</p>
+      {{/each}}
+      <p class="chat__typing"><span></span><span></span><span></span></p>
+    </div>
+  </div>
+  <p class="overlay overlay--headline" data-for="roda">Pessoas, dados e IA na mesma <em class="hl">roda</em>.</p>
+</div>
+<button class="hero-film__toggle" type="button" aria-pressed="false" aria-label="Pausar animação">
+  <svg class="hero-film__icon hero-film__icon--pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+  <svg class="hero-film__icon hero-film__icon--play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>
+</button>

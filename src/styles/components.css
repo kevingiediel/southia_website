@@ -37,7 +37,7 @@
 
 /* Media slot — the base style is the brand placeholder */
 .media { position: relative; width: 100%; height: 100%; overflow: hidden; background: linear-gradient(135deg, var(--green-mid), var(--green)); }
-.media::before { content: ''; position: absolute; inset: 0; background: url('../assets/logo-mark.svg') center / min(34%, 96px) no-repeat; opacity: .2; }
+.media::before { content: ''; position: absolute; inset: 0; background: url('../assets/brand/simbolo-negativa.svg') center / min(34%, 96px) no-repeat; opacity: .2; }
 .media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .6s ease; }
 .media--poster video, .media--ready video { opacity: 1; }
 .media--fallback video { display: none; }
@@ -46,17 +46,7 @@
 .media--rounded { border-radius: 28px; }
 .media--rect { border-radius: 0; }
 
-/* Logo */
-.logo { width: 100%; height: 100%; overflow: visible; --logo-ink: var(--sage); --logo-ember: var(--yellow); --logo-bg: var(--green); }
-.logo--deep { --logo-bg: var(--green-deep); }
-.logo__ring, .logo__spokes { stroke: var(--logo-ink); }
-.logo__ink { fill: var(--logo-ink); }
-.logo__bg { fill: var(--logo-bg); }
-.logo__you { fill: var(--logo-bg); stroke: var(--logo-ink); }
-.logo__ember { fill: var(--logo-ember); }
-
-.brand { display: flex; align-items: center; gap: 10px; }
-.brand__mark { width: 34px; height: 34px; }
-.brand__mark--sm { width: 28px; height: 28px; }
-.brand__word { font-family: var(--font-display); font-weight: 600; font-size: 26px; letter-spacing: -.035em; color: var(--cream); line-height: 1; }
-.brand__word--sm { font-size: 22px; }
+/* Official brand files (src/assets/brand, extracted from the brand manual — never redrawn) */
+.brand { display: flex; align-items: center; }
+.brand__logo { display: block; height: 34px; width: auto; }
+.brand__logo--sm { height: 28px; }

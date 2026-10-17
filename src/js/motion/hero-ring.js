@@ -42,11 +42,10 @@ export function init(section, ctx) {
     onToggle: (self) => { inView = self.isActive; if (section.dataset.introDone) syncLoops(); },
   }));
 
-  // Scroll: the ring turns while people stay upright.
-  triggers.push(gsap.timeline({ scrollTrigger: { trigger: section, start: 'top top', end: 'bottom top', scrub: true } })
-    .to(section.querySelector('.hero__rotor'), { rotation: 25, ease: 'none' }, 0)
-    .to(pops, { rotation: -25, ease: 'none' }, 0)
-    .to(section.querySelector('.hero__glow'), { yPercent: 15, ease: 'none' }, 0).scrollTrigger);
+  // Scroll: the glow drifts. The ring itself never rotates (brand manual: "não girar").
+  triggers.push(gsap.to(section.querySelector('.hero__glow'), {
+    yPercent: 15, ease: 'none', scrollTrigger: { trigger: section, start: 'top top', end: 'bottom top', scrub: true },
+  }).scrollTrigger);
 
   fontsReady().then(() => {
     if (cancelled) return;
@@ -55,6 +54,7 @@ export function init(section, ctx) {
       defaults: { ease: 'power3.out' },
       onComplete: () => {
         section.dataset.introDone = 'true';
+        section.dispatchEvent(new Event('hero:intro-done'));
         buildLoops();
         syncLoops();
       },

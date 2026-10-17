@@ -1,3 +1,4 @@
 .contato__inner { max-width: calc(900px + 2 * var(--gutter)); margin: 0 auto; padding: 112px var(--gutter); display: flex; flex-direction: column; align-items: center; gap: 32px; text-align: center; }
 .contato-logo { width: 120px; height: 120px; }
+.contato-logo img { width: 100%; height: 100%; }
 .contato__text { font-size: 18px; line-height: 1.6; color: var(--sage-pale); max-width: 560px; }

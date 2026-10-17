@@ -139,3 +139,71 @@ test('custom 404 page is served', async ({ page }) => {
   expect(res.status()).toBe(200);
   await expect(page.locator('h1')).toHaveText('Página não encontrada');
 });
+
+const routeFilmClips = (page, seen = []) => page.route('**/media/film/**', (r) => {
+  seen.push(r.request().url());
+  r.fulfill({ path: `tests/fixtures/tiny.${new URL(r.request().url()).pathname.split('.').pop()}` });
+});
+
+test('hero film visits each stop in order and returns to the ring', async ({ page }) => {
+  await routeFilmClips(page);
+  await page.goto('/?debug&filmspeed=10');
+  await page.waitForFunction(() => window.__southia?.filmLog?.length >= 8, null, { timeout: 15000 });
+  const stops = await page.evaluate(() => window.__southia.filmLog.slice(0, 8));
+  expect(stops).toEqual(['barbearia', 'ring', 'clinica', 'ring', 'advocacia', 'ring', 'roda', 'ring']);
+});
+
+test('hero film chat overlay shows the conversation', async ({ page }) => {
+  await routeFilmClips(page);
+  await page.goto('/?debug&filmspeed=4');
+  await expect(page.locator('.overlay--chat .chat__msg').last()).toBeVisible({ timeout: 8000 });
+  await expect(page.locator('.overlay--chat')).toContainText('Prontinho');
+});
+
+test('pause button stops the hero film', async ({ page }) => {
+  await routeFilmClips(page);
+  await page.goto('/?debug&filmspeed=10');
+  await expect(page.locator('#topo')).toHaveAttribute('data-film-stop', /.+/, { timeout: 6000 });
+  const toggle = page.locator('.hero-film__toggle');
+  await toggle.click();
+  await expect(toggle).toHaveAttribute('aria-pressed', 'true');
+  const before = await page.locator('#topo').getAttribute('data-film-stop');
+  await page.waitForTimeout(1500);
+  await expect(page.locator('#topo')).toHaveAttribute('data-film-stop', before);
+});
+
+test('no film clips load before the intro or with reduced motion', async ({ browser, page }) => {
+  const seen = [];
+  await routeFilmClips(page, seen);
+  await page.goto('/?debug');
+  const atLoad = seen.length;
+  expect(atLoad).toBe(0);
+
+  const reducedSeen = [];
+  const reduced = await (await browser.newContext({ reducedMotion: 'reduce' })).newPage();
+  await routeFilmClips(reduced, reducedSeen);
+  await reduced.goto('/');
+  await reduced.waitForTimeout(3000);
+  expect(reducedSeen).toEqual([]);
+  await expect(reduced.locator('#topo')).not.toHaveAttribute('data-film-stop', /.+/);
+});
+
+test('header, footer and contato use the official brand files', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('.site-header img.brand__logo')).toHaveAttribute('src', /horizontal-negativa.*\.svg$/);
+  await expect(page.locator('.site-footer img.brand__logo')).toHaveAttribute('src', /horizontal-negativa.*\.svg$/);
+  await expect(page.locator('.contato-logo img')).toHaveAttribute('src', /simbolo-negativa.*\.svg$/);
+  await expect(page.locator('.site-header img.brand__logo')).toHaveAttribute('alt', 'Southia');
+});
+
+test('brand symbols never rotate (manual: "não girar")', async ({ page }) => {
+  await page.goto('/');
+  await page.mouse.wheel(0, 500);
+  await page.waitForTimeout(1200);
+  const rotor = await page.locator('.hero__rotor').evaluate((e) => getComputedStyle(e).transform);
+  expect(['none', 'matrix(1, 0, 0, 1, 0, 0)']).toContain(rotor);
+  await page.locator('#contato').scrollIntoViewIfNeeded();
+  await page.waitForTimeout(2500);
+  const logo = await page.locator('.contato-logo img').evaluate((e) => getComputedStyle(e).transform);
+  expect(['none', 'matrix(1, 0, 0, 1, 0, 0)']).toContain(logo);
+});

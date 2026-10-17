@@ -9,9 +9,9 @@
         <a class="btn btn--ghost" href="#solucoes">Ver soluções</a>
       </div>
     </div>
-    <div class="hero__ring" aria-hidden="true">
-      <div class="hero__glow"></div>
-      <div class="hero__rotor">
+    <div class="hero__ring">
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="hero__rotor" aria-hidden="true">
         <svg class="hero__spokes" viewBox="0 0 100 100" preserveAspectRatio="none">
           {{#each hero.avatars}}<line x1="50" y1="50" x2="{{x}}" y2="{{y}}" pathLength="1"/>{{/each}}
         </svg>
@@ -26,6 +26,7 @@
         {{/each}}
         <a class="hero__you" href="#contato" tabindex="-1"><span class="hero__pop"><span class="hero__you-inner" data-pulse>+ você</span></span></a>
       </div>
+      {{> hero-film}}
     </div>
   </div>
   {{> divider from="none" to="cream"}}

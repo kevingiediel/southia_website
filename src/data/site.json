@@ -8,38 +8,264 @@
   },
   "hero": {
     "avatars": [
-      { "id": "hero-p1", "alt": "Pessoa sorrindo", "x": 50, "y": 8 },
-      { "id": "hero-p2", "alt": "Pessoa sorrindo", "x": 79.7, "y": 20.3 },
-      { "id": "hero-p3", "alt": "Pessoa sorrindo", "x": 92, "y": 50 },
-      { "id": "hero-p4", "alt": "Pessoa sorrindo", "x": 79.7, "y": 79.7 },
-      { "id": "hero-p5", "alt": "Pessoa sorrindo", "x": 20.3, "y": 79.7 },
-      { "id": "hero-p6", "alt": "Pessoa sorrindo", "x": 8, "y": 50 },
-      { "id": "hero-p7", "alt": "Pessoa sorrindo", "x": 20.3, "y": 20.3 }
+      {
+        "id": "hero-p1",
+        "alt": "Pessoa sorrindo",
+        "x": 50,
+        "y": 8
+      },
+      {
+        "id": "hero-p2",
+        "alt": "Pessoa sorrindo",
+        "x": 79.7,
+        "y": 20.3
+      },
+      {
+        "id": "hero-p3",
+        "alt": "Pessoa sorrindo",
+        "x": 92,
+        "y": 50
+      },
+      {
+        "id": "hero-p4",
+        "alt": "Pessoa sorrindo",
+        "x": 79.7,
+        "y": 79.7
+      },
+      {
+        "id": "hero-p5",
+        "alt": "Pessoa sorrindo",
+        "x": 20.3,
+        "y": 79.7
+      },
+      {
+        "id": "hero-p6",
+        "alt": "Pessoa sorrindo",
+        "x": 8,
+        "y": 50
+      },
+      {
+        "id": "hero-p7",
+        "alt": "Pessoa sorrindo",
+        "x": 20.3,
+        "y": 20.3
+      }
     ],
-    "you": { "x": 50, "y": 92 }
+    "you": {
+      "x": 50,
+      "y": 92
+    }
   },
   "marquee": [
-    { "id": "row-1", "alt": "Atendente sorrindo", "shape": "pill", "h": 320 },
-    { "id": "row-2", "alt": "Equipe comemorando", "shape": "rounded", "h": 260 },
-    { "id": "row-3", "alt": "Cliente feliz no celular", "shape": "pill", "h": 340 },
-    { "id": "row-4", "alt": "Dona de loja", "shape": "rounded", "h": 280 },
-    { "id": "row-5", "alt": "Pessoas conversando", "shape": "pill", "h": 320 },
-    { "id": "row-6", "alt": "Equipe no escritório", "shape": "rounded", "h": 260 },
-    { "id": "row-7", "alt": "Pessoa rindo", "shape": "pill", "h": 340 },
-    { "id": "row-8", "alt": "Família / clientes", "shape": "rounded", "h": 280 }
+    {
+      "id": "row-1",
+      "alt": "Atendente sorrindo",
+      "shape": "pill",
+      "h": 320
+    },
+    {
+      "id": "row-2",
+      "alt": "Equipe comemorando",
+      "shape": "rounded",
+      "h": 260
+    },
+    {
+      "id": "row-3",
+      "alt": "Cliente feliz no celular",
+      "shape": "pill",
+      "h": 340
+    },
+    {
+      "id": "row-4",
+      "alt": "Dona de loja",
+      "shape": "rounded",
+      "h": 280
+    },
+    {
+      "id": "row-5",
+      "alt": "Pessoas conversando",
+      "shape": "pill",
+      "h": 320
+    },
+    {
+      "id": "row-6",
+      "alt": "Equipe no escritório",
+      "shape": "rounded",
+      "h": 260
+    },
+    {
+      "id": "row-7",
+      "alt": "Pessoa rindo",
+      "shape": "pill",
+      "h": 340
+    },
+    {
+      "id": "row-8",
+      "alt": "Família / clientes",
+      "shape": "rounded",
+      "h": 280
+    }
   ],
   "solutions": [
-    { "n": "01", "title": "Agentes de atendimento", "text": "Agentes de IA que atendem no WhatsApp, no site e nas redes, 24 horas, com o tom da sua marca — e chamam uma pessoa quando é preciso.", "tags": ["WhatsApp", "Site", "Instagram"], "media": { "id": "prod-1", "alt": "Cliente sendo atendido" } },
-    { "n": "02", "title": "Criativos e campanhas automatizadas", "text": "Criativos para redes sociais gerados a partir da identidade da sua marca e campanhas que se ajustam sozinhas conforme os resultados.", "tags": ["Mídia social", "Meta Ads", "Google Ads"], "media": { "id": "prod-2", "alt": "Pessoa criando conteúdo" } },
-    { "n": "03", "title": "Integração de sistemas", "text": "ERP, CRM, e-commerce e planilhas conversando entre si. A informação digitada uma vez fica disponível em todo lugar.", "tags": ["APIs", "ERP", "CRM"], "media": { "id": "prod-3", "alt": "Equipe usando sistemas" } },
-    { "n": "04", "title": "Automação de processos", "text": "Pedidos, cobranças, relatórios e aprovações viram fluxos automáticos. Sua equipe volta a cuidar de gente.", "tags": ["Fluxos", "Financeiro", "Operação"], "media": { "id": "prod-4", "alt": "Pessoa com tempo livre" } },
-    { "n": "05", "title": "Engenharia de dados, governança e IA", "text": "Seus dados organizados numa base confiável, com painéis e modelos de IA que ajudam a decidir com clareza.", "tags": ["Pipelines", "Painéis", "Modelos de IA"], "media": { "id": "prod-5", "alt": "Gestor analisando painel" } },
-    { "n": "06", "title": "Governança e LGPD", "text": "Políticas, consentimento e segurança para usar dados com responsabilidade e em conformidade com a LGPD.", "tags": ["LGPD", "Segurança", "Consentimento"], "media": { "id": "prod-6", "alt": "Cliente confiante" } }
+    {
+      "n": "01",
+      "title": "Agentes de atendimento",
+      "text": "Agentes de IA que atendem no WhatsApp, no site e nas redes, 24 horas, com o tom da sua marca — e chamam uma pessoa quando é preciso.",
+      "tags": [
+        "WhatsApp",
+        "Site",
+        "Instagram"
+      ],
+      "media": {
+        "id": "prod-1",
+        "alt": "Cliente sendo atendido"
+      }
+    },
+    {
+      "n": "02",
+      "title": "Criativos e campanhas automatizadas",
+      "text": "Criativos para redes sociais gerados a partir da identidade da sua marca e campanhas que se ajustam sozinhas conforme os resultados.",
+      "tags": [
+        "Mídia social",
+        "Meta Ads",
+        "Google Ads"
+      ],
+      "media": {
+        "id": "prod-2",
+        "alt": "Pessoa criando conteúdo"
+      }
+    },
+    {
+      "n": "03",
+      "title": "Integração de sistemas",
+      "text": "ERP, CRM, e-commerce e planilhas conversando entre si. A informação digitada uma vez fica disponível em todo lugar.",
+      "tags": [
+        "APIs",
+        "ERP",
+        "CRM"
+      ],
+      "media": {
+        "id": "prod-3",
+        "alt": "Equipe usando sistemas"
+      }
+    },
+    {
+      "n": "04",
+      "title": "Automação de processos",
+      "text": "Pedidos, cobranças, relatórios e aprovações viram fluxos automáticos. Sua equipe volta a cuidar de gente.",
+      "tags": [
+        "Fluxos",
+        "Financeiro",
+        "Operação"
+      ],
+      "media": {
+        "id": "prod-4",
+        "alt": "Pessoa com tempo livre"
+      }
+    },
+    {
+      "n": "05",
+      "title": "Engenharia de dados, governança e IA",
+      "text": "Seus dados organizados numa base confiável, com painéis e modelos de IA que ajudam a decidir com clareza.",
+      "tags": [
+        "Pipelines",
+        "Painéis",
+        "Modelos de IA"
+      ],
+      "media": {
+        "id": "prod-5",
+        "alt": "Gestor analisando painel"
+      }
+    },
+    {
+      "n": "06",
+      "title": "Governança e LGPD",
+      "text": "Políticas, consentimento e segurança para usar dados com responsabilidade e em conformidade com a LGPD.",
+      "tags": [
+        "LGPD",
+        "Segurança",
+        "Consentimento"
+      ],
+      "media": {
+        "id": "prod-6",
+        "alt": "Cliente confiante"
+      }
+    }
   ],
   "steps": [
-    { "n": "01", "title": "Escutamos", "text": "Sentamos na roda com você para entender o negócio, as pessoas e onde está o atrito.", "accent": false },
-    { "n": "02", "title": "Conectamos", "text": "Integramos sistemas, organizamos os dados e colocamos a IA para trabalhar onde ela faz diferença.", "accent": false },
-    { "n": "03", "title": "Fazemos girar", "text": "Acompanhamos os resultados, ajustamos e seguimos junto. Com segurança e respeito à LGPD.", "accent": true }
+    {
+      "n": "01",
+      "title": "Escutamos",
+      "text": "Sentamos na roda com você para entender o negócio, as pessoas e onde está o atrito.",
+      "accent": false
+    },
+    {
+      "n": "02",
+      "title": "Conectamos",
+      "text": "Integramos sistemas, organizamos os dados e colocamos a IA para trabalhar onde ela faz diferença.",
+      "accent": false
+    },
+    {
+      "n": "03",
+      "title": "Fazemos girar",
+      "text": "Acompanhamos os resultados, ajustamos e seguimos junto. Com segurança e respeito à LGPD.",
+      "accent": true
+    }
   ],
-  "como": { "media": { "id": "como-foto", "alt": "Equipe Southia com cliente, sorrindo" } }
+  "como": {
+    "media": {
+      "id": "como-foto",
+      "alt": "Equipe Southia com cliente, sorrindo"
+    }
+  },
+  "film": {
+    "stops": [
+      {
+        "id": "barbearia",
+        "circle": 0,
+        "overlay": "chat",
+        "tag": "Agentes de atendimento",
+        "alt": "Barbearia de bairro: cliente cortando o cabelo e amigos rindo"
+      },
+      {
+        "id": "clinica",
+        "circle": 2,
+        "overlay": "instagram",
+        "tag": "Criativos e campanhas",
+        "alt": "Clínica de fisioterapia: equipe sorrindo para o celular"
+      },
+      {
+        "id": "advocacia",
+        "circle": 4,
+        "overlay": "dados",
+        "tag": "Dados e IA",
+        "alt": "Escritório de advocacia: advogada aliviada na mesa"
+      },
+      {
+        "id": "roda",
+        "circle": "spark",
+        "overlay": "headline",
+        "tag": "",
+        "alt": "Roda de pessoas em volta do fogo de chão, uma delas tomando chimarrão"
+      }
+    ],
+    "chat": [
+      {
+        "from": "cliente",
+        "text": "Oi! Tem horário amanhã às 15h?"
+      },
+      {
+        "from": "agente",
+        "text": "Tem sim! 15h com o Rafa. Confirmo pra você?"
+      },
+      {
+        "from": "cliente",
+        "text": "Pode confirmar 👍"
+      },
+      {
+        "from": "agente",
+        "text": "Prontinho ✅ Te lembro amanhã."
+      }
+    ]
+  }
 }
