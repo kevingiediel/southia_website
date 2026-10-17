@@ -6,14 +6,17 @@
         <p class="eyebrow">Como trabalhamos</p>
         <h2 class="h2" data-split>A IA no centro, as <em class="hl">pessoas</em> em volta.</h2>
       </div>
-      <ol class="steps">
+      <div class="steps">
+        <span class="steps__line" aria-hidden="true"></span>
+        <ol class="steps__list">
         {{#each steps}}
         <li class="step" data-reveal>
           <span class="step__num{{#if accent}} step__num--accent{{/if}}">{{n}}</span>
           <div class="step__body"><h3 class="step__title">{{title}}</h3><p class="step__text">{{text}}</p></div>
         </li>
         {{/each}}
-      </ol>
+        </ol>
+      </div>
     </div>
   </div>
 </section>

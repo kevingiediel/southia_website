@@ -10,3 +10,7 @@
 .marquee__item--h280 { height: 280px; }
 .marquee__item--h320 { height: 320px; }
 .marquee__item--h340 { height: 340px; }
+
+/* Looping marquee: margins instead of gap so the doubled track is exactly 2x wide. */
+.js-motion .marquee__track { gap: 0; padding: 0; }
+.js-motion .marquee__item { margin-right: 16px; }

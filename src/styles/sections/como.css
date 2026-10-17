@@ -4,11 +4,15 @@
 .como__body { display: flex; flex-direction: column; gap: 40px; }
 .como__head { display: flex; flex-direction: column; gap: 16px; }
 
-.steps { display: flex; flex-direction: column; }
+.steps { position: relative; }
+.steps__list { display: flex; flex-direction: column; }
+.steps__line { position: absolute; left: 19px; top: 44px; bottom: 44px; width: 2px; background: var(--yellow); transform-origin: top; transform: scaleY(0); }
+.js:not(.js-motion) .steps__line { display: none; }
 .step { display: grid; grid-template-columns: 48px 1fr; gap: 20px; padding: 24px 0; border-top: 1px solid var(--line-2); }
 .step:last-child { border-bottom: 1px solid var(--line-2); }
-.step__num { width: 40px; height: 40px; border-radius: 50%; background: var(--green); color: var(--cream); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; }
+.step__num { position: relative; z-index: 1; transition: background .4s ease, color .4s ease; width: 40px; height: 40px; border-radius: 50%; background: var(--green); color: var(--cream); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; }
 .step__num--accent { background: var(--yellow); color: var(--green); }
 .step__body { display: flex; flex-direction: column; gap: 6px; }
 .step__title { font-family: var(--font-display); font-weight: 600; font-size: 22px; line-height: 1.3; }
 .step__text { font-size: 16px; line-height: 1.6; color: var(--text-body); }
+.step.is-active .step__num { background: var(--yellow); color: var(--green); }

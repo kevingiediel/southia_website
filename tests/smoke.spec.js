@@ -77,3 +77,24 @@ test('hero intro completes and loops pause off-screen', async ({ page }) => {
   const paused = await page.evaluate(() => window.__southia?.heroLoops?.length > 0 && window.__southia.heroLoops.every((t) => t.paused()));
   expect(paused).toBe(true);
 });
+
+test('marquee loops seamlessly and survives resize', async ({ page }) => {
+  const errors = [];
+  page.on('pageerror', (e) => errors.push(e.message));
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/');
+  const items = page.locator('.marquee__track > *');
+  await expect(items).toHaveCount(16);
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.waitForTimeout(800);
+  await expect(items).toHaveCount(16);
+  expect(errors).toEqual([]);
+});
+
+test('steps activate on scroll', async ({ page }) => {
+  await page.goto('/');
+  await page.locator('.steps').scrollIntoViewIfNeeded();
+  await page.mouse.wheel(0, 600);
+  await page.waitForTimeout(1000);
+  await expect(page.locator('.step.is-active').first()).toBeVisible();
+});

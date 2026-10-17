@@ -10,6 +10,11 @@ import * as header from './motion/header.js';
 import * as textReveal from './motion/text-reveal.js';
 import * as reveal from './motion/reveal.js';
 import * as heroRing from './motion/hero-ring.js';
+import * as marquee from './motion/marquee.js';
+import * as steps from './motion/steps.js';
+import * as tilt from './motion/tilt.js';
+import * as magnetic from './motion/magnetic.js';
+import * as contatoLogo from './motion/contato-logo.js';
 
 const html = document.documentElement;
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -22,6 +27,11 @@ const MOTION = [
   ['[data-split]', textReveal, 'doc'],
   ['[data-reveal]', reveal, 'doc'],
   ['#topo', heroRing, 'self'],
+  ['.marquee', marquee, 'self'],
+  ['.steps', steps, 'self'],
+  ['.cards', tilt, 'self'],
+  ['[data-magnetic]', magnetic, 'doc'],
+  ['.contato-logo', contatoLogo, 'self'],
 ];
 
 function boot(registry, ctx) {
