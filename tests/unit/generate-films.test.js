@@ -45,3 +45,10 @@ test('audio shot uses Seed Audio and resultUrl accepts audio files', () => {
   assert.equal(args[args.indexOf('--prompt') + 1], 'Warm guitar.');
   assert.equal(resultUrl({ audio: 'https://cdn.example/a.mp3' }), 'https://cdn.example/a.mp3');
 });
+
+test('video resolution comes from the shot list (default 1080p)', () => {
+  const shot = { id: 'X', kind: 'video', start: 'frame:a', duration: 4, prompt: 'p' };
+  assert.equal(shotArgs(shot, paths, {}).at(shotArgs(shot, paths, {}).indexOf('--resolution') + 1), '1080p');
+  const args = shotArgs(shot, paths, { resolution: '720p' });
+  assert.equal(args[args.indexOf('--resolution') + 1], '720p');
+});

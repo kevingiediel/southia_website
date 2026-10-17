@@ -26,7 +26,7 @@ const resolveInput = (ref, paths) => {
   throw new Error(`Unknown input "${ref}" (use frame:<name> or still:<id>)`);
 };
 
-export function shotArgs(shot, paths, { style = '', motion = '' } = {}) {
+export function shotArgs(shot, paths, { style = '', motion = '', resolution = '1080p' } = {}) {
   if (shot.kind === 'still') {
     const model = shot.model ?? 'text2image_soul_v2';
     const prompt = [shot.text ? '' : style, shot.prompt].filter(Boolean).join(' ');
@@ -34,7 +34,7 @@ export function shotArgs(shot, paths, { style = '', motion = '' } = {}) {
   }
   if (shot.kind === 'audio') return ['generate', 'create', shot.model ?? 'seed_audio', '--prompt', shot.prompt, '--wait', '--json'];
   const args = ['generate', 'create', shot.model ?? 'seedance_2_5', '--prompt', [shot.prompt, motion].filter(Boolean).join(' '),
-    '--mode', 'omni_reference', '--duration', String(shot.duration ?? 6), '--resolution', '1080p', '--aspect_ratio', '16:9'];
+    '--mode', 'omni_reference', '--duration', String(shot.duration ?? 6), '--resolution', resolution, '--aspect_ratio', '16:9'];
   if (shot.start) args.push('--start-image', resolveInput(shot.start, paths));
   if (shot.end) args.push('--end-image', resolveInput(shot.end, paths));
   return [...args, '--wait', '--wait-timeout', '30m', '--json'];

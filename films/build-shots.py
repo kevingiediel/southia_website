@@ -96,6 +96,6 @@ shots = [
 
 here = os.path.dirname(os.path.abspath(__file__))
 with open(os.path.join(here, 'shots.json'), 'w', encoding='utf-8', newline='\n') as f:
-    f.write(json.dumps({"style": style, "motion": motion, "shots": shots}, ensure_ascii=False, indent=2) + '\n')
+    f.write(json.dumps({"style": style, "motion": motion, "resolution": "720p", "shots": shots}, ensure_ascii=False, indent=2) + '\n')
 kinds = {k: sum(1 for s in shots if s['kind'] == k) for k in ('still', 'video', 'audio')}
 print(len(shots), 'shots;', sum(1 for s in shots if s['gate'] == 1), 'in gate 1;', kinds)
