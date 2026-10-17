@@ -1,7 +1,7 @@
-.site-header { position: sticky; top: 0; z-index: 20; }
+.site-header { position: sticky; top: 0; z-index: 20; transition: transform .45s var(--ease-out); }
 /* Blur lives on a pseudo-element: backdrop-filter on the header itself would trap the fixed mobile overlay. */
 .site-header::before { content: ''; position: absolute; inset: 0; z-index: -1; background: rgba(28, 51, 34, .94); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transition: opacity var(--dur-1) ease; }
-.site-header__bar { padding-top: 16px; padding-bottom: 16px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.site-header__bar { min-height: var(--header-h); padding-top: 12px; padding-bottom: 12px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
 .site-nav { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
 
 .site-nav__link { position: relative; font-size: 15px; font-weight: 500; color: var(--sage-pale); transition: color var(--dur-1) ease; }
@@ -25,3 +25,10 @@
   .js.nav-open .site-nav { visibility: visible; opacity: 1; transition: opacity var(--dur-1) ease; }
   .js.nav-open body { overflow: hidden; }
 }
+
+/* With motion: header overlays the hero transparently, turns solid on scroll, hides going down. */
+.js-motion .site-header { margin-bottom: calc(-1 * var(--header-h)); }
+.js-motion .hero__grid { padding-top: calc(72px + var(--header-h)); }
+.js-motion .site-header:not(.is-solid)::before { opacity: 0; }
+.js-motion.nav-open .site-header::before { opacity: 1; }
+.site-header.is-hidden { transform: translateY(-100%); }

@@ -19,7 +19,9 @@ img, video, svg { display: block; max-width: 100%; }
 a { color: var(--leaf); text-decoration: none; }
 a:hover { color: var(--green); }
 
+.js-motion [data-reveal] { opacity: 0; transform: translateY(28px); }
+
 .container { max-width: calc(var(--container) + 2 * var(--gutter)); margin: 0 auto; padding: 0 var(--gutter); }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .section--dark { position: relative; isolation: isolate; background: var(--green); color: var(--cream); }
-.section--dark::after { content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: url('../assets/grain.svg'); opacity: .04; }
+.section--dark::after, .divider--green::after { content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: url('../assets/grain.svg'); opacity: .04; }

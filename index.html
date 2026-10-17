@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{site.title}}</title>
   <meta name="description" content="{{site.description}}">
-  <script>document.documentElement.classList.add('js');</script>
+  <script>document.documentElement.classList.add('js');if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('js-motion');</script>
   <script type="module" src="/src/js/main.js"></script>
 </head>
-<body>
+<body data-smooth>
   {{> header}}
   <main>
     {{> hero}}

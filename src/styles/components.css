@@ -27,7 +27,7 @@
 
 /* Curved transition between sections, echoing the ring */
 .divider { display: block; height: clamp(32px, 4.5vw, 64px); margin-top: -1px; }
-.divider--green { background: var(--green); }
+.divider--green { position: relative; isolation: isolate; background: var(--green); }
 .divider--cream { background: var(--cream); }
 .divider__curve { width: 100%; height: 100%; display: block; }
 .divider__curve--cream path { fill: var(--cream); }
