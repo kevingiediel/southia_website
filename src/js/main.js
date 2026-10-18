@@ -16,12 +16,13 @@ import * as steps from './motion/steps.js';
 import * as tilt from './motion/tilt.js';
 import * as magnetic from './motion/magnetic.js';
 import * as videoSlot from './media/video-slot.js';
+import * as filmPlayer from './ui/film-player.js';
 
 const html = document.documentElement;
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // [selector, module, root]: 'self' = the matched element, 'section' = its <section>, 'doc' = document (module handles many).
-const ALWAYS = [['.mobile-nav', mobileNav, 'self']];
+const ALWAYS = [['.mobile-nav', mobileNav, 'self'], ['#filmes', filmPlayer, 'self']];
 // Media boots last so it also sees the marquee's cloned slots.
 const MEDIA = [['[data-media]', videoSlot, 'doc']];
 const MOTION = [

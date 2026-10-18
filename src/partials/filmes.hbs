@@ -1,0 +1,30 @@
+<section id="filmes" class="filmes section--dark" data-screen-label="Veja a Southia" aria-labelledby="filmes-title" hidden>
+  {{> divider from="paper" to="green"}}
+  <div class="container filmes__inner">
+    <div class="filmes__head">
+      <p class="eyebrow eyebrow--sage">Veja a Southia</p>
+      <h2 class="h2" id="filmes-title" data-split>A roda em <em class="hl">movimento</em>.</h2>
+    </div>
+    <div class="film-cards">
+      {{#each videos}}
+      <button class="film-card" type="button" data-film="{{id}}" aria-label="Assistir ao filme {{title}} ({{duration}})" hidden>
+        <span class="film-card__poster">
+          <span class="film-card__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg></span>
+          <span class="film-card__time">{{duration}}</span>
+        </span>
+        <span class="film-card__body">
+          <span class="film-card__title">{{title}}</span>
+          <span class="film-card__desc">{{desc}}</span>
+        </span>
+      </button>
+      {{/each}}
+    </div>
+  </div>
+  {{> divider from="green" to="cream"}}
+  <dialog class="film-player" aria-label="Filme da Southia">
+    <button class="film-player__close" type="button" aria-label="Fechar filme">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <video class="film-player__video" controls playsinline preload="none"></video>
+  </dialog>
+</section>

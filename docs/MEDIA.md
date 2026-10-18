@@ -56,3 +56,24 @@ Motion prompt for image-to-video: *subtle natural movement (blink, small smile, 
 ## Social share image
 
 `public/og-image.jpg`, still, 1200×630, under 300 KB: forest green background with the ring of people (seven small circular portraits around a yellow diamond spark) on the right and the headline **"Pessoas, dados e IA na mesma roda."** in a rounded geometric sans on the left, cream text, yellow accent on "roda".
+
+## Filmes na seção "Veja a Southia"
+
+A seção fica escondida até existir pelo menos um filme. Para publicar um filme, coloque em `public/media/films/`:
+
+| Arquivo | O que é |
+|---|---|
+| `film-1.jpg` / `film-2.jpg` / `film-3.jpg` | Pôster 16:9 (1280×720). **A existência do pôster é o que faz o card aparecer.** |
+| `film-N.mp4` | Vídeo H.264 com áudio, 720p ou 1080p, `+faststart` |
+| `film-N.webm` | (opcional) VP9 — usado quando o navegador suporta |
+| `film-N.vtt` | (opcional) legendas em pt-BR |
+
+`film-1` = "A roda", `film-2` = "Institucional", `film-3` = "Acelere" (títulos, descrições e durações em `src/data/site.json` → `videos`).
+
+Converter um corte final para o site (exemplo):
+
+```bash
+npx ffmpeg-static -i exports/film-2-final.mp4 -c:v libx264 -crf 23 -preset slow -pix_fmt yuv420p -c:a aac -b:a 128k -movflags +faststart public/media/films/film-2.mp4
+```
+
+As cenas do hero (`public/media/film/<parada>.*`, 720×720) saem de `media-src/film/<parada>.mp4` com `npm run media`.

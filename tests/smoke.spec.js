@@ -217,3 +217,36 @@ test('each hero film stop shows its overlay', async ({ page }) => {
   await expect(page.locator('.overlay--instagram')).toContainText('Campanha criada automaticamente');
   await expect(page.locator('.overlay--dados')).toContainText('Atualizado agora');
 });
+
+const routeFilm = (page, id, seen = []) => page.route(`**/media/films/${id}.*`, (r) => {
+  seen.push(r.request().url());
+  const ext = new URL(r.request().url()).pathname.split('.').pop();
+  return ext === 'vtt' ? r.fulfill({ status: 404 }) : r.fulfill({ path: `tests/fixtures/tiny.${ext}` });
+});
+
+test('film section stays hidden while no film exists', async ({ page }) => {
+  await page.goto('/');
+  await page.waitForTimeout(1500);
+  await expect(page.locator('#filmes')).toBeHidden();
+});
+
+test('film card appears when its poster exists and plays in a dialog', async ({ page }) => {
+  const seen = [];
+  await routeFilm(page, 'film-2', seen);
+  await page.goto('/');
+  const card = page.locator('.film-card[data-film="film-2"]');
+  await expect(page.locator('#filmes')).toBeVisible({ timeout: 5000 });
+  await expect(card).toBeVisible();
+  await expect(page.locator('.film-card[data-film="film-3"]')).toBeHidden();
+  expect(seen.some((u) => /\.(mp4|webm)$/.test(u))).toBe(false);
+
+  await card.click();
+  const dialog = page.locator('dialog.film-player');
+  await expect(dialog).toHaveAttribute('open', '');
+  await expect(dialog.locator('video')).toHaveAttribute('src', /film-2\.(webm|mp4)$/);
+  await expect(dialog.locator('.film-player__close')).toBeFocused();
+
+  await page.keyboard.press('Escape');
+  await expect(dialog).not.toHaveAttribute('open', '');
+  await expect(card).toBeFocused();
+});

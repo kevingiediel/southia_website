@@ -267,5 +267,25 @@
         "text": "Prontinho ✅ Te lembro amanhã."
       }
     ]
-  }
+  },
+  "videos": [
+    {
+      "id": "film-1",
+      "title": "A roda",
+      "desc": "Como pessoas, dados e IA giram juntos no dia a dia de negócios reais.",
+      "duration": "0:50"
+    },
+    {
+      "id": "film-2",
+      "title": "Institucional",
+      "desc": "Quem é a Southia e por que tudo começa com gente.",
+      "duration": "0:45"
+    },
+    {
+      "id": "film-3",
+      "title": "Acelere",
+      "desc": "Do sufoco ao controle: o que muda quando a IA trabalha com a sua equipe.",
+      "duration": "0:45"
+    }
+  ]
 }
