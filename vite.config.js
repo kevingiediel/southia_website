@@ -21,6 +21,8 @@ const sitemap = () => ({
 
 export default defineConfig({
   base: '/',
+  // Real 404s for missing files in dev/preview, like Hostinger (no SPA fallback).
+  appType: 'mpa',
   plugins: [
     partials({ dir: 'src/partials', data: 'src/data/site.json', extra: { whatsappUrl: wa } }),
     sitemap(),

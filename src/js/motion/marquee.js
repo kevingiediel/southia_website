@@ -9,19 +9,20 @@ export function init(marquee, ctx) {
   let hovered = false;
   let settleCall;
 
+  // Clone once: the media slots inside the clones get wired up by video-slot, so they must
+  // never be recreated (a resize only re-times the loop).
+  for (const item of [...track.children]) {
+    const clone = item.cloneNode(true);
+    clone.dataset.clone = '';
+    clone.setAttribute('aria-hidden', 'true');
+    track.appendChild(clone);
+  }
   const build = () => {
+    const progress = loop?.progress() ?? 0;
     loop?.kill();
-    track.querySelectorAll('[data-clone]').forEach((n) => n.remove());
-    gsap.set(track, { xPercent: 0 });
-    for (const item of [...track.children]) {
-      const clone = item.cloneNode(true);
-      clone.dataset.clone = '';
-      clone.setAttribute('aria-hidden', 'true');
-      track.appendChild(clone);
-    }
     const half = track.scrollWidth / 2;
-    loop = gsap.to(track, { xPercent: -50, duration: half / BASE_SPEED / ctx.speed, ease: 'none', repeat: -1 });
-    loop.timeScale(hovered ? 0.2 : 1);
+    loop = gsap.fromTo(track, { xPercent: 0 }, { xPercent: -50, duration: half / BASE_SPEED / ctx.speed, ease: 'none', repeat: -1 });
+    loop.progress(progress).timeScale(hovered ? 0.2 : 1);
   };
   build();
 

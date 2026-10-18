@@ -1,3 +1,4 @@
+{{#if videos.length}}
 <section id="filmes" class="filmes section--dark" data-screen-label="Veja a Southia" aria-labelledby="filmes-title" hidden>
   {{> divider from="paper" to="green"}}
   <div class="container filmes__inner">
@@ -28,3 +29,4 @@
     <video class="film-player__video" controls playsinline preload="none"></video>
   </dialog>
 </section>
+{{/if}}

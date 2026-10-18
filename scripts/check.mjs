@@ -29,7 +29,6 @@ export function runChecks(distDir = path.join(root, 'dist')) {
 
   const site = JSON.parse(read(path.join(root, 'src/data/site.json')));
   const known = new Set([...slotIds(site), ...(site.film?.stops ?? []).map((s) => `film/${s.id}`)]);
-  const missingMedia = new Set();
   const htmlFiles = fs.readdirSync(distDir).filter((f) => f.endsWith('.html'));
 
   for (const file of htmlFiles) {
@@ -42,8 +41,8 @@ export function runChecks(distDir = path.join(root, 'dist')) {
       const mediaId = ref.match(/^\/media\/((?:film\/)?[^/.]+)\.\w+$/)?.[1];
       if (mediaId && !known.has(mediaId)) errors.push(`${file}: ${attr}="${ref}" references unknown slot "${mediaId}"`);
       if (exists(distDir, ref)) continue;
-      if (mediaId && ['poster', 'data-src', 'data-webm', 'data-poster'].includes(attr)) missingMedia.add(mediaId);
-      else errors.push(`${file}: ${attr}="${ref}" not found in dist`);
+      if (mediaId && process.env.SOUTHIA_ALL_MEDIA === '1') continue; // test build references every slot
+      errors.push(`${file}: ${attr}="${ref}" not found in dist`);
     }
   }
 
@@ -56,9 +55,9 @@ export function runChecks(distDir = path.join(root, 'dist')) {
     }
   }
 
-  if (missingMedia.size) warnings.push(`media files missing for ${missingMedia.size} slot(s): ${[...missingMedia].join(', ')}`);
-
   const index = read(indexFile);
+  const placeholders = slotIds(site).filter((id) => !new RegExp(`data-media="${id}"[^>]*data-(poster|src)=`).test(index));
+  if (placeholders.length) warnings.push(`${placeholders.length} slot(s) still show the brand placeholder (no media yet): ${placeholders.join(', ')}`);
   for (const id of slotIds(site)) {
     if (!index.includes(`data-media="${id}"`)) errors.push(`media slot "${id}" missing from index.html`);
   }

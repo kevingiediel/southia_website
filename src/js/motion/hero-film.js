@@ -7,6 +7,11 @@ export function init(section, ctx) {
   const { gsap, ScrollTrigger } = ctx;
   const film = section.querySelector('.hero-film');
   if (!film) return undefined;
+  // Save-Data: keep the static ring, download no scene clips (spec §10).
+  if (navigator.connection?.saveData) {
+    section.querySelector('.hero-film__toggle')?.setAttribute('hidden', '');
+    return undefined;
+  }
   const scenes = [...film.querySelectorAll('.hero-film__scene')];
   const avatars = [...section.querySelectorAll('.hero__avatar')];
   const spark = section.querySelector('[data-spark]');

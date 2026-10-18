@@ -40,6 +40,11 @@ test('motion is enabled when allowed', async ({ page }) => {
 });
 
 test('no console errors on load and scroll', async ({ page }) => {
+  // Production only references media files that exist; the test build references all of them.
+  await page.route('**/media/**', (r) => {
+    const ext = new URL(r.request().url()).pathname.split('.').pop();
+    return ext === 'vtt' ? r.fulfill({ status: 200, contentType: 'text/vtt', body: 'WEBVTT' }) : r.fulfill({ path: `tests/fixtures/tiny.${ext}` });
+  });
   const errors = [];
   page.on('console', (m) => m.type() === 'error' && errors.push(m.text()));
   page.on('pageerror', (e) => errors.push(e.message));
@@ -289,4 +294,25 @@ test('no horizontal page scroll on a phone after scrolling (header hidden)', asy
   await expect(page.locator('.site-header')).toHaveClass(/is-hidden/);
   const [scroll, client] = await page.evaluate(() => [document.documentElement.scrollWidth, document.documentElement.clientWidth]);
   expect(scroll).toBe(client);
+});
+
+test('marquee clones survive a resize (video slots stay wired)', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/');
+  await page.locator('.marquee').scrollIntoViewIfNeeded();
+  await page.waitForTimeout(1200);
+  await page.locator('.marquee__track > [data-clone]').first().evaluate((el) => { el.__marked = true; });
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.waitForTimeout(1200);
+  expect(await page.locator('.marquee__track > [data-clone]').first().evaluate((el) => el.__marked === true)).toBe(true);
+});
+
+test('hero film loads no clips when Save-Data is on', async ({ page }) => {
+  const seen = [];
+  await page.addInitScript(() => Object.defineProperty(navigator, 'connection', { value: { saveData: true }, configurable: true }));
+  await page.route('**/media/film/**', (r) => { seen.push(r.request().url()); r.fulfill({ path: `tests/fixtures/tiny.${new URL(r.request().url()).pathname.split('.').pop()}` }); });
+  await page.goto('/?debug&filmspeed=10');
+  await page.waitForTimeout(4000);
+  expect(seen).toEqual([]);
+  await expect(page.locator('#topo')).not.toHaveAttribute('data-film-stop', /.+/);
 });
