@@ -64,18 +64,27 @@ export function resultUrl(json) {
 
 export const gateShots = (shots, gate) => shots.filter((s) => s.gate === gate);
 
-// A finished job with the same model and prompt means the shot was already paid for.
+// "Identical" = same model, prompt, resolution, duration and set of input frames.
+// (Matching on the prompt alone would hand back a 720p clip after switching to 1080p.)
+function sameJob(job, args) {
+  const arg = (flag) => { const i = args.indexOf(flag); return i >= 0 ? args[i + 1] : undefined; };
+  const p = job.params ?? {};
+  if (job.job_type !== args[2] || p.prompt !== arg('--prompt')) return false;
+  if (arg('--resolution') && p.resolution && p.resolution !== arg('--resolution')) return false;
+  if (arg('--duration') && p.duration != null && Number(p.duration) !== Number(arg('--duration'))) return false;
+  const roles = (p.medias ?? []).map((m) => m.role).sort().join(',');
+  const wanted = [arg('--start-image') && 'start_image', arg('--end-image') && 'end_image'].filter(Boolean).sort().join(',');
+  return roles === wanted || (!p.medias && !wanted);
+}
+
+// A finished identical job means the shot was already paid for.
 export function findPreviousJob(jobs, args) {
-  const model = args[2];
-  const prompt = args[args.indexOf('--prompt') + 1];
-  return jobs.find((j) => j.job_type === model && j.status === 'completed' && j.result_url && j.params?.prompt === prompt) ?? null;
+  return jobs.find((j) => j.status === 'completed' && j.result_url && sameJob(j, args)) ?? null;
 }
 
 // An identical job still queued or running: wait for it instead of paying for a duplicate.
 export function findPendingJob(jobs, args) {
-  const model = args[2];
-  const prompt = args[args.indexOf('--prompt') + 1];
-  return jobs.find((j) => j.job_type === model && ['queued', 'pending', 'in_progress', 'processing'].includes(j.status) && j.params?.prompt === prompt) ?? null;
+  return jobs.find((j) => ['queued', 'pending', 'in_progress', 'processing'].includes(j.status) && sameJob(j, args)) ?? null;
 }
 
 const EXT = { still: 'png', video: 'mp4', audio: 'mp3' };

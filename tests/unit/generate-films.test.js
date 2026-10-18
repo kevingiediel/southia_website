@@ -68,9 +68,9 @@ test('findPreviousJob reuses a completed job with the same model and prompt', as
   const { findPreviousJob } = await import('../../scripts/generate-films.mjs');
   const args = shotArgs({ id: 'X', kind: 'video', start: 'frame:a', duration: 4, prompt: 'Fly in.' }, paths, { motion: 'M.' });
   const jobs = [
-    { job_type: 'seedance_2_5', status: 'in_progress', params: { prompt: 'Fly in. M.' }, result_url: null },
-    { job_type: 'seedance_2_5', status: 'completed', params: { prompt: 'Fly in. M.' }, result_url: 'https://cdn.example/a.mp4' },
-    { job_type: 'kling3_0', status: 'completed', params: { prompt: 'Fly in. M.' }, result_url: 'https://cdn.example/b.mp4' },
+    { job_type: 'seedance_2_5', status: 'in_progress', params: { prompt: 'Fly in. M.', medias: [{ role: 'start_image' }] }, result_url: null },
+    { job_type: 'seedance_2_5', status: 'completed', params: { prompt: 'Fly in. M.', medias: [{ role: 'start_image' }] }, result_url: 'https://cdn.example/a.mp4' },
+    { job_type: 'kling3_0', status: 'completed', params: { prompt: 'Fly in. M.', medias: [{ role: 'start_image' }] }, result_url: 'https://cdn.example/b.mp4' },
   ];
   assert.equal(findPreviousJob(jobs, args)?.result_url, 'https://cdn.example/a.mp4');
   assert.equal(findPreviousJob(jobs, shotArgs({ id: 'Y', kind: 'video', start: 'frame:a', prompt: 'Other.' }, paths, {})), null);
@@ -81,10 +81,24 @@ test('findPendingJob finds an identical job still running', async () => {
   const args = shotArgs({ id: 'X', kind: 'video', start: 'frame:a', duration: 4, prompt: 'Fly in.' }, paths, {});
   const prompt = args[args.indexOf('--prompt') + 1];
   const jobs = [
-    { id: 'done', job_type: 'seedance_2_5', status: 'failed', params: { prompt } },
-    { id: 'run', job_type: 'seedance_2_5', status: 'in_progress', params: { prompt } },
+    { id: 'done', job_type: 'seedance_2_5', status: 'failed', params: { prompt, medias: [{ role: 'start_image' }] } },
+    { id: 'run', job_type: 'seedance_2_5', status: 'in_progress', params: { prompt, medias: [{ role: 'start_image' }] } },
   ];
   assert.equal(findPendingJob(jobs, args)?.id, 'run');
-  assert.equal(findPendingJob([{ id: 'q', job_type: 'seedance_2_5', status: 'queued', params: { prompt } }], args)?.id, 'q');
+  assert.equal(findPendingJob([{ id: 'q', job_type: 'seedance_2_5', status: 'queued', params: { prompt, medias: [{ role: 'start_image' }] } }], args)?.id, 'q');
   assert.equal(findPendingJob([], args), null);
+});
+
+test('previous/pending jobs must match resolution, duration and input frames, not just the prompt', async () => {
+  const { findPreviousJob, findPendingJob } = await import('../../scripts/generate-films.mjs');
+  const shot = { id: 'X', kind: 'video', start: 'frame:a', end: 'frame:b', duration: 4, prompt: 'Fly in.' };
+  const args = shotArgs(shot, paths, { resolution: '1080p' });
+  const prompt = args[args.indexOf('--prompt') + 1];
+  const base = { job_type: 'seedance_2_5', status: 'completed', result_url: 'https://cdn.example/a.mp4' };
+  const medias = [{ role: 'start_image' }, { role: 'end_image' }];
+  assert.equal(findPreviousJob([{ ...base, params: { prompt, resolution: '720p', duration: 4, medias } }], args), null);
+  assert.equal(findPreviousJob([{ ...base, params: { prompt, resolution: '1080p', duration: 6, medias } }], args), null);
+  assert.equal(findPreviousJob([{ ...base, params: { prompt, resolution: '1080p', duration: 4, medias: [medias[0]] } }], args), null);
+  assert.ok(findPreviousJob([{ ...base, params: { prompt, resolution: '1080p', duration: 4, medias } }], args));
+  assert.equal(findPendingJob([{ ...base, status: 'in_progress', params: { prompt, resolution: '720p', duration: 4, medias } }], args), null);
 });
