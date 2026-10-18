@@ -33,15 +33,18 @@ const nextTask = () => (globalThis.scheduler?.yield ? scheduler.yield() : new Pr
 
 export async function start(ctx) {
   // Each library is its own chunk, evaluated in its own task (one big bundle blocks the main thread).
+  // ctx.motionAborted: main.js's failsafe gave up waiting (content already shown) — stop quietly.
   const { gsap } = await import('gsap');
   await nextTask();
   const { ScrollTrigger } = await import('gsap/ScrollTrigger');
   await nextTask();
   const { SplitText } = await import('gsap/SplitText');
   await nextTask();
+  if (ctx.motionAborted) return;
   Object.assign(ctx, { gsap, ScrollTrigger, SplitText });
   gsap.registerPlugin(ScrollTrigger, SplitText);
   for (const entry of MOTION) {
+    if (ctx.motionAborted) return;
     boot([entry], ctx);
     await nextTask();
   }

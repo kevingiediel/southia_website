@@ -331,3 +331,12 @@ test('the pause control stops the ring loops and the marquee too', async ({ page
   await page.waitForTimeout(1000);
   expect(await page.locator('.marquee__track').evaluate((e) => getComputedStyle(e).transform)).toBe(x0);
 });
+
+for (const chunk of ['motion-boot', 'gsap']) test(`content becomes visible even if the ${chunk} chunk never arrives`, async ({ page }) => {
+  await page.route(`**/assets/${chunk}-*.js`, () => {}); // request hangs forever
+  await page.goto('/');
+  await page.waitForTimeout(5000);
+  await expect(page.locator('html')).not.toHaveClass(/js-motion/);
+  for (const el of await page.locator('[data-reveal]').all()) await expect(el).toHaveCSS('opacity', '1');
+  await expect(page.locator('.hero__copy .btn-row')).toHaveCSS('opacity', '1');
+});

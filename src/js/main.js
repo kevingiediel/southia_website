@@ -23,12 +23,15 @@ const ctx = {
 boot(ALWAYS, ctx);
 
 if (!reduced && html.classList.contains('js-motion')) {
+  // Failsafe: content hidden for its entrance must not stay hidden if the motion code
+  // never arrives (stalled request). After 4 s, show everything and skip the motion layer.
+  const failsafe = setTimeout(() => { ctx.motionAborted = true; html.classList.remove('js-motion'); boot(MEDIA, ctx); }, 4000);
   // Let the browser paint the page first, then load and start the motion layer.
   requestAnimationFrame(() => setTimeout(() => {
     import('./motion-boot.js')
       .then((m) => m.start(ctx))
       .catch((err) => { console.warn('[motion] disabled:', err); html.classList.remove('js-motion'); })
-      .finally(() => boot(MEDIA, ctx));
+      .finally(() => { if (!ctx.motionAborted) { clearTimeout(failsafe); boot(MEDIA, ctx); } });
   }, 0));
 } else {
   boot(MEDIA, ctx);
