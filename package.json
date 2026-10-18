@@ -17,7 +17,8 @@
     "brand:frames": "node scripts/brand-frames.mjs",
     "films": "node scripts/generate-films.mjs",
     "films:shots": "python -I films/build-shots.py",
-    "films:prompts": "python -I films/build-shots.py && python -I films/export-prompts.py"
+    "films:prompts": "python -I films/build-shots.py && python -I films/export-prompts.py",
+    "og-image": "node scripts/og-image.mjs"
   },
   "repository": {
     "type": "git",

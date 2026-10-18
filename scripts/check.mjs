@@ -65,7 +65,7 @@ export function runChecks(distDir = path.join(root, 'dist')) {
   if (index.includes('wa.me/TODO')) errors.push('index.html links to a placeholder WhatsApp number');
   if (!index.includes('<link rel="canonical" href="https://southia.com.br/">')) errors.push('canonical link missing');
   if (!/property="og:image" content="https:\/\/southia\.com\.br\/og-image\.jpg"/.test(index)) errors.push('og:image missing');
-  for (const f of ['.htaccess', 'robots.txt', 'sitemap.xml', '404.html']) {
+  for (const f of ['.htaccess', 'robots.txt', 'sitemap.xml', '404.html', 'og-image.jpg']) {
     if (!fs.existsSync(path.join(distDir, f))) errors.push(`dist/${f} missing`);
   }
   if (fs.existsSync(assets)) {
