@@ -8,6 +8,11 @@ export function init(marquee, ctx) {
   let loop;
   let hovered = false;
   let settleCall;
+  let inView = false;
+  let paused = ctx.motionPaused ?? false;
+  const sync = () => (inView && !paused ? loop.play() : loop.pause());
+  const onPause = (e) => { paused = e.detail.paused; sync(); };
+  document.addEventListener('southia:motion-pause', onPause);
 
   // Clone once: the media slots inside the clones get wired up by video-slot, so they must
   // never be recreated (a resize only re-times the loop).
@@ -23,6 +28,7 @@ export function init(marquee, ctx) {
     const half = track.scrollWidth / 2;
     loop = gsap.fromTo(track, { xPercent: 0 }, { xPercent: -50, duration: half / BASE_SPEED / ctx.speed, ease: 'none', repeat: -1 });
     loop.progress(progress).timeScale(hovered ? 0.2 : 1);
+    sync();
   };
   build();
 
@@ -33,9 +39,9 @@ export function init(marquee, ctx) {
       trigger: marquee,
       start: 'top bottom',
       end: 'bottom top',
-      onToggle: (self) => (self.isActive ? loop.play() : loop.pause()),
+      onToggle: (self) => { inView = self.isActive; sync(); },
       onUpdate: (self) => {
-        if (hovered) return;
+        if (hovered || paused) return;
         const boost = 1 + gsap.utils.clamp(0, 3, Math.abs(self.getVelocity()) / 600);
         gsap.to(loop, { timeScale: boost, duration: 0.15, overwrite: true });
         settleCall?.kill();
@@ -43,6 +49,9 @@ export function init(marquee, ctx) {
       },
     }),
   ];
+
+  inView = triggers[0].isActive; // the marquee may already be on screen
+  sync();
 
   const onEnter = () => { hovered = true; settle(); };
   const onLeave = () => { hovered = false; settle(); };
@@ -59,6 +68,7 @@ export function init(marquee, ctx) {
   ScrollTrigger.addEventListener('refreshInit', onRefreshInit);
 
   return () => {
+    document.removeEventListener('southia:motion-pause', onPause);
     settleCall?.kill();
     loop?.kill();
     triggers.forEach((t) => t.kill());

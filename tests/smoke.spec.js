@@ -169,7 +169,7 @@ test('pause button stops the hero film', async ({ page }) => {
   await routeFilmClips(page);
   await page.goto('/?debug&filmspeed=10');
   await expect(page.locator('#topo')).toHaveAttribute('data-film-stop', /.+/, { timeout: 6000 });
-  const toggle = page.locator('.hero-film__toggle');
+  const toggle = page.locator('.motion-toggle');
   await toggle.click();
   await expect(toggle).toHaveAttribute('aria-pressed', 'true');
   const before = await page.locator('#topo').getAttribute('data-film-stop');
@@ -315,4 +315,19 @@ test('hero film loads no clips when Save-Data is on', async ({ page }) => {
   await page.waitForTimeout(4000);
   expect(seen).toEqual([]);
   await expect(page.locator('#topo')).not.toHaveAttribute('data-film-stop', /.+/);
+});
+
+test('the pause control stops the ring loops and the marquee too', async ({ page }) => {
+  await page.goto('/?debug');
+  await expect(page.locator('#topo')).toHaveAttribute('data-intro-done', 'true', { timeout: 6000 });
+  const toggle = page.locator('.motion-toggle');
+  await expect(toggle).toHaveAttribute('aria-label', 'Pausar animações');
+  await toggle.click();
+  await expect(toggle).toHaveAttribute('aria-pressed', 'true');
+  await expect(toggle).toHaveAttribute('aria-label', 'Pausar animações');
+  expect(await page.evaluate(() => window.__southia.heroLoops.every((t) => t.paused()))).toBe(true);
+  await page.locator('.marquee').scrollIntoViewIfNeeded();
+  const x0 = await page.locator('.marquee__track').evaluate((e) => getComputedStyle(e).transform);
+  await page.waitForTimeout(1000);
+  expect(await page.locator('.marquee__track').evaluate((e) => getComputedStyle(e).transform)).toBe(x0);
 });

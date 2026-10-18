@@ -30,19 +30,19 @@
 .overlay--headline { position: absolute; left: 50%; bottom: 10%; width: 86%; transform: translateX(-50%); text-align: center; font-family: var(--font-display); font-weight: 500; font-size: clamp(20px, 2.4vw, 32px); line-height: 1.1; color: var(--cream); text-shadow: 0 2px 24px rgba(0, 0, 0, .6); }
 .overlay--headline .hl { color: var(--yellow); }
 
-/* Pause / play (WCAG 2.2.2) */
-.hero-film__toggle { position: absolute; right: 2%; bottom: 2%; z-index: 5; width: 40px; height: 40px; display: none; place-items: center; padding: 0; border: 1.5px solid var(--leaf); border-radius: 50%; background: rgba(28, 51, 34, .8); color: var(--cream); cursor: pointer; transition: border-color var(--dur-1) ease; }
-.hero-film__toggle:hover { border-color: var(--sage); }
-.js-motion .hero-film__toggle { display: grid; }
-.hero-film__icon { width: 18px; height: 18px; fill: currentColor; }
-.hero-film__icon--play, .hero-film__toggle[aria-pressed="true"] .hero-film__icon--pause { display: none; }
-.hero-film__toggle[aria-pressed="true"] .hero-film__icon--play { display: block; }
+/* Pause / play for every animation on the page (WCAG 2.2.2) */
+.motion-toggle { position: absolute; right: 2%; bottom: 2%; z-index: 5; width: 40px; height: 40px; display: none; place-items: center; padding: 0; border: 1.5px solid var(--leaf); border-radius: 50%; background: rgba(28, 51, 34, .8); color: var(--cream); cursor: pointer; transition: border-color var(--dur-1) ease; }
+.motion-toggle:hover { border-color: var(--sage); }
+.js-motion .motion-toggle { display: grid; }
+.motion-toggle__icon { width: 18px; height: 18px; fill: currentColor; }
+.motion-toggle__icon--play, .motion-toggle[aria-pressed="true"] .motion-toggle__icon--pause { display: none; }
+.motion-toggle[aria-pressed="true"] .motion-toggle__icon--play { display: block; }
 
 @media (max-width: 759px) {
   .js-motion .hero__ring { margin-bottom: 26%; }
   /* Centred with left/right, not translateX: GSAP owns the transform during the entrance. */
   .overlay--chat { left: 8%; right: 8%; top: 78%; bottom: auto; width: auto; font-size: 12px; }
-  .hero-film__toggle { top: 0; bottom: auto; right: 0; }
+  .motion-toggle { top: 0; bottom: auto; right: 0; }
 }
 
 /* Shared card for the Instagram and data overlays (same footprint as the chat) */

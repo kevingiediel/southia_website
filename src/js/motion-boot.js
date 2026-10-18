@@ -2,6 +2,7 @@
 // GSAP, SplitText and the scroll effects are evaluated.
 import 'lenis/dist/lenis.css';
 import { boot } from './boot.js';
+import * as motionToggle from './motion/motion-toggle.js';
 import * as smoothScroll from './motion/smooth-scroll.js';
 import * as header from './motion/header.js';
 import * as textReveal from './motion/text-reveal.js';
@@ -14,6 +15,7 @@ import * as tilt from './motion/tilt.js';
 import * as magnetic from './motion/magnetic.js';
 
 const MOTION = [
+  ['.motion-toggle', motionToggle, 'self'],
   ['[data-smooth]', smoothScroll, 'doc'],
   ['.site-header', header, 'self'],
   ['[data-split]', textReveal, 'doc'],

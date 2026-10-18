@@ -29,7 +29,10 @@ export function init(section, ctx) {
     q('.hero__spark-glow').forEach((el) => loops.push(gsap.to(el, { opacity: 0.85, scale: 1.2, duration: 1.6, ease: 'sine.inOut', repeat: -1, yoyo: true, paused: true })));
     loops.forEach((t) => t.timeScale(ctx.speed));
   };
-  const syncLoops = () => loops.forEach((t) => (inView ? t.play() : t.pause()));
+  let paused = ctx.motionPaused ?? false;
+  const syncLoops = () => loops.forEach((t) => (inView && !paused ? t.play() : t.pause()));
+  const onPause = (e) => { paused = e.detail.paused; if (section.dataset.introDone) syncLoops(); };
+  document.addEventListener('southia:motion-pause', onPause);
 
   // Idle loops only run while the hero is on screen.
   triggers.push(ScrollTrigger.create({
@@ -63,6 +66,7 @@ export function init(section, ctx) {
 
   return () => {
     cancelled = true;
+    document.removeEventListener('southia:motion-pause', onPause);
     intro?.kill();
     loops.forEach((t) => t.kill());
     triggers.forEach((t) => t.kill());

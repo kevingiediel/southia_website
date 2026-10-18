@@ -9,7 +9,6 @@ export function init(section, ctx) {
   if (!film) return undefined;
   // Save-Data: keep the static ring, download no scene clips (spec §10).
   if (navigator.connection?.saveData) {
-    section.querySelector('.hero-film__toggle')?.setAttribute('hidden', '');
     return undefined;
   }
   const scenes = [...film.querySelectorAll('.hero-film__scene')];
@@ -17,13 +16,12 @@ export function init(section, ctx) {
   const spark = section.querySelector('[data-spark]');
   const overlays = section.querySelector('.hero-film__overlays');
   const tag = overlays.querySelector('.hero-film__tag');
-  const toggle = section.querySelector('.hero-film__toggle');
   const params = new URLSearchParams(location.search);
   const debugSpeed = params.has('debug') ? Number(params.get('filmspeed')) || 1 : 1;
 
   const schedule = stopSchedule(scenes.map((el) => ({ id: el.dataset.stop })));
   let master;
-  let userPaused = false;
+  let userPaused = ctx.motionPaused ?? false;
   let inView = true;
   let started = false;
 
@@ -137,13 +135,9 @@ export function init(section, ctx) {
     });
   };
 
-  const onToggle = () => {
-    userPaused = !userPaused;
-    toggle.setAttribute('aria-pressed', String(userPaused));
-    toggle.setAttribute('aria-label', userPaused ? 'Retomar animação' : 'Pausar animação');
-    sync();
-  };
-  toggle.addEventListener('click', onToggle);
+  // The global "Pausar animações" control (motion-toggle.js) pauses the film too.
+  const onPause = (e) => { userPaused = e.detail.paused; sync(); };
+  document.addEventListener('southia:motion-pause', onPause);
 
   const st = ScrollTrigger.create({
     trigger: section,
@@ -164,7 +158,7 @@ export function init(section, ctx) {
   return () => {
     master?.kill();
     st.kill();
-    toggle.removeEventListener('click', onToggle);
+    document.removeEventListener('southia:motion-pause', onPause);
     section.removeEventListener('hero:intro-done', start);
   };
 }
