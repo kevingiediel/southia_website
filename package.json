@@ -16,7 +16,8 @@
     "deploy:branch": "node scripts/deploy-branch.mjs",
     "brand:frames": "node scripts/brand-frames.mjs",
     "films": "node scripts/generate-films.mjs",
-    "films:shots": "python -I films/build-shots.py"
+    "films:shots": "python -I films/build-shots.py",
+    "films:prompts": "python -I films/build-shots.py && python -I films/export-prompts.py"
   },
   "repository": {
     "type": "git",

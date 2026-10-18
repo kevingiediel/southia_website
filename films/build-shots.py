@@ -4,11 +4,13 @@ import json, os
 
 style = ("Photorealistic cinematic still, warm natural light, contemporary Brazilian small business, real diverse Brazilian people, "
          "wardrobe and props in deep forest green (#1C3322), herb green (#3E6A3B) and sage (#A3C08A) with a single warm yellow (#F2C230) accent, "
-         "cream walls, shallow depth of field, soft film grain, authentic friendly mood, 35mm lens, no text, no logos, no watermarks.")
+         "cream walls, shallow depth of field, soft film grain, authentic friendly mood, 35mm lens, plain clothing and fabrics without prints, "
+         "letters or emblems, no text, no logos, no watermarks.")
 motion = ("Smooth cinematic camera, natural human motion, no cuts, no on-screen text added, no logo changes, "
           "keep faces consistent, 24fps film look.")
 LOGO = (" The brand symbol is a flat graphic: it stays perfectly still and unchanged, it never rotates, distorts, glows "
-        "or casts shadows; only the camera moves.")
+        "or casts shadows; no light bloom, no smoke, no haze, no particles; the background stays a clean flat deep green; "
+        "only the camera moves.")
 GPT = 'gpt_image_2_5'
 
 
@@ -31,7 +33,7 @@ LEGIBLE = " Perfectly legible Brazilian Portuguese text, no other text."
 
 shots = [
     # ---------------- Film 1 "A roda"
-    S("F1-barbearia", 1, "Warm neighbourhood barbershop in Porto Alegre, a barber giving a man a fade haircut, two friends laughing on a green bench, vintage mirrors, plants, afternoon sun."),
+    S("F1-barbearia", 1, "Warm neighbourhood barbershop in Porto Alegre, a barber giving a man a fade haircut under a plain dark green barber cape with no print, two friends laughing on a green bench, vintage mirrors, plants, afternoon sun."),
     S("F1-chat", 1, "Photorealistic close-up of a smartphone held by a hand in a warm barbershop, shallow depth of field. The screen shows a WhatsApp-style chat titled \"Barbearia do Rafa\" with exactly these messages, in order: customer on the right in a light green bubble \"Oi! Tem horário amanhã às 15h?\"; business on the left in a white bubble \"Tem sim! 15h com o Rafa. Confirmo pra você?\"; customer \"Pode confirmar 👍\"; business \"Prontinho ✅ Te lembro amanhã.\"" + LEGIBLE, GPT, True),
     V("F1-01", 1, 4, "Very slow push-in on a flat brand symbol on a deep forest green background toward its top circle." + LOGO, "frame:logo-full", "frame:logo-zoom-barbearia"),
     V("F1-02", 1, 4, "The camera flies through the round circle of the flat graphic and lands inside a warm neighbourhood barbershop; seamless match-cut transition through the round shape.", "frame:logo-zoom-barbearia", "still:F1-barbearia"),

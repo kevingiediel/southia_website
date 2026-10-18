@@ -1,5 +1,5 @@
 {
-  "style": "Photorealistic cinematic still, warm natural light, contemporary Brazilian small business, real diverse Brazilian people, wardrobe and props in deep forest green (#1C3322), herb green (#3E6A3B) and sage (#A3C08A) with a single warm yellow (#F2C230) accent, cream walls, shallow depth of field, soft film grain, authentic friendly mood, 35mm lens, no text, no logos, no watermarks.",
+  "style": "Photorealistic cinematic still, warm natural light, contemporary Brazilian small business, real diverse Brazilian people, wardrobe and props in deep forest green (#1C3322), herb green (#3E6A3B) and sage (#A3C08A) with a single warm yellow (#F2C230) accent, cream walls, shallow depth of field, soft film grain, authentic friendly mood, 35mm lens, plain clothing and fabrics without prints, letters or emblems, no text, no logos, no watermarks.",
   "motion": "Smooth cinematic camera, natural human motion, no cuts, no on-screen text added, no logo changes, keep faces consistent, 24fps film look.",
   "resolution": "720p",
   "shots": [
@@ -9,7 +9,7 @@
       "kind": "still",
       "model": "text2image_soul_v2",
       "text": false,
-      "prompt": "Warm neighbourhood barbershop in Porto Alegre, a barber giving a man a fade haircut, two friends laughing on a green bench, vintage mirrors, plants, afternoon sun."
+      "prompt": "Warm neighbourhood barbershop in Porto Alegre, a barber giving a man a fade haircut under a plain dark green barber cape with no print, two friends laughing on a green bench, vintage mirrors, plants, afternoon sun."
     },
     {
       "id": "F1-chat",
@@ -25,7 +25,7 @@
       "kind": "video",
       "duration": 4,
       "start": "frame:logo-full",
-      "prompt": "Very slow push-in on a flat brand symbol on a deep forest green background toward its top circle. The brand symbol is a flat graphic: it stays perfectly still and unchanged, it never rotates, distorts, glows or casts shadows; only the camera moves.",
+      "prompt": "Very slow push-in on a flat brand symbol on a deep forest green background toward its top circle. The brand symbol is a flat graphic: it stays perfectly still and unchanged, it never rotates, distorts, glows or casts shadows; no light bloom, no smoke, no haze, no particles; the background stays a clean flat deep green; only the camera moves.",
       "end": "frame:logo-zoom-barbearia"
     },
     {
@@ -59,7 +59,7 @@
       "kind": "video",
       "duration": 4,
       "start": "still:F1-barbearia",
-      "prompt": "The camera pulls back out of the barbershop through a circular opening and lands on the flat brand symbol, ending exactly on the provided final frame. The brand symbol is a flat graphic: it stays perfectly still and unchanged, it never rotates, distorts, glows or casts shadows; only the camera moves.",
+      "prompt": "The camera pulls back out of the barbershop through a circular opening and lands on the flat brand symbol, ending exactly on the provided final frame. The brand symbol is a flat graphic: it stays perfectly still and unchanged, it never rotates, distorts, glows or casts shadows; no light bloom, no smoke, no haze, no particles; the background stays a clean flat deep green; only the camera moves.",
       "end": "frame:logo-zoom-barbearia"
     },
     {
@@ -109,7 +109,7 @@
       "kind": "video",
       "duration": 4,
       "start": "still:F1-clinica",
-      "prompt": "Pull back out of the clinic through a circular opening into the flat brand symbol, ending exactly on the provided final frame. The brand symbol is a flat graphic: it stays perfectly still and unchanged, it never rotates, distorts, glows or casts shadows; only the camera moves.",
+      "prompt": "Pull back out of the clinic through a circular opening into the flat brand symbol, ending exactly on the provided final frame. The brand symbol is a flat graphic: it stays perfectly still and unchanged, it never rotates, distorts, glows or casts shadows; no light bloom, no smoke, no haze, no particles; the background stays a clean flat deep green; only the camera moves.",
       "end": "frame:logo-zoom-clinica"
     },
     {
@@ -159,7 +159,7 @@
       "kind": "video",
       "duration": 4,
       "start": "still:F1-advocacia",
-      "prompt": "Pull back out of the office into the flat brand symbol, ending centred on the yellow diamond, exactly on the provided final frame. The brand symbol is a flat graphic: it stays perfectly still and unchanged, it never rotates, distorts, glows or casts shadows; only the camera moves.",
+      "prompt": "Pull back out of the office into the flat brand symbol, ending centred on the yellow diamond, exactly on the provided final frame. The brand symbol is a flat graphic: it stays perfectly still and unchanged, it never rotates, distorts, glows or casts shadows; no light bloom, no smoke, no haze, no particles; the background stays a clean flat deep green; only the camera moves.",
       "end": "frame:logo-zoom-centelha"
     },
     {
@@ -185,7 +185,7 @@
       "kind": "video",
       "duration": 10,
       "start": "still:F1-roda",
-      "prompt": "Friends and business owners sit in a circle around a fogo de chão, laughing and talking; one man drinks chimarrão from a gourd; sparks rise. The camera rises slowly above the circle and the scene resolves into the flat brand symbol on deep green, ending exactly on the provided final frame. The brand symbol is a flat graphic: it stays perfectly still and unchanged, it never rotates, distorts, glows or casts shadows; only the camera moves.",
+      "prompt": "Friends and business owners sit in a circle around a fogo de chão, laughing and talking; one man drinks chimarrão from a gourd; sparks rise. The camera rises slowly above the circle and the scene resolves into the flat brand symbol on deep green, ending exactly on the provided final frame. The brand symbol is a flat graphic: it stays perfectly still and unchanged, it never rotates, distorts, glows or casts shadows; no light bloom, no smoke, no haze, no particles; the background stays a clean flat deep green; only the camera moves.",
       "end": "frame:logo-full"
     },
     {
@@ -320,7 +320,7 @@
       "kind": "video",
       "duration": 6,
       "start": "frame:logo-full",
-      "prompt": "The flat brand symbol on deep forest green; the camera slowly pulls back and the composition settles exactly on the provided final frame with the full horizontal logo. The brand symbol is a flat graphic: it stays perfectly still and unchanged, it never rotates, distorts, glows or casts shadows; only the camera moves.",
+      "prompt": "The flat brand symbol on deep forest green; the camera slowly pulls back and the composition settles exactly on the provided final frame with the full horizontal logo. The brand symbol is a flat graphic: it stays perfectly still and unchanged, it never rotates, distorts, glows or casts shadows; no light bloom, no smoke, no haze, no particles; the background stays a clean flat deep green; only the camera moves.",
       "end": "frame:logo-horizontal"
     },
     {
@@ -431,7 +431,7 @@
       "kind": "video",
       "duration": 6,
       "start": "frame:logo-horizontal",
-      "prompt": "The flat horizontal brand logo on deep forest green stays perfectly still while the camera slowly pushes in, ending exactly on the provided final frame with the yellow button below. The brand symbol is a flat graphic: it stays perfectly still and unchanged, it never rotates, distorts, glows or casts shadows; only the camera moves.",
+      "prompt": "The flat horizontal brand logo on deep forest green stays perfectly still while the camera slowly pushes in, ending exactly on the provided final frame with the yellow button below. The brand symbol is a flat graphic: it stays perfectly still and unchanged, it never rotates, distorts, glows or casts shadows; no light bloom, no smoke, no haze, no particles; the background stays a clean flat deep green; only the camera moves.",
       "end": "frame:logo-horizontal-cta"
     },
     {
