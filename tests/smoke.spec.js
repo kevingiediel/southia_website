@@ -207,3 +207,13 @@ test('brand symbols never rotate (manual: "não girar")', async ({ page }) => {
   const logo = await page.locator('.contato-logo img').evaluate((e) => getComputedStyle(e).transform);
   expect(['none', 'matrix(1, 0, 0, 1, 0, 0)']).toContain(logo);
 });
+
+test('each hero film stop shows its overlay', async ({ page }) => {
+  await page.route('**/media/film/**', (r) => r.fulfill({ path: `tests/fixtures/tiny.${new URL(r.request().url()).pathname.split('.').pop()}` }));
+  await page.goto('/?debug&filmspeed=3');
+  for (const kind of ['chat', 'instagram', 'dados', 'headline']) {
+    await expect(page.locator(`.overlay--${kind}`)).toBeVisible({ timeout: 20000 });
+  }
+  await expect(page.locator('.overlay--instagram')).toContainText('Campanha criada automaticamente');
+  await expect(page.locator('.overlay--dados')).toContainText('Atualizado agora');
+});

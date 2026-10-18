@@ -62,6 +62,9 @@ export function init(section, ctx) {
         tl.set(msg, { display: 'block' }, i ? '+=0.45' : '+=0.2').fromTo(msg, { autoAlpha: 0, y: 12, scale: 0.96 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.35, ease: 'back.out(1.6)' });
       });
     }
+    // Instagram grid and data feed: their pieces arrive one after another.
+    const pops = el.querySelectorAll('[data-pop]');
+    if (pops.length) tl.fromTo(pops, { autoAlpha: 0, y: 10, scale: 0.92 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.35, stagger: 0.28, ease: 'back.out(1.6)' }, '+=0.1');
     return tl;
   };
 
