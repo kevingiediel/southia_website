@@ -40,7 +40,8 @@
 
 @media (max-width: 759px) {
   .js-motion .hero__ring { margin-bottom: 26%; }
-  .overlay--chat { left: 50%; top: 78%; bottom: auto; transform: translateX(-50%); width: 84%; font-size: 12px; }
+  /* Centred with left/right, not translateX: GSAP owns the transform during the entrance. */
+  .overlay--chat { left: 8%; right: 8%; top: 78%; bottom: auto; width: auto; font-size: 12px; }
   .hero-film__toggle { top: 0; bottom: auto; right: 0; }
 }
 
@@ -68,5 +69,5 @@
 .feed__dot { width: 8px; height: 8px; border-radius: 50%; background: #3FA34D; box-shadow: 0 0 0 3px rgba(63, 163, 77, .2); }
 
 @media (max-width: 759px) {
-  .overlay--instagram, .overlay--dados { left: 50%; top: 78%; bottom: auto; transform: translateX(-50%); width: 84%; font-size: 12px; }
+  .overlay--instagram, .overlay--dados { left: 8%; right: 8%; top: 78%; bottom: auto; width: auto; font-size: 12px; }
 }

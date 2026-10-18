@@ -280,3 +280,13 @@ test('initial HTML has no video elements (they are created on demand)', async ({
   await page.goto('/');
   await expect(page.locator('video:not(.film-player__video)')).toHaveCount(0);
 });
+
+test('no horizontal page scroll on a phone after scrolling (header hidden)', async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto('/');
+  await page.waitForTimeout(1500);
+  for (let i = 0; i < 6; i++) { await page.mouse.wheel(0, 500); await page.waitForTimeout(150); }
+  await expect(page.locator('.site-header')).toHaveClass(/is-hidden/);
+  const [scroll, client] = await page.evaluate(() => [document.documentElement.scrollWidth, document.documentElement.clientWidth]);
+  expect(scroll).toBe(client);
+});

@@ -22,9 +22,10 @@
 @media (max-width: 759px) {
   .js .site-header__bar { flex-wrap: nowrap; }
   .js .nav-toggle { display: block; }
-  .js .site-nav { position: fixed; inset: 0; z-index: 1; flex-direction: column; justify-content: center; gap: 32px; background: var(--green); visibility: hidden; opacity: 0; transition: opacity var(--dur-1) ease, visibility 0s linear var(--dur-1); }
+  /* display:none while closed: a hidden-but-laid-out overlay overflows when the header is transformed (hidden on scroll). */
+  .js .site-nav { display: none; position: fixed; inset: 0; z-index: 1; flex-direction: column; justify-content: center; gap: 32px; background: var(--green); }
   .js .site-nav__link { font-family: var(--font-display); font-size: 30px; color: var(--cream); }
-  .js.nav-open .site-nav { visibility: visible; opacity: 1; transition: opacity var(--dur-1) ease; }
+  .js.nav-open .site-nav { display: flex; animation: nav-in var(--dur-1) ease; }
   .js.nav-open body { overflow: hidden; }
 }
 
@@ -34,3 +35,4 @@
 .js-motion .site-header:not(.is-solid)::before { opacity: 0; }
 .js-motion.nav-open .site-header::before { opacity: 1; }
 .site-header.is-hidden { transform: translateY(-100%); }
+@keyframes nav-in { from { opacity: 0; } to { opacity: 1; } }
