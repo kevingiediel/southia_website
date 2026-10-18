@@ -1,7 +1,9 @@
 // Higgsfield video slots: poster and clip load only near the viewport, clips play only while
 // visible, and a slot with nothing to show keeps the brand placeholder.
+import { makeVideo } from './make-video.js';
+
 export function init(root, ctx) {
-  const figures = [...root.querySelectorAll('[data-media]')].filter((f) => f.querySelector('video'));
+  const figures = [...root.querySelectorAll('[data-media]')];
   const allowVideo = !ctx.reduced && !navigator.connection?.saveData;
 
   const state = new Map(); // figure -> { posterFailed, videoFailed }
@@ -11,23 +13,21 @@ export function init(root, ctx) {
   };
 
   const load = (fig) => {
-    const video = fig.querySelector('video');
     const s = { posterFailed: false, videoFailed: false };
     state.set(fig, s);
+    const video = allowVideo ? makeVideo(fig) : null;
 
-    const poster = video.dataset.poster;
+    const poster = fig.dataset.poster;
     if (poster) {
       const img = new Image();
-      img.onload = () => { video.poster = poster; fig.classList.add('media--poster'); };
+      img.onload = () => { if (video) video.poster = poster; else fig.style.backgroundImage = `url("${poster}")`; fig.classList.add('media--poster'); };
       img.onerror = () => { s.posterFailed = true; markFallback(fig); };
       img.src = poster;
     }
-    if (!allowVideo) return;
+    if (!video) return;
 
-    const sources = [...video.querySelectorAll('source[data-src]')];
-    sources.at(-1)?.addEventListener('error', () => { s.videoFailed = true; markFallback(fig); }, { once: true });
+    video.querySelector('source:last-of-type')?.addEventListener('error', () => { s.videoFailed = true; markFallback(fig); }, { once: true });
     video.addEventListener('loadeddata', () => fig.classList.add('media--ready'), { once: true });
-    for (const src of sources) src.src = src.dataset.src;
     video.load();
   };
 
@@ -43,6 +43,7 @@ export function init(root, ctx) {
   const playObserver = new IntersectionObserver((entries) => {
     for (const e of entries) {
       const video = e.target.querySelector('video');
+      if (!video) continue;
       if (e.isIntersecting) video.play().catch(() => {}); // autoplay refused: the poster stays
       else video.pause();
     }

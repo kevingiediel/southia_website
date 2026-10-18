@@ -38,11 +38,11 @@ export function runChecks(distDir = path.join(root, 'dist')) {
     for (const [, hash] of html.matchAll(/href="#([^"]*)"/g)) {
       if (hash && !ids.has(hash)) errors.push(`${file}: anchor #${hash} has no matching id`);
     }
-    for (const [, attr, ref] of html.matchAll(/\s(src|href|poster|data-src|data-poster)="(\/[^"/][^"]*)"/g)) {
+    for (const [, attr, ref] of html.matchAll(/\s(src|href|poster|data-src|data-webm|data-poster)="(\/[^"/][^"]*)"/g)) {
       const mediaId = ref.match(/^\/media\/((?:film\/)?[^/.]+)\.\w+$/)?.[1];
       if (mediaId && !known.has(mediaId)) errors.push(`${file}: ${attr}="${ref}" references unknown slot "${mediaId}"`);
       if (exists(distDir, ref)) continue;
-      if (mediaId && ['poster', 'data-src', 'data-poster'].includes(attr)) missingMedia.add(mediaId);
+      if (mediaId && ['poster', 'data-src', 'data-webm', 'data-poster'].includes(attr)) missingMedia.add(mediaId);
       else errors.push(`${file}: ${attr}="${ref}" not found in dist`);
     }
   }

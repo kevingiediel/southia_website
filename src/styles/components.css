@@ -51,3 +51,5 @@
 .brand { display: flex; align-items: center; }
 .brand__logo { display: block; height: 34px; width: auto; }
 .brand__logo--sm { height: 28px; }
+.media--poster { background-size: cover; background-position: center; }
+.media--poster::before { display: none; }

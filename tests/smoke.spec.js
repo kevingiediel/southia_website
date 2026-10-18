@@ -250,3 +250,33 @@ test('film card appears when its poster exists and plays in a dialog', async ({ 
   await expect(dialog).not.toHaveAttribute('open', '');
   await expect(card).toBeFocused();
 });
+
+test('hero headline and lead are visible from the first paint (LCP)', async ({ page }) => {
+  await page.goto('/', { waitUntil: 'commit' });
+  await page.waitForSelector('.hero__lead', { state: 'attached' });
+  await page.waitForTimeout(150);
+  for (const sel of ['.hero__title', '.hero__lead']) {
+    const [vis, op] = await page.locator(sel).evaluate((e) => [getComputedStyle(e).visibility, getComputedStyle(e).opacity]);
+    expect(vis).toBe('visible');
+    expect(op).toBe('1');
+  }
+});
+
+test('first paint happens before the motion code runs', async ({ page }) => {
+  await page.addInitScript(() => {
+    window.__marks = {};
+    new PerformanceObserver((l) => l.getEntries().forEach((e) => { if (e.name === 'first-contentful-paint') window.__marks.fcp = e.startTime; }))
+      .observe({ type: 'paint', buffered: true });
+    addEventListener('southia:motion-ready', () => { window.__marks.motion = performance.now(); });
+  });
+  await page.goto('/');
+  await page.waitForFunction(() => window.__marks.fcp && window.__marks.motion, null, { timeout: 8000 });
+  const { fcp, motion } = await page.evaluate(() => window.__marks);
+  expect(motion).toBeGreaterThan(fcp);
+});
+
+test('initial HTML has no video elements (they are created on demand)', async ({ browser }) => {
+  const page = await (await browser.newContext({ javaScriptEnabled: false })).newPage();
+  await page.goto('/');
+  await expect(page.locator('video:not(.film-player__video)')).toHaveCount(0);
+});

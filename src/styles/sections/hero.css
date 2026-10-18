@@ -37,5 +37,5 @@
 /* Intro start state (hero-ring.js plays it in). Without motion everything is already in place. */
 .js-motion .hero__ring-svg circle, .js-motion .hero__spokes line { stroke-dashoffset: 1; }
 .js-motion .hero__pop, .js-motion .hero__spark { transform: scale(0); }
-.js-motion .hero__title { visibility: hidden; }
-.js-motion .hero__copy > :not(.hero__title) { opacity: 0; transform: translateY(28px); }
+/* Headline and lead stay visible from the first paint (they are the LCP); only the eyebrow and buttons animate in. */
+.js-motion .hero__copy > .eyebrow, .js-motion .hero__copy > .btn-row { opacity: 0; transform: translateY(28px); }

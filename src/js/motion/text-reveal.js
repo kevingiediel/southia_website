@@ -3,12 +3,6 @@ function split(el, ctx) {
   return ctx.SplitText.create(el, { type: 'words', mask: 'words', wordsClass: 'word' });
 }
 
-// Plays a headline's words in immediately; the hero intro (hero-ring) sequences this.
-export function revealWords(el, ctx) {
-  const { words } = split(el, ctx);
-  return ctx.gsap.timeline().from(words, { yPercent: 110, duration: 0.9 / ctx.speed, stagger: 0.04, ease: 'power3.out' });
-}
-
 export function init(root, ctx) {
   const { gsap, ScrollTrigger } = ctx;
   const splits = [];

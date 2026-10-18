@@ -1,5 +1,3 @@
-import { revealWords } from './text-reveal.js';
-
 const fontsReady = () => Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 1500))]);
 
 // Hero "roda": intro build, scroll-linked rotation, and idle loops that pause off-screen.
@@ -10,8 +8,7 @@ export function init(section, ctx) {
   const pops = q('.hero__pop');
   const spokes = q('.hero__spokes line');
   const spark = section.querySelector('[data-spark]');
-  const title = section.querySelector('.hero__title');
-  const copy = q('.hero__copy > :not(.hero__title)');
+  const copy = q('.hero__copy > .eyebrow, .hero__copy > .btn-row');
 
   const loops = [];
   const triggers = [];
@@ -42,14 +39,9 @@ export function init(section, ctx) {
     onToggle: (self) => { inView = self.isActive; if (section.dataset.introDone) syncLoops(); },
   }));
 
-  // Scroll: the glow drifts. The ring itself never rotates (brand manual: "não girar").
-  triggers.push(gsap.to(section.querySelector('.hero__glow'), {
-    yPercent: 15, ease: 'none', scrollTrigger: { trigger: section, start: 'top top', end: 'bottom top', scrub: true },
-  }).scrollTrigger);
 
   fontsReady().then(() => {
     if (cancelled) return;
-    gsap.set(title, { visibility: 'visible' });
     intro = gsap.timeline({
       defaults: { ease: 'power3.out' },
       onComplete: () => {
@@ -63,7 +55,6 @@ export function init(section, ctx) {
       .to(pops, { scale: 1, duration: 0.5, stagger: 0.08, ease: 'back.out(1.6)' }, 0.3)
       .to(spokes, { strokeDashoffset: 0, duration: 0.5, stagger: 0.04 }, 0.6)
       .to(spark, { scale: 1, duration: 0.45, ease: 'back.out(2)' }, 0.9)
-      .add(revealWords(title, ctx), 0.35)
       .to(copy, { opacity: 1, y: 0, duration: 0.7, stagger: 0.1 }, 0.75);
     intro.timeScale(ctx.speed);
   });

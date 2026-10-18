@@ -1,11 +1,6 @@
 <div class="hero-film" aria-hidden="true">
   {{#each film.stops}}
-  <div class="hero-film__scene hero-film__scene--{{id}}" data-stop="{{id}}" data-circle="{{circle}}" data-tag="{{tag}}">
-    <video muted loop playsinline preload="none" data-poster="/media/film/{{id}}.jpg">
-      <source data-src="/media/film/{{id}}.webm" type="video/webm">
-      <source data-src="/media/film/{{id}}.mp4" type="video/mp4">
-    </video>
-  </div>
+  <div class="hero-film__scene hero-film__scene--{{id}}" data-stop="{{id}}" data-circle="{{circle}}" data-tag="{{tag}}" data-poster="/media/film/{{id}}.jpg" data-webm="/media/film/{{id}}.webm" data-src="/media/film/{{id}}.mp4"></div>
   {{/each}}
 </div>
 <div class="hero-film__overlays" aria-hidden="true">

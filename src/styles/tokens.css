@@ -16,8 +16,8 @@
   --text: #1C3322;
   --text-body: #3A4A3C;
 
-  --font-body: 'Figtree', system-ui, sans-serif;
-  --font-display: 'Montserrat Alternates', 'Figtree', sans-serif;
+  --font-body: 'Figtree', 'Figtree Fallback', system-ui, sans-serif;
+  --font-display: 'Montserrat Alternates', 'Montserrat Alternates Fallback', sans-serif;
   --fs-h1: clamp(44px, 6vw, 76px);
   --fs-h2: clamp(32px, 4vw, 52px);
   --fs-h2-xl: clamp(36px, 5vw, 64px);

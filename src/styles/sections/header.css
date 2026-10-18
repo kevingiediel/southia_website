@@ -1,6 +1,8 @@
 .site-header { position: sticky; top: 0; z-index: 20; transition: transform .45s var(--ease-out); }
 /* Blur lives on a pseudo-element: backdrop-filter on the header itself would trap the fixed mobile overlay. */
-.site-header::before { content: ''; position: absolute; inset: 0; z-index: -1; background: rgba(28, 51, 34, .94); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transition: opacity var(--dur-1) ease; }
+.site-header::before { content: ''; position: absolute; inset: 0; z-index: -1; background: rgba(28, 51, 34, .96); transition: opacity var(--dur-1) ease; }
+/* Blur only once the header is solid over content (it is costly to paint and invisible over the hero). */
+.site-header.is-solid::before { background: rgba(28, 51, 34, .94); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
 .site-header__bar { min-height: var(--header-h); padding-top: 12px; padding-bottom: 12px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
 .site-nav { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
 

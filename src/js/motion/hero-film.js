@@ -1,4 +1,5 @@
 import { stopSchedule } from './hero-film-schedule.js';
+import { makeVideo } from '../media/make-video.js';
 
 // Film 1 "A roda": after the hero intro, the camera dives into a circle of the ring,
 // plays that business's scene with a code-built overlay, pulls back, and moves on.
@@ -24,12 +25,12 @@ export function init(section, ctx) {
   const log = params.has('debug') ? (window.__southia = { ...window.__southia, filmLog: [] }).filmLog : null;
   const setStop = (id) => { section.dataset.filmStop = id; log?.push(id); };
 
+  // The scene's <video> is created the first time the stop is reached (or prefetched).
   const loadVideo = (scene) => {
-    const video = scene.querySelector('video');
-    if (video.dataset.loaded) return video;
-    video.dataset.loaded = 'true';
-    if (video.dataset.poster) video.poster = video.dataset.poster;
-    video.querySelectorAll('source[data-src]').forEach((s) => { s.src = s.dataset.src; });
+    const existing = scene.querySelector('video');
+    if (existing) return existing;
+    const video = makeVideo(scene);
+    if (scene.dataset.poster) video.poster = scene.dataset.poster;
     video.addEventListener('loadeddata', () => scene.classList.add('is-ready'), { once: true });
     video.load();
     return video;
@@ -84,7 +85,7 @@ export function init(section, ctx) {
     schedule.forEach((stop, i) => {
       const scene = scenes[i];
       const next = scenes[(i + 1) % scenes.length];
-      const video = () => scene.querySelector('video');
+      const video = () => scene.querySelector('video') ?? { pause() {} };
       const at = stop.start;
       const dwellAt = at + stop.zoomIn;
       const outAt = dwellAt + stop.dwell;
@@ -125,8 +126,9 @@ export function init(section, ctx) {
     if (run) master.play(); else master.pause();
     scenes.forEach((s) => {
       const v = s.querySelector('video');
+      if (!v) return;
       if (!run || section.dataset.filmStop !== s.dataset.stop) v.pause();
-      else if (v.dataset.loaded) v.play().catch(() => {});
+      else v.play().catch(() => {});
     });
   };
 
