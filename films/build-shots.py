@@ -14,8 +14,11 @@ LOGO = (" The brand symbol is a flat graphic: it stays perfectly still and uncha
 GPT = 'gpt_image_2_5'
 
 
-def S(id, gate, prompt, model='text2image_soul_v2', text=False):
-    return {"id": id, "gate": gate, "kind": "still", "model": model, "text": text, "prompt": prompt}
+def S(id, gate, prompt, model='text2image_soul_v2', text=False, image=None):
+    shot = {"id": id, "gate": gate, "kind": "still", "model": model, "text": text, "prompt": prompt}
+    if image:
+        shot["image"] = image
+    return shot
 
 
 def V(id, gate, dur, prompt, start, end=None):
@@ -36,6 +39,8 @@ shots = [
     S("F1-barbearia", 1, "Cozy neighbourhood barbershop in Brazil (Barbearia do Samuel), warm late-afternoon natural light, vintage mirrors, plants, a green waiting bench. Samuel, the barber, is a white Brazilian man in his mid-30s with fair skin, short dark brown hair and a well-groomed beard, wearing a plain dark green shirt; he runs the clippers over a client's hair while they chat. The client, under a plain dark green barber cape with no print, laughs genuinely. On the bench a woman smiles proudly at her husband in the chair and another client waits casually."),
     # Keyframe K4 candidates (validated one by one; main action centred so the hero's circular crop works)
     S("F1-K4a", "kf", "Wide eye-level shot of a cozy neighbourhood barbershop in Brazil, warm late-afternoon natural light through the window, vintage mirrors, plants, a green waiting bench along the wall. Samuel, the barber, is a white Brazilian man in his mid-30s with fair skin, short dark brown hair and a well-groomed beard, wearing a plain dark green shirt; standing behind the barber chair in the centre of the frame, he runs the clippers over a client's hair while they chat. The client, seated under a plain dark green barber cape with no print, laughs genuinely, happy and relaxed. On the waiting bench to the right, a woman smiles proudly at her husband in the chair, and another client waits casually. Main action centred in the frame."),
+    # K4 approved (2026-10-19): K4a with the text on the cape removed.
+    S("F1-K4", "kf-edit", "Edit this photo: remove the word written on the green barber cape so the cape is plain dark green fabric with no letters, logos or print. Keep everything else exactly identical: same people, faces, expressions, poses, clothing, lighting, colours, background and framing.", 'nano_banana_pro', True, "still:F1-K4a"),
     S("F1-K4b", "kf", "Medium shot, slightly low angle, inside a cozy neighbourhood barbershop in Brazil, warm late-afternoon light. Samuel, the barber, is a white Brazilian man in his mid-30s with fair skin, short dark brown hair and a well-groomed beard, wearing a plain dark green shirt; centred in the frame, he runs the clippers over a client's hair and both are laughing. The client wears a plain dark green barber cape with no print. Behind them, slightly out of focus on a green bench, a woman smiles proudly at her husband and another client waits. Vintage mirror and plants in the background. Faces and clippers in the centre third of the frame."),
     S("F1-chat", 1, "Photorealistic close-up of a smartphone held by a hand in a warm barbershop, shallow depth of field. The screen shows a WhatsApp-style chat titled \"Barbearia do Samuel\" with exactly these messages, in order: customer on the left in a white bubble \"Oi, tem horário amanhã às 15h para barba?\"; business on the right in a light green bubble \"Tem sim! 15h com o Samuel. Confirmo pra você?\"; customer \"Pode confirmar\"; business \"Prontinho, te lembro amanhã.\" No emojis." + LEGIBLE, GPT, True),
     V("F1-01", 1, 4, "Very slow push-in on a flat brand symbol on a deep forest green background toward its top circle." + LOGO, "frame:logo-full", "frame:logo-zoom-barbearia"),

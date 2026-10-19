@@ -17,6 +17,7 @@ const FRAMES = path.join(root, 'media-src/frames');
 const STILL_DEFAULTS = {
   text2image_soul_v2: ['--aspect_ratio', '16:9', '--quality', '2k'],
   gpt_image_2_5: ['--aspect_ratio', '16:9', '--resolution', '2k'],
+  nano_banana_pro: ['--aspect_ratio', '16:9', '--resolution', '2k'],
 };
 
 const resolveInput = (ref, paths) => {
@@ -30,7 +31,8 @@ export function shotArgs(shot, paths, { style = '', motion = '', resolution = '1
   if (shot.kind === 'still') {
     const model = shot.model ?? 'text2image_soul_v2';
     const prompt = [shot.text ? '' : style, shot.prompt].filter(Boolean).join(' ');
-    return ['generate', 'create', model, '--prompt', prompt, ...(STILL_DEFAULTS[model] ?? ['--aspect_ratio', '16:9']), '--wait', '--json'];
+    const ref = shot.image ? ['--image', resolveInput(shot.image, paths)] : []; // edit an existing still
+    return ['generate', 'create', model, '--prompt', prompt, ...ref, ...(STILL_DEFAULTS[model] ?? ['--aspect_ratio', '16:9']), '--wait', '--json'];
   }
   if (shot.kind === 'audio') return ['generate', 'create', shot.model ?? 'seed_audio', '--prompt', shot.prompt, '--wait', '--json'];
   const args = ['generate', 'create', shot.model ?? 'seedance_2_5', '--prompt', [shot.prompt, motion].filter(Boolean).join(' '),

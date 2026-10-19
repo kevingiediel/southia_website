@@ -1,0 +1,54 @@
+{
+  "film": "F1 — A roda",
+  "segment": "barbearia",
+  "frames": [
+    {
+      "id": "K1",
+      "file": "media-src/frames/logo-full.png",
+      "source": "official SVG (scripts/brand-frames.mjs)",
+      "status": "approved"
+    },
+    {
+      "id": "K2",
+      "file": "media-src/frames/logo-zoom-barbearia.png",
+      "source": "official SVG (scripts/brand-frames.mjs)",
+      "status": "approved"
+    },
+    {
+      "id": "K3",
+      "status": "pending",
+      "source": "composite: K2 + K4 inside the top circle"
+    },
+    {
+      "id": "K4",
+      "file": "films/keyframes/F1/K4.jpg",
+      "status": "approved",
+      "approved": "2026-10-19",
+      "source": "Higgsfield: F1-K4a (text2image_soul_v2) edited with nano_banana_pro to remove the cape text",
+      "prompts": {
+        "F1-K4a": "Wide eye-level shot of a cozy neighbourhood barbershop in Brazil, warm late-afternoon natural light through the window, vintage mirrors, plants, a green waiting bench along the wall. Samuel, the barber, is a white Brazilian man in his mid-30s with fair skin, short dark brown hair and a well-groomed beard, wearing a plain dark green shirt; standing behind the barber chair in the centre of the frame, he runs the clippers over a client's hair while they chat. The client, seated under a plain dark green barber cape with no print, laughs genuinely, happy and relaxed. On the waiting bench to the right, a woman smiles proudly at her husband in the chair, and another client waits casually. Main action centred in the frame.",
+        "F1-K4": "Edit this photo: remove the word written on the green barber cape so the cape is plain dark green fabric with no letters, logos or print. Keep everything else exactly identical: same people, faces, expressions, poses, clothing, lighting, colours, background and framing."
+      }
+    },
+    {
+      "id": "K5",
+      "status": "pending",
+      "source": "composite: K4 + chat (2 bubbles), Barbearia do Samuel"
+    },
+    {
+      "id": "K6",
+      "status": "pending",
+      "source": "composite: K4 + chat (4 bubbles), Barbearia do Samuel"
+    },
+    {
+      "id": "K7",
+      "status": "pending",
+      "source": "= K3 (mirror of the opening)"
+    },
+    {
+      "id": "K8",
+      "status": "approved",
+      "source": "= K1"
+    }
+  ]
+}

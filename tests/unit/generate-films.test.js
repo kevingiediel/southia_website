@@ -108,3 +108,12 @@ test('gateShots accepts named gates such as "kf"', () => {
   assert.deepEqual(gateShots(shots, 'kf').map((s) => s.id), ['F1-K4a']);
   assert.deepEqual(gateShots(shots, '1').map((s) => s.id), ['F1-01']);
 });
+
+test('still edits pass the reference image and skip the style prefix', () => {
+  const args = shotArgs({ id: 'F1-K4', kind: 'still', model: 'nano_banana_pro', text: true, image: 'still:F1-K4a', prompt: 'Remove the text.' }, paths, { style: 'STYLE.' });
+  assert.equal(args[2], 'nano_banana_pro');
+  assert.equal(args[args.indexOf('--image') + 1], 'media-src/films/F1-K4a.png');
+  assert.equal(args[args.indexOf('--prompt') + 1], 'Remove the text.');
+  assert.equal(args[args.indexOf('--aspect_ratio') + 1], '16:9');
+  assert.equal(args[args.indexOf('--resolution') + 1], '2k');
+});
