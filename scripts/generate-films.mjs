@@ -62,7 +62,7 @@ export function resultUrl(json) {
   return hasResultKey ? null : fallback;
 }
 
-export const gateShots = (shots, gate) => shots.filter((s) => s.gate === gate);
+export const gateShots = (shots, gate) => shots.filter((s) => String(s.gate) === String(gate));
 
 // "Identical" = same model, prompt, resolution, duration and set of input frames.
 // (Matching on the prompt alone would hand back a 720p clip after switching to 1080p.)
@@ -109,7 +109,7 @@ async function main(argv) {
   const opt = (name) => { const i = argv.indexOf(name); return i >= 0 ? argv[i + 1] : null; };
   const spec = JSON.parse(fs.readFileSync(path.join(root, 'films/shots.json'), 'utf8'));
   let shots = spec.shots;
-  if (opt('--gate')) shots = gateShots(shots, Number(opt('--gate')));
+  if (opt('--gate')) shots = gateShots(shots, opt('--gate'));
   if (opt('--only')) { const ids = opt('--only').split(','); shots = shots.filter((s) => ids.includes(s.id)); }
   const rank = { still: 0, video: 1, audio: 2 };
   shots = [...shots].sort((a, b) => rank[a.kind] - rank[b.kind]);

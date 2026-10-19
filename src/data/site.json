@@ -225,7 +225,7 @@
         "circle": 0,
         "overlay": "chat",
         "tag": "Agentes de atendimento",
-        "alt": "Barbearia de bairro: cliente cortando o cabelo e amigos rindo"
+        "alt": "Barbearia do Samuel: Samuel cortando o cabelo de um cliente, que ri, enquanto a esposa e outro cliente esperam no banco"
       },
       {
         "id": "clinica",
@@ -252,19 +252,19 @@
     "chat": [
       {
         "from": "cliente",
-        "text": "Oi! Tem horário amanhã às 15h?"
+        "text": "Oi, tem horário amanhã às 15h para barba?"
       },
       {
         "from": "agente",
-        "text": "Tem sim! 15h com o Rafa. Confirmo pra você?"
+        "text": "Tem sim! 15h com o Samuel. Confirmo pra você?"
       },
       {
         "from": "cliente",
-        "text": "Pode confirmar 👍"
+        "text": "Pode confirmar"
       },
       {
         "from": "agente",
-        "text": "Prontinho ✅ Te lembro amanhã."
+        "text": "Prontinho, te lembro amanhã."
       }
     ]
   },

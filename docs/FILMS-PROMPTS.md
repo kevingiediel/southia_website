@@ -24,7 +24,25 @@ Custo estimado (720p): ~7 créditos por segundo de vídeo; imagens 0,12–0,5; t
 - **Prompt:**
 
 ```text
-Photorealistic cinematic still, warm natural light, contemporary Brazilian small business, real diverse Brazilian people, wardrobe and props in deep forest green (#1C3322), herb green (#3E6A3B) and sage (#A3C08A) with a single warm yellow (#F2C230) accent, cream walls, shallow depth of field, soft film grain, authentic friendly mood, 35mm lens, plain clothing and fabrics without prints, letters or emblems, no text, no logos, no watermarks. Warm neighbourhood barbershop in Porto Alegre, a barber giving a man a fade haircut under a plain dark green barber cape with no print, two friends laughing on a green bench, vintage mirrors, plants, afternoon sun.
+Photorealistic cinematic still, warm natural light, contemporary Brazilian small business, real diverse Brazilian people, wardrobe and props in deep forest green (#1C3322), herb green (#3E6A3B) and sage (#A3C08A) with a single warm yellow (#F2C230) accent, cream walls, shallow depth of field, soft film grain, authentic friendly mood, 35mm lens, plain clothing and fabrics without prints, letters or emblems, no text, no logos, no watermarks. Cozy neighbourhood barbershop in Brazil (Barbearia do Samuel), warm late-afternoon natural light, vintage mirrors, plants, a green waiting bench. Samuel, the barber, is a white Brazilian man in his mid-30s with fair skin, short dark brown hair and a well-groomed beard, wearing a plain dark green shirt; he runs the clippers over a client's hair while they chat. The client, under a plain dark green barber cape with no print, laughs genuinely. On the bench a woman smiles proudly at her husband in the chair and another client waits casually.
+```
+
+#### F1-K4a
+- **Modelo:** Higgsfield Soul 2.0 · **Proporção:** 16:9 · **Qualidade 2K**
+- **Salvar como:** `media-src/films/F1-K4a.png`
+- **Prompt:**
+
+```text
+Photorealistic cinematic still, warm natural light, contemporary Brazilian small business, real diverse Brazilian people, wardrobe and props in deep forest green (#1C3322), herb green (#3E6A3B) and sage (#A3C08A) with a single warm yellow (#F2C230) accent, cream walls, shallow depth of field, soft film grain, authentic friendly mood, 35mm lens, plain clothing and fabrics without prints, letters or emblems, no text, no logos, no watermarks. Wide eye-level shot of a cozy neighbourhood barbershop in Brazil, warm late-afternoon natural light through the window, vintage mirrors, plants, a green waiting bench along the wall. Samuel, the barber, is a white Brazilian man in his mid-30s with fair skin, short dark brown hair and a well-groomed beard, wearing a plain dark green shirt; standing behind the barber chair in the centre of the frame, he runs the clippers over a client's hair while they chat. The client, seated under a plain dark green barber cape with no print, laughs genuinely, happy and relaxed. On the waiting bench to the right, a woman smiles proudly at her husband in the chair, and another client waits casually. Main action centred in the frame.
+```
+
+#### F1-K4b
+- **Modelo:** Higgsfield Soul 2.0 · **Proporção:** 16:9 · **Qualidade 2K**
+- **Salvar como:** `media-src/films/F1-K4b.png`
+- **Prompt:**
+
+```text
+Photorealistic cinematic still, warm natural light, contemporary Brazilian small business, real diverse Brazilian people, wardrobe and props in deep forest green (#1C3322), herb green (#3E6A3B) and sage (#A3C08A) with a single warm yellow (#F2C230) accent, cream walls, shallow depth of field, soft film grain, authentic friendly mood, 35mm lens, plain clothing and fabrics without prints, letters or emblems, no text, no logos, no watermarks. Medium shot, slightly low angle, inside a cozy neighbourhood barbershop in Brazil, warm late-afternoon light. Samuel, the barber, is a white Brazilian man in his mid-30s with fair skin, short dark brown hair and a well-groomed beard, wearing a plain dark green shirt; centred in the frame, he runs the clippers over a client's hair and both are laughing. The client wears a plain dark green barber cape with no print. Behind them, slightly out of focus on a green bench, a woman smiles proudly at her husband and another client waits. Vintage mirror and plants in the background. Faces and clippers in the centre third of the frame.
 ```
 
 #### F1-chat — PRONTO — já gerado, texto perfeito
@@ -33,7 +51,7 @@ Photorealistic cinematic still, warm natural light, contemporary Brazilian small
 - **Prompt:**
 
 ```text
-Photorealistic close-up of a smartphone held by a hand in a warm barbershop, shallow depth of field. The screen shows a WhatsApp-style chat titled "Barbearia do Rafa" with exactly these messages, in order: customer on the right in a light green bubble "Oi! Tem horário amanhã às 15h?"; business on the left in a white bubble "Tem sim! 15h com o Rafa. Confirmo pra você?"; customer "Pode confirmar 👍"; business "Prontinho ✅ Te lembro amanhã." Perfectly legible Brazilian Portuguese text, no other text.
+Photorealistic close-up of a smartphone held by a hand in a warm barbershop, shallow depth of field. The screen shows a WhatsApp-style chat titled "Barbearia do Samuel" with exactly these messages, in order: customer on the left in a white bubble "Oi, tem horário amanhã às 15h para barba?"; business on the right in a light green bubble "Tem sim! 15h com o Samuel. Confirmo pra você?"; customer "Pode confirmar"; business "Prontinho, te lembro amanhã." No emojis. Perfectly legible Brazilian Portuguese text, no other text.
 ```
 
 #### F1-clinica

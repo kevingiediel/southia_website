@@ -340,3 +340,16 @@ for (const chunk of ['motion-boot', 'gsap']) test(`content becomes visible even 
   for (const el of await page.locator('[data-reveal]').all()) await expect(el).toHaveCSS('opacity', '1');
   await expect(page.locator('.hero__copy .btn-row')).toHaveCSS('opacity', '1');
 });
+
+test('hero chat is the Barbearia do Samuel script', async ({ browser }) => {
+  const page = await (await browser.newContext({ javaScriptEnabled: false })).newPage();
+  await page.goto('/');
+  const chat = page.locator('.overlay--chat');
+  await expect(chat.locator('.chat__name')).toContainText('Barbearia do Samuel');
+  await expect(chat.locator('.chat__msg')).toHaveText([
+    'Oi, tem horário amanhã às 15h para barba?',
+    'Tem sim! 15h com o Samuel. Confirmo pra você?',
+    'Pode confirmar',
+    'Prontinho, te lembro amanhã.',
+  ]);
+});

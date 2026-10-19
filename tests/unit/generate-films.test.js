@@ -102,3 +102,9 @@ test('previous/pending jobs must match resolution, duration and input frames, no
   assert.ok(findPreviousJob([{ ...base, params: { prompt, resolution: '1080p', duration: 4, medias } }], args));
   assert.equal(findPendingJob([{ ...base, status: 'in_progress', params: { prompt, resolution: '720p', duration: 4, medias } }], args), null);
 });
+
+test('gateShots accepts named gates such as "kf"', () => {
+  const shots = [{ id: 'F1-K4a', gate: 'kf' }, { id: 'F1-01', gate: 1 }];
+  assert.deepEqual(gateShots(shots, 'kf').map((s) => s.id), ['F1-K4a']);
+  assert.deepEqual(gateShots(shots, '1').map((s) => s.id), ['F1-01']);
+});
