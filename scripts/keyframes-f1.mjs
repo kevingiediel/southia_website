@@ -1,28 +1,48 @@
-// Composites the code-built keyframes of Film 1 (barbearia) at 1920×1080:
-//   K3 — camera inside the top circle of the official symbol, which opens like a window onto K4
-//   K5 — K4 with the WhatsApp chat (first 2 messages)
-//   K6 — K4 with the full chat (4 messages)
-// The logo comes from the official SVG and the chat text is typed, so neither is ever redrawn by AI.
-// Run: node scripts/keyframes-f1.mjs
+// Composites the code-built keyframes of a Film 1 stop at 1920×1080:
+//   K3 — camera inside the stop's circle of the official symbol, which opens like a window onto K4
+//   K5 — K4 with the message bubbles (first 2)
+//   K6 — K4 with all 4 bubbles
+// The logo comes from the official SVG and the bubble text is typed, so neither is ever redrawn by AI.
+// Run: node scripts/keyframes-f1.mjs [barbearia|advocacia]
 import fs from 'node:fs';
 import { chromium } from '@playwright/test';
 
 const W = 1920;
 const H = 1080;
-const OUT = 'films/keyframes/F1';
+
+// Per stop: where its frames live, which circle of the symbol it enters (clock angle), and the bubbles.
+const SEGMENTS = {
+  barbearia: {
+    out: 'films/keyframes/F1',
+    angle: 0, // 12 o'clock
+    title: 'Barbearia do Samuel',
+    messages: [
+      { time: 'Hoje 10:24', text: 'Oi, tem horário amanhã às 15h para barba?', from: 'cliente', side: 'in' },
+      { time: 'Hoje 10:25', text: 'Tem sim! 15h com o Samuel. Confirmo pra você?', from: 'Barbearia do Samuel', side: 'out' },
+      { time: 'Hoje 10:26', text: 'Pode confirmar', from: 'cliente', side: 'in' },
+      { time: 'Hoje 10:27', text: 'Prontinho, te lembro amanhã.', from: 'Barbearia do Samuel', side: 'out' },
+    ],
+  },
+  advocacia: {
+    out: 'films/keyframes/F1-advocacia',
+    angle: 225, // lower-left circle (hero stop "advocacia")
+    title: 'Helena Duarte Advocacia',
+    messages: [
+      { time: 'Hoje 09:02', text: 'Pesquisa realizada no TJSP: 14 novas decisões', from: 'Agente Southia', side: 'out' },
+      { time: 'Hoje 09:02', text: 'Dados baixados automaticamente do PJe e do e-SAJ', from: 'Agente Southia', side: 'out' },
+      { time: 'Hoje 09:03', text: 'Diário Oficial verificado: 3 publicações dos seus processos', from: 'Agente Southia', side: 'out' },
+      { time: 'Hoje 09:03', text: 'Relatório pronto na sua pasta', from: 'Agente Southia', side: 'out' },
+    ],
+  },
+};
+const seg = SEGMENTS[process.argv[2] ?? 'barbearia'];
+if (!seg) throw new Error(`Unknown stop "${process.argv[2]}" (use ${Object.keys(SEGMENTS).join(' | ')})`);
+const OUT = seg.out;
 const b64 = (f, type) => `data:${type};base64,${fs.readFileSync(f).toString('base64')}`;
 const k4 = b64(`${OUT}/K4.jpg`, 'image/jpeg');
 const symbol = fs.readFileSync('src/assets/brand/simbolo-negativa.svg', 'utf8');
 const font = (f, w) => `@font-face{font-family:Figtree;font-weight:${w};src:url(${b64(`public/fonts/${f}`, 'font/woff2')}) format('woff2')}`;
 
-// Chat script (docs/FILMS-PROMPTS.md / derived-session Film 1 prompt).
-const BUSINESS = 'Barbearia do Samuel';
-const MESSAGES = [
-  { time: 'Hoje 10:24', text: 'Oi, tem horário amanhã às 15h para barba?', from: 'cliente' },
-  { time: 'Hoje 10:25', text: 'Tem sim! 15h com o Samuel. Confirmo pra você?', from: BUSINESS },
-  { time: 'Hoje 10:26', text: 'Pode confirmar', from: 'cliente' },
-  { time: 'Hoje 10:27', text: 'Prontinho, te lembro amanhã.', from: BUSINESS },
-];
 
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: W, height: H } });
@@ -37,7 +57,7 @@ const shot = async (name, body, css) => {
 
 // --- K3: deep zoom on the top circle (same geometry as scripts/brand-frames.mjs), photo inside its rim.
 await page.setContent(`<div id="s" style="width:1000px;height:1000px">${symbol}</div>`);
-const top = await page.evaluate(() => {
+const circles = await page.evaluate(() => {
   const svg = document.querySelector('#s svg');
   svg.setAttribute('width', 1000); svg.setAttribute('height', 1000);
   const box = svg.getBoundingClientRect();
@@ -45,8 +65,13 @@ const top = await page.evaluate(() => {
   const big = Math.max(...shapes.map((s) => s.r.width));
   const people = shapes.filter((s) => s.r.width > big * 0.12 && s.r.width < big * 0.3 && s.fill !== 'none')
     .map((s) => ({ x: (s.r.left + s.r.width / 2 - box.left) / box.width, y: (s.r.top + s.r.height / 2 - box.top) / box.height, d: s.r.width / box.width }));
-  return people.sort((a, b) => a.y - b.y)[0]; // the 12 o'clock circle
+  return people;
 });
+const angleOf = (p) => (Math.atan2(p.x - 0.5, 0.5 - p.y) * 180 / Math.PI + 360) % 360;
+const top = circles.reduce((best, p) => {
+  const diff = Math.min(Math.abs(angleOf(p) - seg.angle), 360 - Math.abs(angleOf(p) - seg.angle));
+  return !best || diff < best.diff ? { ...p, diff } : best;
+}, null);
 const SIZE = 460;
 const DOT = H * 0.78; // the circle fills most of the frame: the window is opening
 const scale = DOT / (top.d * SIZE);
@@ -61,8 +86,8 @@ await shot('K3', `<div class="stage">${symbol}</div><div class="window"></div>`,
 
 // --- K5 / K6: K4 + chat on the right half.
 const chat = (n) => `<div class="photo"></div><div class="shade"></div>
-  <div class="chat"><div class="title">${BUSINESS}</div>
-  ${MESSAGES.slice(0, n).map((m) => `<div class="msg ${m.from === 'cliente' ? 'in' : 'out'}">
+  <div class="chat"><div class="title">${seg.title}</div>
+  ${seg.messages.slice(0, n).map((m) => `<div class="msg ${m.side}">
     <div class="meta">${m.time}</div><div class="bubble">${m.text}</div><div class="meta">${m.from}</div></div>`).join('')}
   </div>`;
 const chatCss = `

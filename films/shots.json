@@ -54,6 +54,15 @@
       "image": "still:F1-ADV-K4a"
     },
     {
+      "id": "F1-ADV-K4d",
+      "gate": "kf-adv3",
+      "kind": "still",
+      "model": "nano_banana_pro",
+      "text": true,
+      "prompt": "Edit this photo, keeping the same lawyer (same face, hair, navy blazer), the same office, desk, monitors, laptop, folders, framing and warm light. Change her expression and pose: she is now happy and relieved, smiling warmly, sitting upright with her hands relaxed near the laptop, watching the work happen by itself. Add a magical but realistic visual of automated research: small glowing translucent data icons (document sheets, folders, database cylinders, magnifying glasses, check marks) float out of the monitors and the laptop toward the centre, connected by thin glowing lines that link one screen to another, like automatic connections between systems. The glow is soft sage green and warm yellow (#A3C08A, #F2C230). Icons only, no letters, no numbers, no legible text anywhere.",
+      "image": "still:F1-ADV-K4c"
+    },
+    {
       "id": "F1-K4b",
       "gate": "kf",
       "kind": "still",
