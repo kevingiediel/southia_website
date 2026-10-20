@@ -29,6 +29,31 @@
       "image": "still:F1-K4a"
     },
     {
+      "id": "F1-ADV-K4a",
+      "gate": "kf-adv",
+      "kind": "still",
+      "model": "text2image_soul_v2",
+      "text": false,
+      "prompt": "Medium shot of a Brazilian law office, warm late-afternoon light, wooden bookshelves full of case files. Dra. Helena, a Brazilian lawyer in her 40s with shoulder-length dark hair, wearing a plain navy blazer, sits at her desk surrounded by three monitors, each showing a different software system with blurred, unreadable interfaces, plus a laptop and stacks of paper case folders with colourful tabs. She rubs her forehead with one hand, focused and tired, switching between screens. A cup of coffee, sticky notes on the monitor frames. Screens are soft and blurred, no legible text anywhere. Main action centred in the frame."
+    },
+    {
+      "id": "F1-ADV-K4b",
+      "gate": "kf-adv",
+      "kind": "still",
+      "model": "text2image_soul_v2",
+      "text": false,
+      "prompt": "Wide eye-level shot of a busy small Brazilian law office, warm natural light, wooden shelves with case files. In the centre, Dra. Helena, a Brazilian lawyer in her 40s with shoulder-length dark hair, wearing a plain navy blazer, stands between two desks looking from one computer to another, each screen showing a different system with blurred unreadable interfaces; a colleague beside her holds a tablet and a stack of printed documents; piles of folders on the desks and a printer working in the background. Organised chaos, many sources of information. No legible text anywhere. Main action centred in the frame."
+    },
+    {
+      "id": "F1-ADV-K4c",
+      "gate": "kf-adv2",
+      "kind": "still",
+      "model": "nano_banana_pro",
+      "text": true,
+      "prompt": "Recompose this photo as a new shot of the same scene: the same lawyer (same face, hair, navy blazer), the same law office with wooden bookshelves full of colourful case files, the same warm late-afternoon light and colours. Frontal medium shot from across the desk: her face is exactly in the centre of the frame and fully visible, nothing in front of her. She still rubs her forehead with one hand, focused and tired, looking at the screens. The three monitors showing different software systems are moved to the left and right edges of the frame, angled toward her, with blurred unreadable screens; a laptop in front of her, stacks of colourful case folders and yellow sticky notes on the desk, a cup of coffee. No legible text anywhere. 16:9.",
+      "image": "still:F1-ADV-K4a"
+    },
+    {
       "id": "F1-K4b",
       "gate": "kf",
       "kind": "still",

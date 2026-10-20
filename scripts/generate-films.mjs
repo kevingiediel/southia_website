@@ -64,6 +64,9 @@ export function resultUrl(json) {
   return hasResultKey ? null : fallback;
 }
 
+// `generate wait` takes no --wait-timeout (unlike `generate create --wait`).
+export const waitArgs = (id) => ['generate', 'wait', id, '--json'];
+
 export const gateShots = (shots, gate) => shots.filter((s) => String(s.gate) === String(gate));
 
 // "Identical" = same model, prompt, resolution, duration and set of input frames.
@@ -152,7 +155,7 @@ async function main(argv) {
     const running = pending(args);
     console.log(running ? `… ${shot.id} (waiting for job ${running.id} already in progress)` : `… ${shot.id}`);
     const r = running
-      ? spawnSync(bin, ['generate', 'wait', running.id, '--wait-timeout', '30m', '--json'], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 })
+      ? spawnSync(bin, waitArgs(running.id), { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 })
       : spawnSync(bin, args, { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
     if (r.status !== 0) { console.error(`✖ ${shot.id}: ${(r.stderr || r.stdout).trim()}`); return 1; }
     fs.writeFileSync(file.replace(/\.\w+$/, '.job.json'), r.stdout);

@@ -117,3 +117,8 @@ test('still edits pass the reference image and skip the style prefix', () => {
   assert.equal(args[args.indexOf('--aspect_ratio') + 1], '16:9');
   assert.equal(args[args.indexOf('--resolution') + 1], '2k');
 });
+
+test('waiting for a running job only uses flags `generate wait` accepts', async () => {
+  const { waitArgs } = await import('../../scripts/generate-films.mjs');
+  assert.deepEqual(waitArgs('job-1'), ['generate', 'wait', 'job-1', '--json']);
+});

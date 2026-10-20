@@ -16,9 +16,10 @@
     },
     {
       "id": "K3",
-      "status": "awaiting validation",
+      "status": "approved",
       "source": "composite: K2 + K4 inside the top circle (scripts/keyframes-f1.mjs)",
-      "file": "films/keyframes/F1/K3.jpg"
+      "file": "films/keyframes/F1/K3.jpg",
+      "approved": "2026-10-20"
     },
     {
       "id": "K4",
@@ -33,21 +34,24 @@
     },
     {
       "id": "K5",
-      "status": "awaiting validation",
+      "status": "approved",
       "source": "composite: K4 + chat (2 bubbles), Barbearia do Samuel (scripts/keyframes-f1.mjs)",
-      "file": "films/keyframes/F1/K5.jpg"
+      "file": "films/keyframes/F1/K5.jpg",
+      "approved": "2026-10-20"
     },
     {
       "id": "K6",
-      "status": "awaiting validation",
+      "status": "approved",
       "source": "composite: K4 + chat (4 bubbles), Barbearia do Samuel (scripts/keyframes-f1.mjs)",
-      "file": "films/keyframes/F1/K6.jpg"
+      "file": "films/keyframes/F1/K6.jpg",
+      "approved": "2026-10-20"
     },
     {
       "id": "K7",
-      "status": "awaiting validation",
+      "status": "approved",
       "source": "= K3 (mirror of the opening)",
-      "file": "films/keyframes/F1/K3.jpg"
+      "file": "films/keyframes/F1/K3.jpg",
+      "approved": "2026-10-20"
     },
     {
       "id": "K8",
