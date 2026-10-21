@@ -142,6 +142,24 @@ for code, kf, live in STOPS:
     shots.append(V(f"F1-{code}-in", "kf-vid", 4, into, f"kf:{kf}/K3", f"kf:{kf}/K4"))
     shots.append(V(f"F1-{code}-live", "kf-vid", 8, live, f"kf:{kf}/K4"))
 
+
+# ---------------- "Gente de verdade" marquee: portrait stills (3:4) in the film's style.
+# row-1/3/5/8 are crops of the approved keyframes; these four are new, centred faces for the pill/rounded crops.
+ROWS = [
+    ("row-2", "A young Brazilian man with a freshly trimmed beard sits on the green waiting bench of a cozy neighbourhood barbershop, "
+              "warm late-afternoon light, smiling at his smartphone as if he just got a friendly reply; plants and a vintage mirror behind him, softly blurred."),
+    ("row-4", "An older Brazilian woman with short grey hair, wearing a plain coral t-shirt, sits on an exercise mat in a bright physical therapy "
+              "clinic after her session, a yellow elastic band on her lap, smiling warmly at her smartphone; plants and wooden wall bars softly blurred behind her."),
+    ("row-6", "A Brazilian woman in her 50s who owns a small clothing shop stands behind the wooden counter, relaxed and smiling, handing a paper "
+              "bag to a customer; shelves of folded clothes and plants behind her, warm natural light."),
+    ("row-7", "A small Brazilian team of four in a cozy office celebrates together around a laptop, laughing, two of them doing a high-five; "
+              "warm natural window light, plants, cream walls."),
+]
+for rid, prompt in ROWS:
+    shot = S(rid, "rows", prompt + " Vertical portrait framing, faces in the centre of the frame.")
+    shot["aspect"] = "3:4"
+    shots.append(shot)
+
 here = os.path.dirname(os.path.abspath(__file__))
 with open(os.path.join(here, 'shots.json'), 'w', encoding='utf-8', newline='\n') as f:
     f.write(json.dumps({"style": style, "motion": motion, "resolution": "720p", "shots": shots}, ensure_ascii=False, indent=2) + '\n')

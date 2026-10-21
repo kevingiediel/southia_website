@@ -33,7 +33,9 @@ export function shotArgs(shot, paths, { style = '', motion = '', resolution = '1
     const model = shot.model ?? 'text2image_soul_v2';
     const prompt = [shot.text ? '' : style, shot.prompt].filter(Boolean).join(' ');
     const ref = shot.image ? ['--image', resolveInput(shot.image, paths)] : []; // edit an existing still
-    return ['generate', 'create', model, '--prompt', prompt, ...ref, ...(STILL_DEFAULTS[model] ?? ['--aspect_ratio', '16:9']), '--wait', '--json'];
+    const defaults = [...(STILL_DEFAULTS[model] ?? ['--aspect_ratio', '16:9'])];
+    if (shot.aspect) defaults[defaults.indexOf('--aspect_ratio') + 1] = shot.aspect; // e.g. 3:4 for the portrait slots
+    return ['generate', 'create', model, '--prompt', prompt, ...ref, ...defaults, '--wait', '--json'];
   }
   if (shot.kind === 'audio') return ['generate', 'create', shot.model ?? 'seed_audio', '--prompt', shot.prompt, '--wait', '--json'];
   const args = ['generate', 'create', shot.model ?? 'seedance_2_5', '--prompt', [shot.prompt, motion].filter(Boolean).join(' '),

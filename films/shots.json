@@ -642,6 +642,42 @@
       "duration": 8,
       "start": "kf:F1-roda/K4",
       "prompt": "Top-down view: the old gaúcho passes the chimarrão cuia to the woman beside him, the friends laugh and talk, the flames flicker and a few sparks rise. The camera rises very slowly straight up, keeping the fire centred."
+    },
+    {
+      "id": "row-2",
+      "gate": "rows",
+      "kind": "still",
+      "model": "text2image_soul_v2",
+      "text": false,
+      "prompt": "A young Brazilian man with a freshly trimmed beard sits on the green waiting bench of a cozy neighbourhood barbershop, warm late-afternoon light, smiling at his smartphone as if he just got a friendly reply; plants and a vintage mirror behind him, softly blurred. Vertical portrait framing, faces in the centre of the frame.",
+      "aspect": "3:4"
+    },
+    {
+      "id": "row-4",
+      "gate": "rows",
+      "kind": "still",
+      "model": "text2image_soul_v2",
+      "text": false,
+      "prompt": "An older Brazilian woman with short grey hair, wearing a plain coral t-shirt, sits on an exercise mat in a bright physical therapy clinic after her session, a yellow elastic band on her lap, smiling warmly at her smartphone; plants and wooden wall bars softly blurred behind her. Vertical portrait framing, faces in the centre of the frame.",
+      "aspect": "3:4"
+    },
+    {
+      "id": "row-6",
+      "gate": "rows",
+      "kind": "still",
+      "model": "text2image_soul_v2",
+      "text": false,
+      "prompt": "A Brazilian woman in her 50s who owns a small clothing shop stands behind the wooden counter, relaxed and smiling, handing a paper bag to a customer; shelves of folded clothes and plants behind her, warm natural light. Vertical portrait framing, faces in the centre of the frame.",
+      "aspect": "3:4"
+    },
+    {
+      "id": "row-7",
+      "gate": "rows",
+      "kind": "still",
+      "model": "text2image_soul_v2",
+      "text": false,
+      "prompt": "A small Brazilian team of four in a cozy office celebrates together around a laptop, laughing, two of them doing a high-five; warm natural window light, plants, cream walls. Vertical portrait framing, faces in the centre of the frame.",
+      "aspect": "3:4"
     }
   ]
 }

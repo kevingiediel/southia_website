@@ -128,3 +128,9 @@ test('videos can start and end on approved keyframes', () => {
   assert.equal(args[args.indexOf('--start-image') + 1], 'films/keyframes/F1-clinica/K3.jpg');
   assert.equal(args[args.indexOf('--end-image') + 1], 'films/keyframes/F1-clinica/K4.jpg');
 });
+
+test('a still can ask for its own aspect ratio (portrait media slots)', () => {
+  const args = shotArgs({ id: 'row-2', kind: 'still', model: 'text2image_soul_v2', aspect: '3:4', prompt: 'p' }, paths, {});
+  assert.equal(args[args.indexOf('--aspect_ratio') + 1], '3:4');
+  assert.equal(args.filter((a) => a === '--aspect_ratio').length, 1);
+});
