@@ -97,6 +97,22 @@
       "image": "still:F1-CLI-K4c"
     },
     {
+      "id": "F1-RODA-K4a",
+      "gate": "kf-roda",
+      "kind": "still",
+      "model": "text2image_soul_v2",
+      "text": false,
+      "prompt": "Eye-level wide shot at dusk in the Rio Grande do Sul countryside, the sky deep blue with the last warm light on the horizon. Seven people sit on low wooden stools and logs in a circle around a fogo de chão, a small campfire on the ground in the centre of the frame, its flames bright warm yellow. They laugh and talk like old friends: a white Brazilian barber in his mid-30s with a well-groomed beard and a plain dark green shirt, a Brazilian lawyer in her 40s with shoulder-length dark hair and a plain navy jacket, a Brazilian physiotherapist in her early 30s with curly dark hair tied back in a plain sage green sweater, and four other small business owners of different ages. In the foreground, an older gaúcho man in a plain wool poncho sips chimarrão from a cuia with a metal bomba, smiling. Warm firelight on the faces, a few sparks rising. Fire and the circle of people centred in the frame."
+    },
+    {
+      "id": "F1-RODA-K4b",
+      "gate": "kf-roda",
+      "kind": "still",
+      "model": "text2image_soul_v2",
+      "text": false,
+      "prompt": "Top-down aerial shot from directly above, at dusk in the Rio Grande do Sul countryside: a small fogo de chão campfire glows bright warm yellow exactly in the centre of the frame, and seven people sit in a perfect evenly spaced circle around it on low wooden stools, seen from above, looking at each other and laughing; one of them holds a chimarrão cuia. Short dry grass around them, the ground darkening to deep green toward the edges of the frame, warm firelight on heads and shoulders, a few sparks rising toward the camera. Symmetrical, graphic composition, like a clock face with the fire at its centre."
+    },
+    {
       "id": "F1-K4b",
       "gate": "kf",
       "kind": "still",
