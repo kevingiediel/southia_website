@@ -12,13 +12,15 @@
       "id": "K2",
       "file": "media-src/frames/logo-zoom-centelha.png",
       "source": "official SVG (scripts/brand-frames.mjs)",
-      "status": "pending"
+      "status": "approved",
+      "approved": "2026-10-20"
     },
     {
       "id": "K3",
       "file": "films/keyframes/F1-roda/K3.jpg",
       "source": "composite: deep zoom on the yellow spark, K4 seen through the diamond (scripts/keyframes-f1.mjs roda)",
-      "status": "pending"
+      "status": "approved",
+      "approved": "2026-10-20"
     },
     {
       "id": "K4",
@@ -31,19 +33,22 @@
       "id": "K5",
       "file": "films/keyframes/F1-roda/K5.jpg",
       "source": "composite: K4 + \"Pessoas, dados e IA\" (scripts/keyframes-f1.mjs roda)",
-      "status": "pending"
+      "status": "approved",
+      "approved": "2026-10-20"
     },
     {
       "id": "K6",
       "file": "films/keyframes/F1-roda/K6.jpg",
       "source": "composite: K4 + \"Pessoas, dados e IA na mesma roda.\" (scripts/keyframes-f1.mjs roda)",
-      "status": "pending"
+      "status": "approved",
+      "approved": "2026-10-20"
     },
     {
       "id": "K7",
       "file": "media-src/frames/logo-zoom-centelha.png",
       "source": "= K2: the camera rises and the circle of people resolves into the symbol",
-      "status": "pending"
+      "status": "approved",
+      "approved": "2026-10-20"
     },
     {
       "id": "K8",
