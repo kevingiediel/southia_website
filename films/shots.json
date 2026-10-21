@@ -63,6 +63,22 @@
       "image": "still:F1-ADV-K4c"
     },
     {
+      "id": "F1-CLI-K4a",
+      "gate": "kf-cli",
+      "kind": "still",
+      "model": "text2image_soul_v2",
+      "text": false,
+      "prompt": "Wide eye-level shot of a bright, welcoming physical therapy clinic in Brazil, morning natural light, light wooden floor, plants, cream walls, exercise mats and a treatment table. In the centre, Marina, a Brazilian physiotherapist in her early 30s with curly dark hair tied back, wearing a plain sage green polo, and the receptionist beside her, a young Brazilian man in a plain dark green shirt, both laugh happily looking at a tablet she holds, its screen showing a grid of colourful square photo tiles, soft and blurred. In the background, slightly out of focus, a smiling older patient does exercises with a yellow elastic band. Main action centred in the frame."
+    },
+    {
+      "id": "F1-CLI-K4b",
+      "gate": "kf-cli",
+      "kind": "still",
+      "model": "text2image_soul_v2",
+      "text": false,
+      "prompt": "Medium shot of a bright physical therapy clinic in Brazil, morning natural light, plants and wooden wall bars in the background. Centred in the frame, Marina, a Brazilian physiotherapist in her early 30s with curly dark hair tied back, wearing a plain sage green polo, smiles proudly at her smartphone, its screen showing a grid of colourful square photo tiles, soft and blurred; beside her a smiling older patient in plain workout clothes holds a yellow elastic band and gives a thumbs-up. Warm, happy, energetic mood. Faces and phone in the centre third of the frame."
+    },
+    {
       "id": "F1-K4b",
       "gate": "kf",
       "kind": "still",
