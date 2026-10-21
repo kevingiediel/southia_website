@@ -130,6 +130,15 @@
       "prompt": "Photorealistic cinematic still, top-down aerial view from directly above at dusk on an open pampa grass field in the Rio Grande do Sul countryside, no walls, no buildings. A small fogo de chão campfire of crossed logs glows bright warm yellow (#F2C230) exactly in the centre of the frame. Seven Brazilian people of different ages sit in an evenly spaced circle around it on low wooden stools, every person fully inside the frame, seen whole from above, laughing and talking to each other; everyday casual clothes in varied muted colours (wool sweaters, denim jackets, a plain cream wool poncho), plain fabrics without prints or letters. One older gaúcho man passes a traditional chimarrão cuia, a round dark gourd with a metal bomba straw, to the woman beside him. Warm firelight on heads and shoulders, a few sparks rising, the grass fading to deep forest green (#1C3322) toward the edges. Symmetrical composition, like a clock face with the fire at its centre, soft film grain. No text, no logos, no watermarks."
     },
     {
+      "id": "F1-RODA-K4e",
+      "gate": "kf-roda3",
+      "kind": "still",
+      "model": "nano_banana_pro",
+      "text": true,
+      "prompt": "Edit this photo to make it much brighter: earlier golden-hour dusk, the sun just setting, soft warm natural daylight still filling the whole pampa field so the grass is a lively green and every person's face, hair and clothes are clearly lit and easy to read; the campfire still glows bright warm yellow in the centre. Keep everything else exactly identical: same seven people, same faces, poses, clothes and stools, the chimarrão cuia being passed, the fire, the top-down camera and the framing. No text anywhere.",
+      "image": "still:F1-RODA-K4d"
+    },
+    {
       "id": "F1-K4b",
       "gate": "kf",
       "kind": "still",
