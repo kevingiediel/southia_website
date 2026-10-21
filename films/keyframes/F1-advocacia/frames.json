@@ -45,8 +45,8 @@
     },
     {
       "id": "K7",
-      "file": "films/keyframes/F1-advocacia/K3.jpg",
-      "source": "= K3 (mirror of the opening)",
+      "file": "media-src/frames/logo-zoom-advocacia.png",
+      "source": "= K2: the window closes back into the symbol, so only K3 shows the advocacia inside a circle",
       "status": "approved",
       "approved": "2026-10-20"
     },
