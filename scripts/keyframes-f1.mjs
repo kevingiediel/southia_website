@@ -23,6 +23,17 @@ const SEGMENTS = {
       { time: 'Hoje 10:27', text: 'Prontinho, te lembro amanhã.', from: 'Barbearia do Samuel', side: 'out' },
     ],
   },
+  clinica: {
+    out: 'films/keyframes/F1-clinica',
+    angle: 90, // right circle (hero stop "clinica")
+    title: 'Clínica Movimento',
+    messages: [
+      { time: 'Hoje 08:00', text: 'Post de hoje publicado no Instagram: alongamento matinal', from: 'Agente Southia', side: 'out' },
+      { time: 'Hoje 08:01', text: 'Legenda e imagem criadas a partir da sua marca', from: 'Agente Southia', side: 'out' },
+      { time: 'Hoje 08:01', text: 'Próximos posts agendados: Seg 9h, Qua 18h, Sex 12h', from: 'Agente Southia', side: 'out' },
+      { time: 'Hoje 08:02', text: '27 novos seguidores e 3 agendamentos pelo direct', from: 'Agente Southia', side: 'out' },
+    ],
+  },
   advocacia: {
     out: 'films/keyframes/F1-advocacia',
     angle: 225, // lower-left circle (hero stop "advocacia")

@@ -79,6 +79,15 @@
       "prompt": "Medium shot of a bright physical therapy clinic in Brazil, morning natural light, plants and wooden wall bars in the background. Centred in the frame, Marina, a Brazilian physiotherapist in her early 30s with curly dark hair tied back, wearing a plain sage green polo, smiles proudly at her smartphone, its screen showing a grid of colourful square photo tiles, soft and blurred; beside her a smiling older patient in plain workout clothes holds a yellow elastic band and gives a thumbs-up. Warm, happy, energetic mood. Faces and phone in the centre third of the frame."
     },
     {
+      "id": "F1-CLI-K4c",
+      "gate": "kf-cli2",
+      "kind": "still",
+      "model": "nano_banana_pro",
+      "text": true,
+      "prompt": "Edit this photo, keeping the same two people (same faces, hair, expressions and plain green polos), the same older patient exercising with the yellow elastic band in the background, the same bright clinic, plants, light and colours. Changes: remove the small logo on the woman's polo so it is plain fabric with no emblem; remove the yellow foam object from the green table so the table is clear; the man now holds the tablet in the exact centre of the frame, between the two of them, and both lean in and laugh looking at it; its screen shows a grid of colourful square photo tiles. Add a magical but realistic visual of automated social media posting: small glowing translucent square photo tiles, heart icons, calendar icons, clock icons and check marks float up out of the tablet and drift toward the edges of the frame, connected by thin glowing lines, like posts being published automatically. The glow is soft sage green and warm yellow (#A3C08A, #F2C230). Icons only, no letters, no numbers, no legible text anywhere.",
+      "image": "still:F1-CLI-K4a"
+    },
+    {
       "id": "F1-K4b",
       "gate": "kf",
       "kind": "still",
