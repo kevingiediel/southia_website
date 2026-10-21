@@ -219,8 +219,8 @@ test('each hero film stop shows its overlay', async ({ page }) => {
   for (const kind of ['chat', 'instagram', 'dados', 'headline']) {
     await expect(page.locator(`.overlay--${kind}`)).toBeVisible({ timeout: 20000 });
   }
-  await expect(page.locator('.overlay--instagram')).toContainText('Campanha criada automaticamente');
-  await expect(page.locator('.overlay--dados')).toContainText('Atualizado agora');
+  await expect(page.locator('.overlay--instagram')).toContainText('Post de hoje publicado automaticamente');
+  await expect(page.locator('.overlay--dados')).toContainText('Relatório pronto na sua pasta');
 });
 
 const routeFilm = (page, id, seen = []) => page.route(`**/media/films/${id}.*`, (r) => {

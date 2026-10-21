@@ -104,7 +104,9 @@ export function init(section, ctx) {
           x: () => origin(scene).x,
           y: () => origin(scene).y,
           scale: () => origin(scene).scale,
-        }, { x: 0, y: 0, scale: 1, duration: stop.zoomIn, ease: 'power3.inOut', immediateRender: false }, at)
+        // autoAlpha sits in both ends: left only in the from-vars, GSAP tweens it back to whatever
+        // the element had when the tween was first rendered (0), and later stops stayed invisible.
+        }, { autoAlpha: 1, x: 0, y: 0, scale: 1, duration: stop.zoomIn, ease: 'power3.inOut', immediateRender: false }, at)
         .call(() => loadVideo(next), null, dwellAt)
         .add(overlayTl(scene), dwellAt)
         .fromTo(tag, { autoAlpha: 0, y: -8 }, { autoAlpha: scene.dataset.tag ? 1 : 0, y: 0, duration: 0.4 }, dwellAt)

@@ -77,3 +77,4 @@ npx ffmpeg-static -i exports/film-2-final.mp4 -c:v libx264 -crf 23 -preset slow 
 ```
 
 As cenas do hero (`public/media/film/<parada>.*`, 720×720) saem de `media-src/film/<parada>.mp4` com `npm run media`.
+Hoje essas cenas são feitas em código a partir dos keyframes K4 aprovados (`films/keyframes/*/K4.jpg`): `node scripts/film-clips.mjs` gera um push-in suave de 8 s por parada. Quando os clipes do Higgsfield ficarem prontos, basta trocar o arquivo em `media-src/film/` e rodar `npm run media` de novo.

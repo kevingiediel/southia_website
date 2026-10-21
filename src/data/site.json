@@ -232,21 +232,21 @@
         "circle": 2,
         "overlay": "instagram",
         "tag": "Criativos e campanhas",
-        "alt": "Clínica de fisioterapia: equipe sorrindo para o celular"
+        "alt": "Clínica Movimento: fisioterapeuta e recepcionista rindo diante do tablet com os posts publicados automaticamente, enquanto uma paciente se exercita"
       },
       {
         "id": "advocacia",
         "circle": 4,
         "overlay": "dados",
         "tag": "Dados e IA",
-        "alt": "Escritório de advocacia: advogada aliviada na mesa"
+        "alt": "Helena Duarte Advocacia: advogada sorrindo no notebook enquanto pesquisas e dados chegam automaticamente"
       },
       {
         "id": "roda",
         "circle": "spark",
         "overlay": "headline",
         "tag": "",
-        "alt": "Roda de pessoas em volta do fogo de chão, uma delas tomando chimarrão"
+        "alt": "Vista de cima de uma roda de amigos em volta do fogo de chão no pampa, passando a cuia de chimarrão"
       }
     ],
     "chat": [
