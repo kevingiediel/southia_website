@@ -40,8 +40,8 @@
     },
     {
       "id": "K7",
-      "file": "films/keyframes/F1-clinica/K3.jpg",
-      "source": "= K3 (mirror of the opening)",
+      "file": "media-src/frames/logo-zoom-clinica.png",
+      "source": "= K2: the window closes back into the symbol, so only K3 shows the clinic inside a circle",
       "status": "pending"
     },
     {
