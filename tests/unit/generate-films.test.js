@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { shotArgs, resultUrl, gateShots } from '../../scripts/generate-films.mjs';
 
-const paths = { frame: (n) => `media-src/frames/${n}.png`, still: (n) => `media-src/films/${n}.png` };
+const paths = { frame: (n) => `media-src/frames/${n}.png`, still: (n) => `media-src/films/${n}.png`, kf: (n) => `films/keyframes/${n}.jpg` };
 
 test('still shot uses its model, aspect and the shared style prefix', () => {
   const args = shotArgs({ id: 'F1-barbearia', kind: 'still', model: 'text2image_soul_v2', prompt: 'Barbershop.' }, paths, { style: 'STYLE.' });
@@ -121,4 +121,10 @@ test('still edits pass the reference image and skip the style prefix', () => {
 test('waiting for a running job only uses flags `generate wait` accepts', async () => {
   const { waitArgs } = await import('../../scripts/generate-films.mjs');
   assert.deepEqual(waitArgs('job-1'), ['generate', 'wait', 'job-1', '--json']);
+});
+
+test('videos can start and end on approved keyframes', () => {
+  const args = shotArgs({ id: 'F1-CLI-in', kind: 'video', start: 'kf:F1-clinica/K3', end: 'kf:F1-clinica/K4', duration: 4, prompt: 'Fly in.' }, paths, {});
+  assert.equal(args[args.indexOf('--start-image') + 1], 'films/keyframes/F1-clinica/K3.jpg');
+  assert.equal(args[args.indexOf('--end-image') + 1], 'films/keyframes/F1-clinica/K4.jpg');
 });

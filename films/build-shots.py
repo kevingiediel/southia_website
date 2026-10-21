@@ -118,6 +118,30 @@ shots = [
     A("F3-som", 2, "Modern upbeat electronic track with a building rhythm, tense start, release at 0:24, confident ending, 45 seconds, light notification pings."),
 ]
 
+
+# ---------------- Film 1 clips between the approved keyframes (films/keyframes/*/frames.json).
+# Per stop: "in" flies from K3 (window in the symbol) to K4; "live" animates K4 while the bubbles are composited in code.
+# The way out reuses "in" played backwards, and K1/K2/K7/K8 are rendered from the official SVG, so AI never draws the logo.
+WINDOW_IN = ("The camera flies straight forward through the opening in the flat brand symbol: the sage ring slides past the edges "
+             "of the frame and the scene inside grows to fill the whole frame, ending exactly on the provided final frame." + LOGO)
+STOPS = [
+    ("BAR", "F1", "Samuel keeps running the clippers over the client's hair; the client laughs, the wife on the bench smiles proudly, "
+                  "the other client chats. Natural barbershop movement, very slow push-in."),
+    ("CLI", "F1-clinica", "The physiotherapist and the receptionist laugh looking at the tablet while the glowing post, heart, calendar and "
+                          "clock icons float up out of it and drift slowly outward along the glowing lines; the patient keeps exercising "
+                          "with the yellow band. Very slow push-in."),
+    ("ADV", "F1-advocacia", "The lawyer smiles, relieved, and leans back a little while the glowing data icons drift slowly out of the "
+                            "monitors toward the centre and the lines between them pulse softly. Very slow push-in."),
+    ("RODA", "F1-roda", "Top-down view: the old gaúcho passes the chimarrão cuia to the woman beside him, the friends laugh and "
+                        "talk, the flames flicker and a few sparks rise. The camera rises very slowly straight up, keeping the fire centred."),
+]
+for code, kf, live in STOPS:
+    into = (WINDOW_IN if code != "RODA" else
+            "The camera dives straight into the yellow diamond of the flat brand symbol, which opens onto the campfire seen from "
+            "directly above; the scene grows to fill the whole frame, ending exactly on the provided final frame." + LOGO)
+    shots.append(V(f"F1-{code}-in", "kf-vid", 4, into, f"kf:{kf}/K3", f"kf:{kf}/K4"))
+    shots.append(V(f"F1-{code}-live", "kf-vid", 8, live, f"kf:{kf}/K4"))
+
 here = os.path.dirname(os.path.abspath(__file__))
 with open(os.path.join(here, 'shots.json'), 'w', encoding='utf-8', newline='\n') as f:
     f.write(json.dumps({"style": style, "motion": motion, "resolution": "720p", "shots": shots}, ensure_ascii=False, indent=2) + '\n')

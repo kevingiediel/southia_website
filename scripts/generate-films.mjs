@@ -24,7 +24,8 @@ const resolveInput = (ref, paths) => {
   const [type, name] = ref.split(':');
   if (type === 'frame') return paths.frame(name);
   if (type === 'still') return paths.still(name);
-  throw new Error(`Unknown input "${ref}" (use frame:<name> or still:<id>)`);
+  if (type === 'kf') return paths.kf(name); // approved keyframe, e.g. kf:F1-clinica/K3
+  throw new Error(`Unknown input "${ref}" (use frame:<name>, still:<id> or kf:<stop>/<K>)`);
 };
 
 export function shotArgs(shot, paths, { style = '', motion = '', resolution = '1080p' } = {}) {
@@ -119,7 +120,7 @@ async function main(argv) {
   const rank = { still: 0, video: 1, audio: 2 };
   shots = [...shots].sort((a, b) => rank[a.kind] - rank[b.kind]);
 
-  const paths = { frame: (n) => path.join(FRAMES, `${n}.png`), still: (n) => path.join(OUT, `${n}.png`) };
+  const paths = { frame: (n) => path.join(FRAMES, `${n}.png`), still: (n) => path.join(OUT, `${n}.png`), kf: (n) => path.join(root, 'films/keyframes', `${n}.jpg`) };
   fs.mkdirSync(OUT, { recursive: true });
   // On Windows call the CLI's own executable: going through cmd.exe would mangle quotes in prompts.
   const winExe = path.join(process.env.APPDATA ?? '', 'npm/node_modules/@higgsfield/cli/vendor/hf.exe');

@@ -574,6 +574,74 @@
       "gate": 2,
       "kind": "audio",
       "prompt": "Modern upbeat electronic track with a building rhythm, tense start, release at 0:24, confident ending, 45 seconds, light notification pings."
+    },
+    {
+      "id": "F1-BAR-in",
+      "gate": "kf-vid",
+      "kind": "video",
+      "duration": 4,
+      "start": "kf:F1/K3",
+      "prompt": "The camera flies straight forward through the opening in the flat brand symbol: the sage ring slides past the edges of the frame and the scene inside grows to fill the whole frame, ending exactly on the provided final frame. The brand symbol is a flat graphic: it stays perfectly still and unchanged, it never rotates, distorts, glows or casts shadows; no light bloom, no smoke, no haze, no particles; the background stays a clean flat deep green; only the camera moves.",
+      "end": "kf:F1/K4"
+    },
+    {
+      "id": "F1-BAR-live",
+      "gate": "kf-vid",
+      "kind": "video",
+      "duration": 8,
+      "start": "kf:F1/K4",
+      "prompt": "Samuel keeps running the clippers over the client's hair; the client laughs, the wife on the bench smiles proudly, the other client chats. Natural barbershop movement, very slow push-in."
+    },
+    {
+      "id": "F1-CLI-in",
+      "gate": "kf-vid",
+      "kind": "video",
+      "duration": 4,
+      "start": "kf:F1-clinica/K3",
+      "prompt": "The camera flies straight forward through the opening in the flat brand symbol: the sage ring slides past the edges of the frame and the scene inside grows to fill the whole frame, ending exactly on the provided final frame. The brand symbol is a flat graphic: it stays perfectly still and unchanged, it never rotates, distorts, glows or casts shadows; no light bloom, no smoke, no haze, no particles; the background stays a clean flat deep green; only the camera moves.",
+      "end": "kf:F1-clinica/K4"
+    },
+    {
+      "id": "F1-CLI-live",
+      "gate": "kf-vid",
+      "kind": "video",
+      "duration": 8,
+      "start": "kf:F1-clinica/K4",
+      "prompt": "The physiotherapist and the receptionist laugh looking at the tablet while the glowing post, heart, calendar and clock icons float up out of it and drift slowly outward along the glowing lines; the patient keeps exercising with the yellow band. Very slow push-in."
+    },
+    {
+      "id": "F1-ADV-in",
+      "gate": "kf-vid",
+      "kind": "video",
+      "duration": 4,
+      "start": "kf:F1-advocacia/K3",
+      "prompt": "The camera flies straight forward through the opening in the flat brand symbol: the sage ring slides past the edges of the frame and the scene inside grows to fill the whole frame, ending exactly on the provided final frame. The brand symbol is a flat graphic: it stays perfectly still and unchanged, it never rotates, distorts, glows or casts shadows; no light bloom, no smoke, no haze, no particles; the background stays a clean flat deep green; only the camera moves.",
+      "end": "kf:F1-advocacia/K4"
+    },
+    {
+      "id": "F1-ADV-live",
+      "gate": "kf-vid",
+      "kind": "video",
+      "duration": 8,
+      "start": "kf:F1-advocacia/K4",
+      "prompt": "The lawyer smiles, relieved, and leans back a little while the glowing data icons drift slowly out of the monitors toward the centre and the lines between them pulse softly. Very slow push-in."
+    },
+    {
+      "id": "F1-RODA-in",
+      "gate": "kf-vid",
+      "kind": "video",
+      "duration": 4,
+      "start": "kf:F1-roda/K3",
+      "prompt": "The camera dives straight into the yellow diamond of the flat brand symbol, which opens onto the campfire seen from directly above; the scene grows to fill the whole frame, ending exactly on the provided final frame. The brand symbol is a flat graphic: it stays perfectly still and unchanged, it never rotates, distorts, glows or casts shadows; no light bloom, no smoke, no haze, no particles; the background stays a clean flat deep green; only the camera moves.",
+      "end": "kf:F1-roda/K4"
+    },
+    {
+      "id": "F1-RODA-live",
+      "gate": "kf-vid",
+      "kind": "video",
+      "duration": 8,
+      "start": "kf:F1-roda/K4",
+      "prompt": "Top-down view: the old gaúcho passes the chimarrão cuia to the woman beside him, the friends laugh and talk, the flames flicker and a few sparks rise. The camera rises very slowly straight up, keeping the fire centred."
     }
   ]
 }
