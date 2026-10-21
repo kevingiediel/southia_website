@@ -50,13 +50,19 @@ const SEGMENTS = {
     ],
   },
 };
+// The closing stop enters the yellow spark (not a circle) and ends on the headline instead of a chat.
+SEGMENTS.roda = {
+  out: 'films/keyframes/F1-roda',
+  spark: true,
+  headline: ['Pessoas, dados e IA', 'na mesma <em>roda</em>.'],
+};
 const seg = SEGMENTS[process.argv[2] ?? 'barbearia'];
 if (!seg) throw new Error(`Unknown stop "${process.argv[2]}" (use ${Object.keys(SEGMENTS).join(' | ')})`);
 const OUT = seg.out;
 const b64 = (f, type) => `data:${type};base64,${fs.readFileSync(f).toString('base64')}`;
 const k4 = b64(`${OUT}/K4.jpg`, 'image/jpeg');
 const symbol = fs.readFileSync('src/assets/brand/simbolo-negativa.svg', 'utf8');
-const font = (f, w) => `@font-face{font-family:Figtree;font-weight:${w};src:url(${b64(`public/fonts/${f}`, 'font/woff2')}) format('woff2')}`;
+const font = (f, w, family = 'Figtree') => `@font-face{font-family:'${family}';font-weight:${w};src:url(${b64(`public/fonts/${f}`, 'font/woff2')}) format('woff2')}`;
 
 
 const browser = await chromium.launch();
@@ -69,6 +75,44 @@ const shot = async (name, body, css) => {
   await page.screenshot({ path: `${OUT}/${name}.jpg`, type: 'jpeg', quality: 92 });
   console.log(`${OUT}/${name}.jpg`);
 };
+
+if (seg.spark) {
+  // --- K3: deep zoom on the spark; the photo shows through the diamond, inside a thin yellow edge.
+  await page.setContent(`<style>html,body{margin:0;background:#1C3322}</style><div class="stage" style="position:absolute;inset:0;display:grid;place-items:center">${symbol}</div>`);
+  const fit = await page.evaluate(([W, H]) => {
+    const svg = document.querySelector('svg');
+    svg.style.height = '460px'; svg.style.width = 'auto';
+    const r = svg.querySelector('path[fill="#F2C230"]').getBoundingClientRect();
+    const scale = (H * 0.86) / r.height;
+    return { scale, tx: (W / 2 - (r.left + r.width / 2)) * scale, ty: (H / 2 - (r.top + r.height / 2)) * scale };
+  }, [W, H]);
+  const poly = await page.evaluate(({ scale, tx, ty }) => {
+    const svg = document.querySelector('svg');
+    svg.style.transformOrigin = 'center'; svg.style.transform = `translate(${tx}px,${ty}px) scale(${scale})`;
+    const p = svg.querySelector('path[fill="#F2C230"]');
+    const m = p.getScreenCTM(); const len = p.getTotalLength();
+    const pts = Array.from({ length: 240 }, (_, i) => p.getPointAtLength((len * i) / 240).matrixTransform(m));
+    const cx = pts.reduce((s, q) => s + q.x, 0) / pts.length; const cy = pts.reduce((s, q) => s + q.y, 0) / pts.length;
+    return pts.map((q) => `${(cx + (q.x - cx) * 0.9).toFixed(1)}px ${(cy + (q.y - cy) * 0.9).toFixed(1)}px`).join(',');
+  }, fit);
+  await shot('K3', `<div class="stage">${symbol}</div><div class="window"></div>`, `
+    .stage{position:absolute;inset:0;display:grid;place-items:center}
+    .stage svg{height:460px;width:auto;transform-origin:center;transform:translate(${fit.tx}px,${fit.ty}px) scale(${fit.scale})}
+    .window{position:absolute;inset:0;background:url(${k4}) center/cover;clip-path:polygon(${poly})}`);
+
+  // --- K5 / K6: K4 + the closing line, as on the site (Montserrat Alternates, "roda" in yellow).
+  const title = (n) => `<div class="photo"></div><div class="shade"></div><h1>${seg.headline.slice(0, n).map((l) => `<span>${l}</span>`).join('')}</h1>`;
+  const titleCss = `${font('montserrat-alt-600-latin.woff2', 600, 'Montserrat Alternates')}
+    .photo{position:absolute;inset:0;background:url(${k4}) center/cover}
+    .shade{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(28,51,34,.35),rgba(28,51,34,.72))}
+    h1{position:absolute;inset:0;margin:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;font:600 112px/1.08 'Montserrat Alternates',sans-serif;
+      letter-spacing:-.025em;color:#FBF7EE;text-shadow:0 4px 30px rgba(0,0,0,.45)}
+    em{font-style:normal;color:#F2C230}`;
+  await shot('K5', title(1), titleCss);
+  await shot('K6', title(2), titleCss);
+  await browser.close();
+  process.exit(0);
+}
 
 // --- K3: deep zoom on the top circle (same geometry as scripts/brand-frames.mjs), photo inside its rim.
 await page.setContent(`<div id="s" style="width:1000px;height:1000px">${symbol}</div>`);
