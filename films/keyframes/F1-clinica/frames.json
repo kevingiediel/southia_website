@@ -1,0 +1,53 @@
+{
+  "film": "F1 — A roda",
+  "segment": "clinica",
+  "frames": [
+    {
+      "id": "K1",
+      "file": "media-src/frames/logo-full.png",
+      "source": "official SVG (scripts/brand-frames.mjs)",
+      "status": "approved"
+    },
+    {
+      "id": "K2",
+      "file": "media-src/frames/logo-zoom-clinica.png",
+      "source": "official SVG (scripts/brand-frames.mjs)",
+      "status": "pending"
+    },
+    {
+      "id": "K3",
+      "file": "films/keyframes/F1-clinica/K3.jpg",
+      "source": "composite: K2 + K4 inside the right circle (scripts/keyframes-f1.mjs clinica)",
+      "status": "pending"
+    },
+    {
+      "id": "K4",
+      "file": "films/keyframes/F1-clinica/K4.jpg",
+      "source": "Higgsfield: F1-CLI-K4a (text2image_soul_v2) → F1-CLI-K4c (nano_banana_pro: centred tablet, floating posts) → F1-CLI-K4d (nano_banana_pro: shirt logo removed). Prompts in films/build-shots.py",
+      "status": "pending"
+    },
+    {
+      "id": "K5",
+      "file": "films/keyframes/F1-clinica/K5.jpg",
+      "source": "composite: K4 + chat (2 bubbles), Clínica Movimento (scripts/keyframes-f1.mjs clinica)",
+      "status": "pending"
+    },
+    {
+      "id": "K6",
+      "file": "films/keyframes/F1-clinica/K6.jpg",
+      "source": "composite: K4 + chat (4 bubbles), Clínica Movimento (scripts/keyframes-f1.mjs clinica)",
+      "status": "pending"
+    },
+    {
+      "id": "K7",
+      "file": "films/keyframes/F1-clinica/K3.jpg",
+      "source": "= K3 (mirror of the opening)",
+      "status": "pending"
+    },
+    {
+      "id": "K8",
+      "source": "= K1",
+      "status": "approved"
+    }
+  ]
+}

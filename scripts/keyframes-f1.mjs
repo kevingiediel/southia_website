@@ -27,6 +27,10 @@ const SEGMENTS = {
     out: 'films/keyframes/F1-clinica',
     angle: 90, // right circle (hero stop "clinica")
     title: 'Clínica Movimento',
+    // The receptionist's face sits right of centre: a narrow column at the edge keeps it visible.
+    chatCss: `.chat{right:40px;top:90px;width:420px;gap:14px}.msg{max-width:420px}
+      .title{font-size:22px;padding:8px 20px}.meta{font-size:15px}.bubble{font-size:21px;padding:13px 18px;border-radius:20px}
+      .shade{background:linear-gradient(90deg,transparent 72%,rgba(28,51,34,.5) 82%,rgba(28,51,34,.7))}`,
     messages: [
       { time: 'Hoje 08:00', text: 'Post de hoje publicado no Instagram: alongamento matinal', from: 'Agente Southia', side: 'out' },
       { time: 'Hoje 08:01', text: 'Legenda e imagem criadas a partir da sua marca', from: 'Agente Southia', side: 'out' },
@@ -110,7 +114,8 @@ const chatCss = `
   .msg.in{align-self:flex-start}.msg.out{align-self:flex-end;align-items:flex-end}
   .meta{font-size:18px;font-weight:600;color:rgba(255,255,255,.85);text-shadow:0 1px 6px rgba(0,0,0,.5);padding:0 10px}
   .bubble{padding:18px 24px;border-radius:26px;font-size:28px;line-height:1.3;color:#1C3322;box-shadow:0 10px 30px rgba(0,0,0,.28)}
-  .in .bubble{background:#fff}.out .bubble{background:#DCF3C8}`;
+  .in .bubble{background:#fff}.out .bubble{background:#DCF3C8}
+  ${seg.chatCss ?? ''}`;
 await shot('K5', chat(2), chatCss);
 await shot('K6', chat(4), chatCss);
 await browser.close();

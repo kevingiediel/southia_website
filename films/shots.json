@@ -88,6 +88,15 @@
       "image": "still:F1-CLI-K4a"
     },
     {
+      "id": "F1-CLI-K4d",
+      "gate": "kf-cli3",
+      "kind": "still",
+      "model": "nano_banana_pro",
+      "text": true,
+      "prompt": "Edit this photo: the woman's green polo shirt has a small faint curved logo on the chest, to the right of the buttons; remove it completely so the polo is plain green fabric with no emblem, mark or stitching. Keep everything else exactly identical: same people, faces, expressions, poses, tablet, floating glowing icons and lines, clinic, lighting, colours and framing.",
+      "image": "still:F1-CLI-K4c"
+    },
+    {
       "id": "F1-K4b",
       "gate": "kf",
       "kind": "still",
