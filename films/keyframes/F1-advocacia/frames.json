@@ -12,37 +12,43 @@
       "id": "K2",
       "file": "media-src/frames/logo-zoom-advocacia.png",
       "source": "official SVG (scripts/brand-frames.mjs)",
-      "status": "pending"
+      "status": "approved",
+      "approved": "2026-10-20"
     },
     {
       "id": "K3",
       "file": "films/keyframes/F1-advocacia/K3.jpg",
       "source": "composite: K2 + K4 inside the lower-left circle (scripts/keyframes-f1.mjs advocacia)",
-      "status": "pending"
+      "status": "approved",
+      "approved": "2026-10-20"
     },
     {
       "id": "K4",
       "file": "films/keyframes/F1-advocacia/K4.jpg",
       "source": "Higgsfield: F1-ADV-K4a (text2image_soul_v2) → F1-ADV-K4c (nano_banana_pro recompose) → F1-ADV-K4d (nano_banana_pro: happy lawyer, floating data icons, automatic connections). Prompts in films/build-shots.py",
-      "status": "pending"
+      "status": "approved",
+      "approved": "2026-10-20"
     },
     {
       "id": "K5",
       "file": "films/keyframes/F1-advocacia/K5.jpg",
       "source": "composite: K4 + chat (2 bubbles), Helena Duarte Advocacia (scripts/keyframes-f1.mjs advocacia)",
-      "status": "pending"
+      "status": "approved",
+      "approved": "2026-10-20"
     },
     {
       "id": "K6",
       "file": "films/keyframes/F1-advocacia/K6.jpg",
       "source": "composite: K4 + chat (4 bubbles), Helena Duarte Advocacia (scripts/keyframes-f1.mjs advocacia)",
-      "status": "pending"
+      "status": "approved",
+      "approved": "2026-10-20"
     },
     {
       "id": "K7",
       "file": "films/keyframes/F1-advocacia/K3.jpg",
       "source": "= K3 (mirror of the opening)",
-      "status": "pending"
+      "status": "approved",
+      "approved": "2026-10-20"
     },
     {
       "id": "K8",
