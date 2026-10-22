@@ -728,6 +728,60 @@
       "prompt": "Recompose this photo as the same tall vertical 9:16 top-down drone view with the camera even higher: the same seven people, clothes, stools, chimarrão cuia and campfire, but the whole circle of people is much smaller, exactly in the centre of the frame, its diameter only about 40% of the frame width, every person complete with clear grass around them, and wide golden-hour pampa grass all around filling the rest of the frame. Same warm light and colours. No text anywhere.",
       "image": "still:F1-RODA-tall",
       "aspect": "9:16"
+    },
+    {
+      "id": "prod-1",
+      "gate": "prods",
+      "kind": "still",
+      "model": "text2image_soul_v2",
+      "text": false,
+      "prompt": "Night, a cozy living room lit by a warm lamp: a young Brazilian woman relaxing on the sofa smiles at her smartphone, as if a shop that already closed just answered her message; soft blurred phone screen, plants and a knitted blanket. Faces and main action in the centre of the frame.",
+      "aspect": "3:2"
+    },
+    {
+      "id": "prod-2",
+      "gate": "prods",
+      "kind": "still",
+      "model": "text2image_soul_v2",
+      "text": false,
+      "prompt": "Inside a small Brazilian flower shop with buckets of colourful flowers, the owner, a woman in her 40s in a plain apron, looks delighted at her open laptop on the wooden counter, its screen showing a soft, blurred grid of colourful square photos; warm daylight. Faces and main action in the centre of the frame.",
+      "aspect": "3:2"
+    },
+    {
+      "id": "prod-3",
+      "gate": "prods",
+      "kind": "still",
+      "model": "text2image_soul_v2",
+      "text": false,
+      "prompt": "A small Brazilian e-commerce stockroom with shelves of boxes: a calm young employee packs an order into a kraft box, smiling, a tablet standing beside him with a soft, blurred screen; natural window light, tidy and unhurried. Faces and main action in the centre of the frame.",
+      "aspect": "3:2"
+    },
+    {
+      "id": "prod-4",
+      "gate": "prods",
+      "kind": "still",
+      "model": "text2image_soul_v2",
+      "text": false,
+      "prompt": "Inside a small neighbourhood shop in Brazil, two staff members in plain green shirts serve customers face to face across a clean wooden counter, everyone laughing; no paperwork anywhere, warm natural light, plants. Faces and main action in the centre of the frame.",
+      "aspect": "3:2"
+    },
+    {
+      "id": "prod-5",
+      "gate": "prods",
+      "kind": "still",
+      "model": "text2image_soul_v2",
+      "text": false,
+      "prompt": "Two Brazilian business partners, a man and a woman in their 30s, sit at a café table by the window looking together at a laptop showing a soft, blurred simple chart, one pointing at it, both confident and decided; coffee cups, warm afternoon light. Faces and main action in the centre of the frame.",
+      "aspect": "3:2"
+    },
+    {
+      "id": "prod-6",
+      "gate": "prods",
+      "kind": "still",
+      "model": "text2image_soul_v2",
+      "text": false,
+      "prompt": "At the bright reception of a small clinic in Brazil, a friendly receptionist in a plain sage green top holds a tablet with a soft, blurred screen and explains it to an older patient, who nods with a calm, trusting smile; plants, cream walls. Faces and main action in the centre of the frame.",
+      "aspect": "3:2"
     }
   ]
 }

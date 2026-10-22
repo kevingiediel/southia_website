@@ -187,6 +187,26 @@ _roda_wide = S("F1-RODA-wide", "roda-wide", "Recompose this photo as the same ta
 _roda_wide["aspect"] = "9:16"
 shots.append(_roda_wide)
 
+# ---------------- "Seis formas" cards: 3:2 stills cropped to 16:10, one real-life effect per solution (screens blurred, no text).
+PRODS = [
+    ("prod-1", "Night, a cozy living room lit by a warm lamp: a young Brazilian woman relaxing on the sofa smiles at her smartphone, as if a shop that "
+               "already closed just answered her message; soft blurred phone screen, plants and a knitted blanket."),
+    ("prod-2", "Inside a small Brazilian flower shop with buckets of colourful flowers, the owner, a woman in her 40s in a plain apron, looks delighted at "
+               "her open laptop on the wooden counter, its screen showing a soft, blurred grid of colourful square photos; warm daylight."),
+    ("prod-3", "A small Brazilian e-commerce stockroom with shelves of boxes: a calm young employee packs an order into a kraft box, smiling, a tablet "
+               "standing beside him with a soft, blurred screen; natural window light, tidy and unhurried."),
+    ("prod-4", "Inside a small neighbourhood shop in Brazil, two staff members in plain green shirts serve customers face to face across a clean wooden "
+               "counter, everyone laughing; no paperwork anywhere, warm natural light, plants."),
+    ("prod-5", "Two Brazilian business partners, a man and a woman in their 30s, sit at a café table by the window looking together at a laptop showing "
+               "a soft, blurred simple chart, one pointing at it, both confident and decided; coffee cups, warm afternoon light."),
+    ("prod-6", "At the bright reception of a small clinic in Brazil, a friendly receptionist in a plain sage green top holds a tablet with a soft, blurred "
+               "screen and explains it to an older patient, who nods with a calm, trusting smile; plants, cream walls."),
+]
+for pid, prompt in PRODS:
+    shot = S(pid, "prods", prompt + " Faces and main action in the centre of the frame.")
+    shot["aspect"] = "3:2"  # Soul has no 16:10; cropped to 800×500 afterwards
+    shots.append(shot)
+
 here = os.path.dirname(os.path.abspath(__file__))
 with open(os.path.join(here, 'shots.json'), 'w', encoding='utf-8', newline='\n') as f:
     f.write(json.dumps({"style": style, "motion": motion, "resolution": "720p", "shots": shots}, ensure_ascii=False, indent=2) + '\n')
