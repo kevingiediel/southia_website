@@ -836,6 +836,16 @@
       "text": true,
       "prompt": "Photorealistic candid photograph, warm natural light, shallow depth of field, soft film grain, 35mm lens, real Brazilian people, authentic and friendly mood. Everyday casual clothes in varied natural colours, plain fabrics with no prints, letters, logos or emblems. Deep green and warm yellow appear only as small accents (a plant, a mug, a cushion). Every screen is softly blurred and unreadable. No text, no letters, no numbers, no logos, no brand marks, no watermarks anywhere in the image. The bright reception of a small clinic in Brazil: a friendly receptionist in a plain light top holds a tablet with a blurred screen and explains it to an older man sitting across the desk, who nods with a calm, trusting smile; plants, cream walls, no signs. Faces and main action in the centre of the frame. Horizontal 3:2 frame.",
       "aspect": "3:2"
+    },
+    {
+      "id": "prod-5h",
+      "gate": "prods-fix",
+      "kind": "still",
+      "model": "nano_banana_pro",
+      "text": true,
+      "prompt": "Edit this photo: remove the small chart icon printed on the outside of the laptop lid, so the lid is plain smooth silver aluminium with no mark. Keep everything else exactly identical: same two people, faces, expressions, pose, hand, clothes, cups, café, light, colours and framing. No text anywhere.",
+      "image": "still:prod-5g",
+      "aspect": "3:2"
     }
   ]
 }

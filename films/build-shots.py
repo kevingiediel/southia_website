@@ -231,6 +231,12 @@ for pid, prompt in CARDS:
     shot["aspect"] = "3:2"
     shots.append(shot)
 
+_p5 = S("prod-5h", "prods-fix", "Edit this photo: remove the small chart icon printed on the outside of the laptop lid, so the lid is plain smooth silver aluminium with no mark. "
+        "Keep everything else exactly identical: same two people, faces, expressions, pose, hand, clothes, cups, café, light, colours and framing. No text anywhere.",
+        'nano_banana_pro', True, "still:prod-5g")
+_p5["aspect"] = "3:2"
+shots.append(_p5)
+
 here = os.path.dirname(os.path.abspath(__file__))
 with open(os.path.join(here, 'shots.json'), 'w', encoding='utf-8', newline='\n') as f:
     f.write(json.dumps({"style": style, "motion": motion, "resolution": "720p", "shots": shots}, ensure_ascii=False, indent=2) + '\n')
