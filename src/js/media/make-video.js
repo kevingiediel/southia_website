@@ -1,8 +1,8 @@
-// Builds a muted looping <video> from a container's data-webm / data-src (mp4) attributes.
+// Builds a muted (by default looping) <video> from a container's data-webm / data-src (mp4) attributes.
 // Videos are created on demand: <video> elements in the initial HTML make the first frame slower.
-export function makeVideo(el) {
+export function makeVideo(el, { loop = true } = {}) {
   const video = document.createElement('video');
-  Object.assign(video, { muted: true, loop: true, playsInline: true, preload: 'auto' });
+  Object.assign(video, { muted: true, loop, playsInline: true, preload: 'auto' });
   video.setAttribute('muted', '');
   video.setAttribute('playsinline', '');
   video.setAttribute('aria-hidden', 'true');

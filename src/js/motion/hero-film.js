@@ -32,7 +32,8 @@ export function init(section, ctx) {
   const loadVideo = (scene) => {
     const existing = scene.querySelector('video');
     if (existing) return existing;
-    const video = makeVideo(scene);
+    // No loop: a clip that jumped back to its first frame mid-scene looked like the camera snapping.
+    const video = makeVideo(scene, { loop: false });
     if (scene.dataset.poster) video.poster = scene.dataset.poster;
     video.addEventListener('loadeddata', () => scene.classList.add('is-ready'), { once: true });
     video.load();
@@ -98,7 +99,9 @@ export function init(section, ctx) {
       master
         .call(() => {
           setStop(stop.id);
-          loadVideo(scene).play().catch(() => {});
+          const v = loadVideo(scene);
+          if (v.readyState) v.currentTime = 0; // every visit starts the camera move from the beginning
+          v.play().catch(() => {});
           tag.textContent = scene.dataset.tag;
         }, null, at)
         .fromTo(scene, {
@@ -108,7 +111,7 @@ export function init(section, ctx) {
           scale: () => origin(scene).scale,
         // autoAlpha sits in both ends: left only in the from-vars, GSAP tweens it back to whatever
         // the element had when the tween was first rendered (0), and later stops stayed invisible.
-        }, { autoAlpha: 1, x: 0, y: 0, scale: 1, duration: stop.zoomIn, ease: 'power3.inOut', immediateRender: false }, at)
+        }, { autoAlpha: 1, x: 0, y: 0, scale: 1, duration: stop.zoomIn, ease: 'power2.inOut', immediateRender: false }, at)
         .call(() => loadVideo(next), null, dwellAt)
         .add(overlayTl(scene), dwellAt)
         .fromTo(tag, { autoAlpha: 0, y: -8 }, { autoAlpha: scene.dataset.tag ? 1 : 0, y: 0, duration: 0.4 }, dwellAt)

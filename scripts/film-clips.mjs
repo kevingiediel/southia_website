@@ -1,4 +1,4 @@
-// Code-made hero scenes: each stop's approved K4 keyframe becomes an 8 s clip with a slow, eased
+// Code-made hero scenes: each stop's approved K4 keyframe becomes a 10 s clip with a slow, eased
 // camera move (no AI). Output: media-src/film/<stop>.mp4 (1080 tall), then `npm run media` makes the web files.
 // Run: node scripts/film-clips.mjs [stop ...]
 import fs from 'node:fs';
@@ -9,15 +9,16 @@ import ffmpeg from 'ffmpeg-static';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const FPS = 30;
-const SECONDS = 8;
+// Long enough to cover the whole visit (zoom in 1.1 s + dwell 7 s + fade out 1.6 s): the clip never runs out on screen.
+const SECONDS = 10;
 
 // Per stop: source still, horizontal centre of the crop (0–1), the frame's width/height and the camera move
 // (zoom > 0 pushes in, zoom < 0 starts close and pulls out).
 // The roda is shown through the spark (a 0.59:1 diamond), so it uses a tall, wider view and ends wide open.
 const STOPS = {
-  barbearia: { k4: 'films/keyframes/F1/K4.jpg', cx: 0.5, zoom: 0.14 },
-  clinica: { k4: 'films/keyframes/F1-clinica/K4.jpg', cx: 0.56, zoom: 0.12 },
-  advocacia: { k4: 'films/keyframes/F1-advocacia/K4.jpg', cx: 0.5, zoom: 0.12 },
+  barbearia: { k4: 'films/keyframes/F1/K4.jpg', cx: 0.5, zoom: 0.08 },
+  clinica: { k4: 'films/keyframes/F1-clinica/K4.jpg', cx: 0.56, zoom: 0.07 },
+  advocacia: { k4: 'films/keyframes/F1-advocacia/K4.jpg', cx: 0.5, zoom: 0.07 },
   roda: { k4: 'media-src/films/F1-RODA-tall.png', cx: 0.5, aspect: 0.59, zoom: -0.3 },
 };
 
