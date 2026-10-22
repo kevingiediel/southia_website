@@ -678,6 +678,36 @@
       "text": false,
       "prompt": "A small Brazilian team of four in a cozy office celebrates together around a laptop, laughing, two of them doing a high-five; warm natural window light, plants, cream walls. Vertical portrait framing, faces in the centre of the frame.",
       "aspect": "3:4"
+    },
+    {
+      "id": "row-4b",
+      "gate": "rows-fix",
+      "kind": "still",
+      "model": "nano_banana_pro",
+      "text": true,
+      "prompt": "Edit this photo: remove the yellow foam object from the woman's lap and the green cushion under it, so she simply sits on the exercise mat holding her phone; remove the two standing people whose heads are cut off at the top, replacing them with the softly blurred clinic wall, wooden wall bars and plants. Keep everything else exactly identical: same people, faces, expressions, poses, clothes, light, colours and framing. No text anywhere.",
+      "image": "still:row-4",
+      "aspect": "3:4"
+    },
+    {
+      "id": "row-6b",
+      "gate": "rows-fix",
+      "kind": "still",
+      "model": "nano_banana_pro",
+      "text": true,
+      "prompt": "Edit this photo: remove the small print on the green t-shirt hanging on the wall behind the woman, so it is plain fabric. Keep everything else exactly identical: same people, faces, expressions, poses, clothes, light, colours and framing. No text anywhere.",
+      "image": "still:row-6",
+      "aspect": "3:4"
+    },
+    {
+      "id": "row-7b",
+      "gate": "rows-fix",
+      "kind": "still",
+      "model": "nano_banana_pro",
+      "text": true,
+      "prompt": "Edit this photo: remove the white letters printed on the two dark green sweatshirts, so they are plain fabric with no text, logo or emblem. Keep everything else exactly identical: same people, faces, expressions, poses, clothes, light, colours and framing. No text anywhere.",
+      "image": "still:row-7",
+      "aspect": "3:4"
     }
   ]
 }

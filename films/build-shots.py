@@ -160,6 +160,16 @@ for rid, prompt in ROWS:
     shot["aspect"] = "3:4"
     shots.append(shot)
 
+KEEP = " Keep everything else exactly identical: same people, faces, expressions, poses, clothes, light, colours and framing. No text anywhere."
+for rid, fix in [
+    ("row-4", "Edit this photo: remove the yellow foam object from the woman's lap and the green cushion under it, so she simply sits on the exercise mat holding her phone; remove the two standing people whose heads are cut off at the top, replacing them with the softly blurred clinic wall, wooden wall bars and plants."),
+    ("row-6", "Edit this photo: remove the small print on the green t-shirt hanging on the wall behind the woman, so it is plain fabric."),
+    ("row-7", "Edit this photo: remove the white letters printed on the two dark green sweatshirts, so they are plain fabric with no text, logo or emblem."),
+]:
+    shot = S(rid + "b", "rows-fix", fix + KEEP, 'nano_banana_pro', True, "still:" + rid)
+    shot["aspect"] = "3:4"
+    shots.append(shot)
+
 here = os.path.dirname(os.path.abspath(__file__))
 with open(os.path.join(here, 'shots.json'), 'w', encoding='utf-8', newline='\n') as f:
     f.write(json.dumps({"style": style, "motion": motion, "resolution": "720p", "shots": shots}, ensure_ascii=False, indent=2) + '\n')

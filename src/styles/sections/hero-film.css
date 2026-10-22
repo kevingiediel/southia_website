@@ -4,7 +4,11 @@
 .hero-film__scene::before { content: ''; position: absolute; inset: 0; background: url('../../assets/brand/simbolo-negativa.svg') center / 22% no-repeat; opacity: .18; }
 .hero-film__scene video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .5s ease; }
 .hero-film__scene.is-ready video { opacity: 1; }
-.hero-film__scene--roda { border-color: var(--yellow); }
+/* The closing stop comes out of the spark: same diamond and proportions (10% × 17% in the ring),
+   a yellow rim, no circle. */
+.hero-film__scene--roda { inset: 0 20.6%; border: 0; border-radius: 0; box-shadow: none; background: var(--yellow); clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
+.hero-film__scene--roda::before { content: none; }
+.hero-film__scene--roda video { inset: 2.5%; width: 95%; height: 95%; clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
 
 .hero-film__overlays { position: absolute; inset: 0; z-index: 4; pointer-events: none; }
 .overlay, .hero-film__tag { visibility: hidden; opacity: 0; }

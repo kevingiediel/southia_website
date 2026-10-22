@@ -40,16 +40,18 @@ export function init(section, ctx) {
   };
 
   // Where the circle sits right now (the ring rotates on scroll, so measure every loop).
+  // The scene shrinks to the avatar's photo (not the avatar box) and a little under it, so its rim
+  // and shadow stay inside the circle; the roda scene matches the spark's height instead.
   const origin = (scene) => {
     const circle = scene.dataset.circle;
-    const target = circle === 'spark' ? spark : avatars[Number(circle)];
+    const target = circle === 'spark' ? spark : avatars[Number(circle)].querySelector('.media') ?? avatars[Number(circle)];
     const f = film.getBoundingClientRect();
     const t = target.getBoundingClientRect();
-    const size = circle === 'spark' ? film.offsetWidth * 0.12 : target.offsetWidth;
+    const scale = circle === 'spark' ? target.offsetHeight / scene.offsetHeight : (target.offsetWidth * 0.9) / scene.offsetWidth;
     return {
       x: t.left + t.width / 2 - (f.left + f.width / 2),
       y: t.top + t.height / 2 - (f.top + f.height / 2),
-      scale: size / film.offsetWidth,
+      scale,
     };
   };
 
@@ -117,9 +119,10 @@ export function init(section, ctx) {
           y: () => origin(scene).y,
           scale: () => origin(scene).scale,
           duration: stop.zoomOut,
-          ease: 'power3.inOut',
+          ease: 'power2.inOut',
         }, outAt)
-        .set(scene, { autoAlpha: 0 }, outAt + stop.zoomOut)
+        // A plain, slow fade: the image is fully gone just as it reaches the circle.
+        .to(scene, { autoAlpha: 0, duration: stop.zoomOut, ease: 'sine.inOut' }, outAt)
         .call(() => { setStop('ring'); video().pause(); }, null, outAt + stop.zoomOut);
     });
     master.timeScale(ctx.speed * debugSpeed);
