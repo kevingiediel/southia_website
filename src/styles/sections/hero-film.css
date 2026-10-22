@@ -31,7 +31,7 @@
 .chat__typing span:nth-child(3) { animation-delay: .3s; }
 @keyframes chat-dot { 0%, 100% { transform: translateY(0); opacity: .4; } 50% { transform: translateY(-3px); opacity: 1; } }
 
-.overlay--headline { position: absolute; left: 50%; top: calc(92% + 12px); width: 110%; transform: translateX(-50%); text-align: center; text-wrap: balance; font-family: var(--font-display); font-weight: 700; font-size: clamp(28px, 3.6vw, 50px); line-height: 1.05; letter-spacing: -.02em; color: var(--cream); text-shadow: 0 2px 24px rgba(0, 0, 0, .6); }
+.overlay--headline { position: absolute; left: 50%; top: calc(92% + 12px); width: 110%; transform: translateX(-50%); text-align: center; text-wrap: balance; font-family: var(--font-display); font-weight: 700; font-size: clamp(26px, min(3.6vw, 5.2svh), 50px); line-height: 1.05; letter-spacing: -.02em; color: var(--cream); text-shadow: 0 2px 24px rgba(0, 0, 0, .6); }
 .overlay--headline .hl { color: var(--yellow); }
 /* The closing line sits just under the spark, where the "+ você" badge is: step the badge aside while it shows. */
 .hero__you { transition: opacity .4s ease; }
