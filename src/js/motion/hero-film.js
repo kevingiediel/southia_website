@@ -63,6 +63,23 @@ export function init(section, ctx) {
   const RIM = { on: { borderColor: 'rgba(163, 192, 138, 1)', boxShadow: '0 30px 80px rgba(0, 0, 0, .35)' },
     off: { borderColor: 'rgba(163, 192, 138, 0)', boxShadow: '0 0px 0px rgba(0, 0, 0, 0)' } };
 
+  // Moves el between the centre (k = 0) and its circle (k = 1), reading the circle's position on every
+  // frame: the ring's circles bob, so a target measured once made the scene snap when it landed.
+  const fly = (el, where, toCircle, duration) => {
+    const p = { t: 0 };
+    return gsap.fromTo(p, { t: 0 }, {
+      t: 1,
+      duration,
+      ease: 'power2.inOut',
+      immediateRender: false,
+      onUpdate: () => {
+        const o = where();
+        const k = toCircle ? p.t : 1 - p.t;
+        gsap.set(el, { x: o.x * k, y: o.y * k, scale: 1 + (o.scale - 1) * k });
+      },
+    });
+  };
+
   const overlayTl = (scene) => {
     const el = overlays.querySelector(`[data-for="${scene.dataset.stop}"]`);
     const tl = gsap.timeline();
@@ -111,29 +128,18 @@ export function init(section, ctx) {
           v.play().catch(() => {});
           tag.textContent = scene.dataset.tag;
         }, null, at)
-        .fromTo(scene, {
-          autoAlpha: 1,
-          x: () => origin(scene).x,
-          y: () => origin(scene).y,
-          scale: () => origin(scene).scale,
+        .add(fly(scene, () => origin(scene), false, stop.zoomIn), at)
         // autoAlpha sits in both ends: left only in the from-vars, GSAP tweens it back to whatever
         // the element had when the tween was first rendered (0), and later stops stayed invisible.
-          filter: 'brightness(1)',
-          ...(scene.dataset.circle === 'spark' ? {} : RIM.off),
-        }, { autoAlpha: 1, x: 0, y: 0, scale: 1, ...(scene.dataset.circle === 'spark' ? {} : RIM.on), duration: stop.zoomIn, ease: 'power2.inOut', immediateRender: false }, at)
+        .fromTo(scene, { autoAlpha: 1, filter: 'brightness(1)', ...(scene.dataset.circle === 'spark' ? {} : RIM.off) },
+          { autoAlpha: 1, ...(scene.dataset.circle === 'spark' ? {} : RIM.on), duration: stop.zoomIn, ease: 'power2.inOut', immediateRender: false }, at)
         .call(() => loadVideo(next), null, dwellAt)
         .add(overlayTl(scene), dwellAt)
         .fromTo(tag, { autoAlpha: 0, y: -8 }, { autoAlpha: scene.dataset.tag ? 1 : 0, y: 0, duration: 0.4 }, dwellAt)
         .add(hideOverlays, outAt - 0.4)
         .to(tag, { autoAlpha: 0, duration: 0.3 }, outAt - 0.4)
-        .to(scene, {
-          x: () => origin(scene).x,
-          y: () => origin(scene).y,
-          scale: () => origin(scene).scale,
-          ...(scene.dataset.circle === 'spark' ? {} : RIM.off),
-          duration: stop.zoomOut,
-          ease: 'power2.inOut',
-        }, outAt)
+        .add(fly(scene, () => origin(scene), true, stop.zoomOut), outAt)
+        .to(scene, { ...(scene.dataset.circle === 'spark' ? {} : RIM.off), duration: stop.zoomOut, ease: 'power2.inOut' }, outAt)
         // Reverse flash: the scene goes back into its circle fully visible, then glows softly and
         // fades out slowly in place.
         .to(scene, {
@@ -157,11 +163,11 @@ export function init(section, ctx) {
       const outAt = f.start + f.zoomIn + f.dwell;
       master
         .call(() => setStop('voce'), null, f.start)
-        .fromTo(you, { autoAlpha: 1, x: () => at().x, y: () => at().y, scale: () => at().scale },
-          { autoAlpha: 1, x: 0, y: 0, scale: 1, duration: f.zoomIn, ease: 'power2.inOut', immediateRender: false }, f.start)
+        .set(you, { autoAlpha: 1 }, f.start)
+        .add(fly(you, at, false, f.zoomIn), f.start)
         .fromTo(you.querySelector('p'), { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: 'power3.out' }, f.start + f.zoomIn - 0.2)
         .to(you.querySelector('p'), { autoAlpha: 0, duration: 0.4 }, outAt - 0.3)
-        .to(you, { x: () => at().x, y: () => at().y, scale: () => at().scale, duration: f.zoomOut, ease: 'power2.inOut' }, outAt)
+        .add(fly(you, at, true, f.zoomOut), outAt)
         .to(you, { autoAlpha: 0, duration: f.fade, ease: 'sine.inOut', onUpdate: () => gsap.set(you, at()) }, outAt + f.zoomOut)
         .call(() => setStop('ring'), null, outAt + f.zoomOut + f.fade)
         .set({}, {}, f.end); // keep the rest before the loop starts over
