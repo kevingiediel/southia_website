@@ -178,6 +178,15 @@ _roda_tall = S("F1-RODA-tall", "roda-tall", "Recompose this photo as a tall vert
 _roda_tall["aspect"] = "9:16"
 shots.append(_roda_tall)
 
+# Even wider: in the spark the circle must fit with room to spare, so the clip can open out further.
+_roda_wide = S("F1-RODA-wide", "roda-wide", "Recompose this photo as the same tall vertical 9:16 top-down drone view with the camera even higher: "
+              "the same seven people, clothes, stools, chimarrão cuia and campfire, but the whole circle of people is much smaller, exactly in the "
+              "centre of the frame, its diameter only about 40% of the frame width, every person complete with clear grass around them, and wide "
+              "golden-hour pampa grass all around filling the rest of the frame. Same warm light and colours. No text anywhere.",
+              'nano_banana_pro', True, "still:F1-RODA-tall")
+_roda_wide["aspect"] = "9:16"
+shots.append(_roda_wide)
+
 here = os.path.dirname(os.path.abspath(__file__))
 with open(os.path.join(here, 'shots.json'), 'w', encoding='utf-8', newline='\n') as f:
     f.write(json.dumps({"style": style, "motion": motion, "resolution": "720p", "shots": shots}, ensure_ascii=False, indent=2) + '\n')

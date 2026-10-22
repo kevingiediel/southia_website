@@ -32,14 +32,14 @@
     {
       "id": "K5",
       "file": "films/keyframes/F1-advocacia/K5.jpg",
-      "source": "composite: K4 + chat (2 bubbles), Helena Duarte Advocacia (scripts/keyframes-f1.mjs advocacia)",
+      "source": "composite: K4 + chat (2 bubbles), Helena Advocacia (scripts/keyframes-f1.mjs advocacia)",
       "status": "approved",
       "approved": "2026-10-20"
     },
     {
       "id": "K6",
       "file": "films/keyframes/F1-advocacia/K6.jpg",
-      "source": "composite: K4 + chat (4 bubbles), Helena Duarte Advocacia (scripts/keyframes-f1.mjs advocacia)",
+      "source": "composite: K4 + chat (4 bubbles), Helena Advocacia (scripts/keyframes-f1.mjs advocacia)",
       "status": "approved",
       "approved": "2026-10-20"
     },

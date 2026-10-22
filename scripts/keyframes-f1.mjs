@@ -41,7 +41,7 @@ const SEGMENTS = {
   advocacia: {
     out: 'films/keyframes/F1-advocacia',
     angle: 225, // lower-left circle (hero stop "advocacia")
-    title: 'Helena Duarte Advocacia',
+    title: 'Helena Advocacia',
     messages: [
       { time: 'Hoje 09:02', text: 'Pesquisa realizada no TJSP: 14 novas decisões', from: 'Agente Southia', side: 'out' },
       { time: 'Hoje 09:02', text: 'Dados baixados automaticamente do PJe e do e-SAJ', from: 'Agente Southia', side: 'out' },

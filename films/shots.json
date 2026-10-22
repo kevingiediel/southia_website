@@ -718,6 +718,16 @@
       "prompt": "Recompose this photo as a tall vertical 9:16 frame of the same scene from the same top-down drone view, with the camera much higher: the same seven people, clothes, stools, chimarrão cuia being passed and the campfire, but the whole circle of people is small, exactly in the centre of the frame, its diameter only about half of the frame width, with plenty of the same golden-hour pampa grass all around it above, below and on both sides. Same warm light and colours. No text anywhere.",
       "image": "still:F1-RODA-K4e",
       "aspect": "9:16"
+    },
+    {
+      "id": "F1-RODA-wide",
+      "gate": "roda-wide",
+      "kind": "still",
+      "model": "nano_banana_pro",
+      "text": true,
+      "prompt": "Recompose this photo as the same tall vertical 9:16 top-down drone view with the camera even higher: the same seven people, clothes, stools, chimarrão cuia and campfire, but the whole circle of people is much smaller, exactly in the centre of the frame, its diameter only about 40% of the frame width, every person complete with clear grass around them, and wide golden-hour pampa grass all around filling the rest of the frame. Same warm light and colours. No text anywhere.",
+      "image": "still:F1-RODA-tall",
+      "aspect": "9:16"
     }
   ]
 }
