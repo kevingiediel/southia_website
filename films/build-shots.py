@@ -264,6 +264,15 @@ for pid, prompt in CARDS3:
     shot["aspect"] = "3:2"
     shots.append(shot)
 
+# "A IA no centro, as pessoas em volta": the section's title, literally, in the cards' visual language (4:5 slot).
+_como = S("como-foto", "como", BRAND_CARD + "Seen from slightly above: five Brazilian people of different ages, a small business owner and four consultants, "
+          "sit around a round wooden table in a warm studio with deep green walls and plants, talking and laughing, notebooks and coffee cups on the table. "
+          "At the exact centre of the table glows a soft warm yellow light, like a small spark, and from it rise a few translucent sage and yellow interface "
+          "shapes (a chat bubble, a small chart, connected nodes) that gently circle above the table; the people around it lean in together, clearly in charge. "
+          "The circle of people and the glowing centre fill the middle of the frame. Vertical 4:5 frame.", GPT, True)
+_como["aspect"] = "4:5"
+shots.append(_como)
+
 here = os.path.dirname(os.path.abspath(__file__))
 with open(os.path.join(here, 'shots.json'), 'w', encoding='utf-8', newline='\n') as f:
     f.write(json.dumps({"style": style, "motion": motion, "resolution": "720p", "shots": shots}, ensure_ascii=False, indent=2) + '\n')
