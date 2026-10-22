@@ -237,6 +237,33 @@ _p5 = S("prod-5h", "prods-fix", "Edit this photo: remove the small chart icon pr
 _p5["aspect"] = "3:2"
 shots.append(_p5)
 
+# Third take: each card shows its solution at work, in the film's language (real people + floating glowing
+# interface shapes, like the clinic and law-office keyframes) and in the brand palette.
+BRAND_CARD = ("Photorealistic cinematic photograph, warm natural light, shallow depth of field, soft film grain, real Brazilian people. "
+              "Brand palette throughout the set: deep forest green (#1C3322) and herb green (#3E6A3B) walls and furniture, cream (#F3EEE2) surfaces, "
+              "sage green (#A3C08A) details and a single warm yellow (#F2C230) accent. Plain clothes in those greens and cream, no prints. "
+              "Floating translucent glowing interface shapes in sage green and warm yellow illustrate the idea: only shapes and simple icons, "
+              "no letters, no numbers, no words, no logos, no brand marks anywhere. Every screen is softly blurred. ")
+CARDS3 = [
+    ("prod-1v", "Agentes de atendimento: at night in a small shop that already closed, the owner turns off the lights and smiles, while on the counter "
+                "a smartphone keeps answering customers by itself: glowing chat bubbles float up from it in pairs (question and answer), with a small "
+                "moon and a clock icon, one bubble turning into a small person icon as it is handed to a human."),
+    ("prod-2v", "Criativos e campanhas: a small clothing shop owner smiles at her laptop while glowing square social media post cards in the brand "
+                "colours fly out of the screen and arrange themselves into a neat grid, small heart icons and rising arrow shapes around them."),
+    ("prod-3v", "Integração de sistemas: at a shop counter, a laptop, a tablet, a smartphone and a card machine are connected by thin glowing lines, "
+                "small glowing data cards travelling along them from one device to another; a calm employee watches, relaxed."),
+    ("prod-4v", "Automação de processos: on a desk, a messy pile of paper invoices and receipts lifts off and turns into a clean flow of glowing nodes "
+                "connected by arrows, ending in check marks; in the background, softly out of focus, the team chats and laughs with customers."),
+    ("prod-5v", "Engenharia de dados e IA: a business owner at her desk looks confidently at floating translucent dashboard panels with clean bar "
+                "and line charts and a donut chart, a small yellow spark icon at the centre where the lines converge; calm, clear, decided."),
+    ("prod-6v", "Governança e LGPD: at a clinic reception, a receptionist shows a patient the tablet; above it float a glowing shield with a lock "
+                "and a check mark, and small protected data cards inside a soft bubble; the patient nods with a calm, trusting smile."),
+]
+for pid, prompt in CARDS3:
+    shot = S(pid, "prods3", BRAND_CARD + prompt + " Faces and main action in the centre of the frame. Horizontal 3:2 frame.", GPT, True)
+    shot["aspect"] = "3:2"
+    shots.append(shot)
+
 here = os.path.dirname(os.path.abspath(__file__))
 with open(os.path.join(here, 'shots.json'), 'w', encoding='utf-8', newline='\n') as f:
     f.write(json.dumps({"style": style, "motion": motion, "resolution": "720p", "shots": shots}, ensure_ascii=False, indent=2) + '\n')
