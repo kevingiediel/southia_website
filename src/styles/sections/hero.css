@@ -31,8 +31,8 @@
 .hero__avatar--5 { left: 8%; top: 50%; }
 .hero__avatar--6 { left: 20.3%; top: 20.3%; }
 .hero__face { width: 100%; height: 100%; border-radius: 50%; border: 4px solid var(--sage); overflow: hidden; background: var(--green-mid); }
-.hero__you { left: 50%; top: 92%; width: 15%; }
-.hero__you-inner { width: 100%; height: 100%; border-radius: 50%; border: 3px dashed var(--yellow); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: var(--yellow); background: var(--green); }
+.hero__you { left: 50%; top: 92%; } /* same 19% as the other circles of the ring */
+.hero__you-inner { width: 100%; height: 100%; border-radius: 50%; border: 3px dashed var(--yellow); display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; color: var(--yellow); background: var(--green); }
 
 /* Intro start state (hero-ring.js plays it in). Without motion everything is already in place. */
 .js-motion .hero__ring-svg circle, .js-motion .hero__spokes line { stroke-dashoffset: 1; }
