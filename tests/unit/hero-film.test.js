@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { stopSchedule } from '../../src/js/motion/hero-film-schedule.js';
+import { stopSchedule, finaleSchedule } from '../../src/js/motion/hero-film-schedule.js';
 
 const stops = ['barbearia', 'clinica', 'advocacia', 'roda'].map((id) => ({ id }));
 
@@ -29,4 +29,12 @@ test('the scene fades only after it is back in its circle', () => {
   const [s] = stopSchedule(stops);
   assert.ok(s.fade >= 0.8, `fade ${s.fade}`);
   assert.equal(s.end - s.start, s.zoomIn + s.dwell + s.zoomOut + s.fade + s.rest);
+});
+
+test('the loop ends by zooming into "+ você" right after the last stop', () => {
+  const s = stopSchedule(stops);
+  const f = finaleSchedule(s.at(-1).end);
+  assert.equal(f.start, s.at(-1).end);
+  assert.ok(Math.abs((f.end - f.start) - (f.zoomIn + f.dwell + f.zoomOut + f.fade + f.rest)) < 1e-9);
+  assert.ok(f.dwell >= 3, `the invitation stays readable (${f.dwell}s)`);
 });

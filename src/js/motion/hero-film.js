@@ -1,4 +1,4 @@
-import { stopSchedule } from './hero-film-schedule.js';
+import { stopSchedule, finaleSchedule } from './hero-film-schedule.js';
 import { makeVideo } from '../media/make-video.js';
 
 // Film 1 "A roda": after the hero intro, the camera dives into a circle of the ring,
@@ -145,6 +145,27 @@ export function init(section, ctx) {
         }, outAt + stop.zoomOut)
         .call(() => { setStop('ring'); video().pause(); }, null, outAt + stop.zoomOut + stop.fade);
     });
+    // Finale: zoom into "+ você" with the invitation, then back into the dashed circle and fade.
+    const you = film.querySelector('.hero-film__you');
+    const youTarget = section.querySelector('.hero__you-inner');
+    if (you && youTarget) {
+      const f = finaleSchedule(schedule.at(-1)?.end ?? 0);
+      const at = () => {
+        const fr = film.getBoundingClientRect(); const t = youTarget.getBoundingClientRect();
+        return { x: t.left + t.width / 2 - (fr.left + fr.width / 2), y: t.top + t.height / 2 - (fr.top + fr.height / 2), scale: (youTarget.offsetWidth * (new DOMMatrix(getComputedStyle(youTarget).transform).a || 1)) / you.offsetWidth }; // data-pulse scales it
+      };
+      const outAt = f.start + f.zoomIn + f.dwell;
+      master
+        .call(() => setStop('voce'), null, f.start)
+        .fromTo(you, { autoAlpha: 1, x: () => at().x, y: () => at().y, scale: () => at().scale },
+          { autoAlpha: 1, x: 0, y: 0, scale: 1, duration: f.zoomIn, ease: 'power2.inOut', immediateRender: false }, f.start)
+        .fromTo(you.querySelector('p'), { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: 'power3.out' }, f.start + f.zoomIn - 0.2)
+        .to(you.querySelector('p'), { autoAlpha: 0, duration: 0.4 }, outAt - 0.3)
+        .to(you, { x: () => at().x, y: () => at().y, scale: () => at().scale, duration: f.zoomOut, ease: 'power2.inOut' }, outAt)
+        .to(you, { autoAlpha: 0, duration: f.fade, ease: 'sine.inOut', onUpdate: () => gsap.set(you, at()) }, outAt + f.zoomOut)
+        .call(() => setStop('ring'), null, outAt + f.zoomOut + f.fade)
+        .set({}, {}, f.end); // keep the rest before the loop starts over
+    }
     master.timeScale(ctx.speed * debugSpeed);
   };
 

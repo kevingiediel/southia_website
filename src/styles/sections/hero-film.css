@@ -10,6 +10,12 @@
 .hero-film__scene--roda::before { content: none; }
 .hero-film__scene--roda video { inset: 2.5%; width: 95%; height: 95%; clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
 
+/* Finale: the camera zooms into "+ você" — same dashed yellow circle, now holding the invitation. */
+.hero-film__you { position: absolute; inset: 0; border-radius: 50%; border: 4px dashed var(--yellow); background: var(--green); display: grid; place-items: center; visibility: hidden; opacity: 0; will-change: transform; }
+.hero-film__you p { margin: 0; width: 76%; text-align: center; text-wrap: balance; font-family: var(--font-display); font-weight: 700; font-size: clamp(28px, 3.6vw, 50px); line-height: 1.05; letter-spacing: -.02em; color: var(--cream); }
+.hero-film__you .hl { color: var(--yellow); }
+.hero[data-film-stop="voce"] .hero__you { opacity: 0; }
+
 .hero-film__overlays { position: absolute; inset: 0; z-index: 4; pointer-events: none; }
 .overlay, .hero-film__tag { visibility: hidden; opacity: 0; }
 .hero-film__tag { position: absolute; top: 4%; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 12px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--green); background: var(--yellow); padding: 7px 14px; border-radius: var(--radius-pill); }
