@@ -1,4 +1,4 @@
-// Code-made hero scenes: each stop's approved K4 keyframe becomes a 10 s clip with a slow, eased
+// Code-made hero scenes: each stop's approved K4 keyframe becomes an 11 s clip with a slow, eased
 // camera move (no AI). Output: media-src/film/<stop>.mp4 (1080 tall), then `npm run media` makes the web files.
 // Run: node scripts/film-clips.mjs [stop ...]
 import fs from 'node:fs';
@@ -9,8 +9,8 @@ import ffmpeg from 'ffmpeg-static';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const FPS = 30;
-// Long enough to cover the whole visit (zoom in 1.1 s + dwell 7 s + fade out 1.6 s): the clip never runs out on screen.
-const SECONDS = 10;
+// Long enough to cover the whole visit (zoom in 1.1 + dwell 6.6 + back to the circle 1.3 + fade 1.1 s): the clip never runs out on screen.
+const SECONDS = 11;
 
 // Per stop: source still, horizontal centre of the crop (0–1), the frame's width/height and the camera move
 // (zoom > 0 pushes in, zoom < 0 starts close and pulls out).

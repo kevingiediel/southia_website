@@ -111,6 +111,7 @@ export function init(section, ctx) {
           scale: () => origin(scene).scale,
         // autoAlpha sits in both ends: left only in the from-vars, GSAP tweens it back to whatever
         // the element had when the tween was first rendered (0), and later stops stayed invisible.
+          filter: 'brightness(1)',
         }, { autoAlpha: 1, x: 0, y: 0, scale: 1, duration: stop.zoomIn, ease: 'power2.inOut', immediateRender: false }, at)
         .call(() => loadVideo(next), null, dwellAt)
         .add(overlayTl(scene), dwellAt)
@@ -124,9 +125,10 @@ export function init(section, ctx) {
           duration: stop.zoomOut,
           ease: 'power2.inOut',
         }, outAt)
-        // A plain, slow fade: the image is fully gone just as it reaches the circle.
-        .to(scene, { autoAlpha: 0, duration: stop.zoomOut, ease: 'sine.inOut' }, outAt)
-        .call(() => { setStop('ring'); video().pause(); }, null, outAt + stop.zoomOut);
+        // Reverse flash: the scene goes back into its circle fully visible, then glows softly and
+        // fades out slowly in place.
+        .to(scene, { autoAlpha: 0, filter: 'brightness(1.3)', duration: stop.fade, ease: 'sine.inOut' }, outAt + stop.zoomOut)
+        .call(() => { setStop('ring'); video().pause(); }, null, outAt + stop.zoomOut + stop.fade);
     });
     master.timeScale(ctx.speed * debugSpeed);
   };

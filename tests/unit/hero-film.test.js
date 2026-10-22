@@ -10,8 +10,8 @@ test('schedule keeps stop order and starts at zero', () => {
   assert.equal(s[0].start, 0);
 });
 
-test('stops are contiguous and each lasts zoomIn + dwell + zoomOut + rest', () => {
-  const opts = { zoomIn: 1, dwell: 6, zoomOut: 1, rest: 2 };
+test('stops are contiguous and each lasts zoomIn + dwell + zoomOut + fade + rest', () => {
+  const opts = { zoomIn: 1, dwell: 5, zoomOut: 1, fade: 1, rest: 2 };
   const s = stopSchedule(stops, opts);
   s.forEach((x, i) => {
     assert.equal(x.end - x.start, 10);
@@ -23,4 +23,10 @@ test('stops are contiguous and each lasts zoomIn + dwell + zoomOut + rest', () =
 test('default loop is about 40 seconds', () => {
   const total = stopSchedule(stops).at(-1).end;
   assert.ok(total >= 36 && total <= 44, `total ${total}`);
+});
+
+test('the scene fades only after it is back in its circle', () => {
+  const [s] = stopSchedule(stops);
+  assert.ok(s.fade >= 0.8, `fade ${s.fade}`);
+  assert.equal(s.end - s.start, s.zoomIn + s.dwell + s.zoomOut + s.fade + s.rest);
 });
