@@ -207,6 +207,30 @@ for pid, prompt in PRODS:
     shot["aspect"] = "3:2"  # Soul has no 16:10; cropped to 800×500 afterwards
     shots.append(shot)
 
+# Second take on GPT Image (better at "no text, no logos"): everyday clothes in varied colours, the brand palette only as accents.
+CARD_STYLE = ("Photorealistic candid photograph, warm natural light, shallow depth of field, soft film grain, 35mm lens, real Brazilian people, "
+              "authentic and friendly mood. Everyday casual clothes in varied natural colours, plain fabrics with no prints, letters, logos or emblems. "
+              "Deep green and warm yellow appear only as small accents (a plant, a mug, a cushion). Every screen is softly blurred and unreadable. "
+              "No text, no letters, no numbers, no logos, no brand marks, no watermarks anywhere in the image. ")
+CARDS = [
+    ("prod-1g", "Night in a cozy living room lit by a single warm lamp: one young Brazilian woman alone, curled up on the sofa under a knitted blanket, "
+                "smiles at her smartphone as if a shop that already closed has just answered her message."),
+    ("prod-2g", "Inside a small Brazilian flower shop full of colourful bouquets: the owner, a woman in her 40s in a plain linen apron, stands alone behind "
+                "the wooden counter and looks delighted at her open laptop, its blurred screen showing a grid of colourful square photos. Nobody in front of her."),
+    ("prod-3g", "A tidy small e-commerce stockroom with shelves of plain kraft boxes: one calm young Brazilian man in a plain grey t-shirt packs an order "
+                "into a kraft box, smiling; a tablet stands on the table beside him with a blurred screen. Natural window light."),
+    ("prod-4g", "A small neighbourhood shop in Brazil: two staff members in plain everyday shirts serve two customers face to face across a clean "
+                "wooden counter, everyone laughing; no paperwork anywhere, plants, warm natural light."),
+    ("prod-5g", "Two Brazilian business partners, a man and a woman in their 30s, sit at a café table by the window looking together at a plain silver "
+                "laptop with no logo, its blurred screen showing a simple rising chart; she points at it, both confident and decided; coffee cups, warm afternoon light."),
+    ("prod-6g", "The bright reception of a small clinic in Brazil: a friendly receptionist in a plain light top holds a tablet with a blurred screen and "
+                "explains it to an older man sitting across the desk, who nods with a calm, trusting smile; plants, cream walls, no signs."),
+]
+for pid, prompt in CARDS:
+    shot = S(pid, "prods2", CARD_STYLE + prompt + " Faces and main action in the centre of the frame. Horizontal 3:2 frame.", GPT, True)
+    shot["aspect"] = "3:2"
+    shots.append(shot)
+
 here = os.path.dirname(os.path.abspath(__file__))
 with open(os.path.join(here, 'shots.json'), 'w', encoding='utf-8', newline='\n') as f:
     f.write(json.dumps({"style": style, "motion": motion, "resolution": "720p", "shots": shots}, ensure_ascii=False, indent=2) + '\n')

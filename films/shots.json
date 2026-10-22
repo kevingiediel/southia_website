@@ -782,6 +782,60 @@
       "text": false,
       "prompt": "At the bright reception of a small clinic in Brazil, a friendly receptionist in a plain sage green top holds a tablet with a soft, blurred screen and explains it to an older patient, who nods with a calm, trusting smile; plants, cream walls. Faces and main action in the centre of the frame.",
       "aspect": "3:2"
+    },
+    {
+      "id": "prod-1g",
+      "gate": "prods2",
+      "kind": "still",
+      "model": "gpt_image_2_5",
+      "text": true,
+      "prompt": "Photorealistic candid photograph, warm natural light, shallow depth of field, soft film grain, 35mm lens, real Brazilian people, authentic and friendly mood. Everyday casual clothes in varied natural colours, plain fabrics with no prints, letters, logos or emblems. Deep green and warm yellow appear only as small accents (a plant, a mug, a cushion). Every screen is softly blurred and unreadable. No text, no letters, no numbers, no logos, no brand marks, no watermarks anywhere in the image. Night in a cozy living room lit by a single warm lamp: one young Brazilian woman alone, curled up on the sofa under a knitted blanket, smiles at her smartphone as if a shop that already closed has just answered her message. Faces and main action in the centre of the frame. Horizontal 3:2 frame.",
+      "aspect": "3:2"
+    },
+    {
+      "id": "prod-2g",
+      "gate": "prods2",
+      "kind": "still",
+      "model": "gpt_image_2_5",
+      "text": true,
+      "prompt": "Photorealistic candid photograph, warm natural light, shallow depth of field, soft film grain, 35mm lens, real Brazilian people, authentic and friendly mood. Everyday casual clothes in varied natural colours, plain fabrics with no prints, letters, logos or emblems. Deep green and warm yellow appear only as small accents (a plant, a mug, a cushion). Every screen is softly blurred and unreadable. No text, no letters, no numbers, no logos, no brand marks, no watermarks anywhere in the image. Inside a small Brazilian flower shop full of colourful bouquets: the owner, a woman in her 40s in a plain linen apron, stands alone behind the wooden counter and looks delighted at her open laptop, its blurred screen showing a grid of colourful square photos. Nobody in front of her. Faces and main action in the centre of the frame. Horizontal 3:2 frame.",
+      "aspect": "3:2"
+    },
+    {
+      "id": "prod-3g",
+      "gate": "prods2",
+      "kind": "still",
+      "model": "gpt_image_2_5",
+      "text": true,
+      "prompt": "Photorealistic candid photograph, warm natural light, shallow depth of field, soft film grain, 35mm lens, real Brazilian people, authentic and friendly mood. Everyday casual clothes in varied natural colours, plain fabrics with no prints, letters, logos or emblems. Deep green and warm yellow appear only as small accents (a plant, a mug, a cushion). Every screen is softly blurred and unreadable. No text, no letters, no numbers, no logos, no brand marks, no watermarks anywhere in the image. A tidy small e-commerce stockroom with shelves of plain kraft boxes: one calm young Brazilian man in a plain grey t-shirt packs an order into a kraft box, smiling; a tablet stands on the table beside him with a blurred screen. Natural window light. Faces and main action in the centre of the frame. Horizontal 3:2 frame.",
+      "aspect": "3:2"
+    },
+    {
+      "id": "prod-4g",
+      "gate": "prods2",
+      "kind": "still",
+      "model": "gpt_image_2_5",
+      "text": true,
+      "prompt": "Photorealistic candid photograph, warm natural light, shallow depth of field, soft film grain, 35mm lens, real Brazilian people, authentic and friendly mood. Everyday casual clothes in varied natural colours, plain fabrics with no prints, letters, logos or emblems. Deep green and warm yellow appear only as small accents (a plant, a mug, a cushion). Every screen is softly blurred and unreadable. No text, no letters, no numbers, no logos, no brand marks, no watermarks anywhere in the image. A small neighbourhood shop in Brazil: two staff members in plain everyday shirts serve two customers face to face across a clean wooden counter, everyone laughing; no paperwork anywhere, plants, warm natural light. Faces and main action in the centre of the frame. Horizontal 3:2 frame.",
+      "aspect": "3:2"
+    },
+    {
+      "id": "prod-5g",
+      "gate": "prods2",
+      "kind": "still",
+      "model": "gpt_image_2_5",
+      "text": true,
+      "prompt": "Photorealistic candid photograph, warm natural light, shallow depth of field, soft film grain, 35mm lens, real Brazilian people, authentic and friendly mood. Everyday casual clothes in varied natural colours, plain fabrics with no prints, letters, logos or emblems. Deep green and warm yellow appear only as small accents (a plant, a mug, a cushion). Every screen is softly blurred and unreadable. No text, no letters, no numbers, no logos, no brand marks, no watermarks anywhere in the image. Two Brazilian business partners, a man and a woman in their 30s, sit at a café table by the window looking together at a plain silver laptop with no logo, its blurred screen showing a simple rising chart; she points at it, both confident and decided; coffee cups, warm afternoon light. Faces and main action in the centre of the frame. Horizontal 3:2 frame.",
+      "aspect": "3:2"
+    },
+    {
+      "id": "prod-6g",
+      "gate": "prods2",
+      "kind": "still",
+      "model": "gpt_image_2_5",
+      "text": true,
+      "prompt": "Photorealistic candid photograph, warm natural light, shallow depth of field, soft film grain, 35mm lens, real Brazilian people, authentic and friendly mood. Everyday casual clothes in varied natural colours, plain fabrics with no prints, letters, logos or emblems. Deep green and warm yellow appear only as small accents (a plant, a mug, a cushion). Every screen is softly blurred and unreadable. No text, no letters, no numbers, no logos, no brand marks, no watermarks anywhere in the image. The bright reception of a small clinic in Brazil: a friendly receptionist in a plain light top holds a tablet with a blurred screen and explains it to an older man sitting across the desk, who nods with a calm, trusting smile; plants, cream walls, no signs. Faces and main action in the centre of the frame. Horizontal 3:2 frame.",
+      "aspect": "3:2"
     }
   ]
 }
