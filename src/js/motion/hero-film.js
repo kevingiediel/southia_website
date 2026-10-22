@@ -41,20 +41,27 @@ export function init(section, ctx) {
   };
 
   // Where the circle sits right now (the ring rotates on scroll, so measure every loop).
-  // The scene shrinks to the avatar's photo (not the avatar box) and a little under it, so its rim
-  // and shadow stay inside the circle; the roda scene matches the spark's height instead.
+  // The scene lands exactly on the avatar's photo, inside the logo's sage ring (its own rim and
+  // shadow dissolve on the way, see RIM); the roda scene matches the spark's height instead.
   const origin = (scene) => {
     const circle = scene.dataset.circle;
     const target = circle === 'spark' ? spark : avatars[Number(circle)].querySelector('.media') ?? avatars[Number(circle)];
     const f = film.getBoundingClientRect();
     const t = target.getBoundingClientRect();
-    const scale = circle === 'spark' ? target.offsetHeight / scene.offsetHeight : (target.offsetWidth * 0.9) / scene.offsetWidth;
+    // The face "breathes" (data-bob scales it a few %), so include its live scale; clientWidth is the
+    // image inside the scene's (by then invisible) rim.
+    const bob = circle === 'spark' ? 1 : new DOMMatrix(getComputedStyle(target.parentElement).transform).a || 1;
+    const scale = circle === 'spark' ? target.offsetHeight / scene.offsetHeight : (target.offsetWidth * bob) / scene.clientWidth;
     return {
       x: t.left + t.width / 2 - (f.left + f.width / 2),
       y: t.top + t.height / 2 - (f.top + f.height / 2),
       scale,
     };
   };
+
+  // The scene's own sage rim and shadow show only while it is big; in the ring the logo's circle frames it.
+  const RIM = { on: { borderColor: 'rgba(163, 192, 138, 1)', boxShadow: '0 30px 80px rgba(0, 0, 0, .35)' },
+    off: { borderColor: 'rgba(163, 192, 138, 0)', boxShadow: '0 0px 0px rgba(0, 0, 0, 0)' } };
 
   const overlayTl = (scene) => {
     const el = overlays.querySelector(`[data-for="${scene.dataset.stop}"]`);
@@ -112,7 +119,8 @@ export function init(section, ctx) {
         // autoAlpha sits in both ends: left only in the from-vars, GSAP tweens it back to whatever
         // the element had when the tween was first rendered (0), and later stops stayed invisible.
           filter: 'brightness(1)',
-        }, { autoAlpha: 1, x: 0, y: 0, scale: 1, duration: stop.zoomIn, ease: 'power2.inOut', immediateRender: false }, at)
+          ...(scene.dataset.circle === 'spark' ? {} : RIM.off),
+        }, { autoAlpha: 1, x: 0, y: 0, scale: 1, ...(scene.dataset.circle === 'spark' ? {} : RIM.on), duration: stop.zoomIn, ease: 'power2.inOut', immediateRender: false }, at)
         .call(() => loadVideo(next), null, dwellAt)
         .add(overlayTl(scene), dwellAt)
         .fromTo(tag, { autoAlpha: 0, y: -8 }, { autoAlpha: scene.dataset.tag ? 1 : 0, y: 0, duration: 0.4 }, dwellAt)
@@ -122,12 +130,19 @@ export function init(section, ctx) {
           x: () => origin(scene).x,
           y: () => origin(scene).y,
           scale: () => origin(scene).scale,
+          ...(scene.dataset.circle === 'spark' ? {} : RIM.off),
           duration: stop.zoomOut,
           ease: 'power2.inOut',
         }, outAt)
         // Reverse flash: the scene goes back into its circle fully visible, then glows softly and
         // fades out slowly in place.
-        .to(scene, { autoAlpha: 0, filter: 'brightness(1.3)', duration: stop.fade, ease: 'sine.inOut' }, outAt + stop.zoomOut)
+        .to(scene, {
+          autoAlpha: 0,
+          filter: 'brightness(1.3)',
+          duration: stop.fade,
+          ease: 'sine.inOut',
+          onUpdate: () => gsap.set(scene, origin(scene)), // stay locked on the (breathing) circle while fading
+        }, outAt + stop.zoomOut)
         .call(() => { setStop('ring'); video().pause(); }, null, outAt + stop.zoomOut + stop.fade);
     });
     master.timeScale(ctx.speed * debugSpeed);
