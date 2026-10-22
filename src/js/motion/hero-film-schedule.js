@@ -15,7 +15,3 @@ export function stopSchedule(stops, { zoomIn = 1.1, dwell = 6.6, zoomOut = 1.3, 
   }));
 }
 
-// After the last stop the camera zooms into the "+ você" circle with an invitation, then returns.
-export function finaleSchedule(start, { zoomIn = 1.1, dwell = 3.6, zoomOut = 1.3, fade = 1.1, rest = 0.8 } = {}) {
-  return { id: 'voce', start, end: start + zoomIn + dwell + zoomOut + fade + rest, zoomIn, dwell, zoomOut, fade, rest };
-}
