@@ -48,3 +48,7 @@ test('hero film scenes are 720x720 with a 1.2 MB budget', () => {
   assert.deepEqual(slotSpec('film/barbearia', site), { id: 'film/barbearia', shape: 'circle', width: 720, height: 720, budget: 1_200_000 });
   assert.throws(() => slotSpec('film/nope', site), /Unknown slot/);
 });
+
+test('the spark scene (roda) is a tall frame shaped like the diamond', () => {
+  assert.deepEqual(slotSpec('film/roda', site), { id: 'film/roda', shape: 'spark', width: 424, height: 720, budget: 1_200_000 });
+});

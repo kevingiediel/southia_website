@@ -13,7 +13,10 @@ export const BUDGET = { circle: 300_000, default: 800_000 };
 
 export function slotSpec(id, site) {
   if (id.startsWith('film/')) {
-    if (!(site.film?.stops ?? []).some((s) => `film/${s.id}` === id)) throw new Error(`Unknown slot: ${id}`);
+    const stop = (site.film?.stops ?? []).find((s) => `film/${s.id}` === id);
+    if (!stop) throw new Error(`Unknown slot: ${id}`);
+    // The spark stop is a tall diamond (10% × 17% of the ring), the others are circles.
+    if (stop.circle === 'spark') return { id, shape: 'spark', width: 424, height: 720, budget: 1_200_000 };
     return { id, shape: 'circle', width: 720, height: 720, budget: 1_200_000 };
   }
   let shape;

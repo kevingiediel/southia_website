@@ -170,6 +170,14 @@ for rid, fix in [
     shot["aspect"] = "3:4"
     shots.append(shot)
 
+# The hero's closing scene is a tall diamond (the spark, ~0.59:1): a vertical, wider view keeps the whole circle inside it.
+_roda_tall = S("F1-RODA-tall", "roda-tall", "Recompose this photo as a tall vertical 9:16 frame of the same scene from the same top-down drone view, with the camera "
+              "much higher: the same seven people, clothes, stools, chimarrão cuia being passed and the campfire, but the whole circle of people is small, "
+              "exactly in the centre of the frame, its diameter only about half of the frame width, with plenty of the same golden-hour pampa grass all around it "
+              "above, below and on both sides. Same warm light and colours. No text anywhere.", 'nano_banana_pro', True, "still:F1-RODA-K4e")
+_roda_tall["aspect"] = "9:16"
+shots.append(_roda_tall)
+
 here = os.path.dirname(os.path.abspath(__file__))
 with open(os.path.join(here, 'shots.json'), 'w', encoding='utf-8', newline='\n') as f:
     f.write(json.dumps({"style": style, "motion": motion, "resolution": "720p", "shots": shots}, ensure_ascii=False, indent=2) + '\n')
