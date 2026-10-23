@@ -1,0 +1,313 @@
+{
+  "atende": {
+    "file": "Southia-Atende.pdf",
+    "name": "Southia Atende",
+    "kicker": "Agente de atendimento e agendamento",
+    "headline": "Sua agenda cheia, sem ninguém preso ao celular.",
+    "intro": "Um agente de IA que atende seus clientes no WhatsApp 24 horas, 7 dias por semana, com o tom da sua marca. Ele responde dúvidas, marca, confirma e remarca horários, e chama uma pessoa da sua equipe sempre que é preciso.",
+    "cover": "films/keyframes/F1/K4.jpg",
+    "side": "media-src/films/prod-1v.png",
+    "challengeTitle": "O desafio",
+    "challenge": [
+      "Mensagens chegam o dia todo, inclusive à noite e no fim de semana, e quem atende está ocupado com o cliente da cadeira.",
+      "Cada resposta que demora é um cliente que marca com o concorrente.",
+      "Faltas e cancelamentos de última hora deixam buracos na agenda.",
+      "A equipe passa horas repetindo preço, endereço e horário de funcionamento."
+    ],
+    "solutionTitle": "A solução",
+    "solution": "O Southia Atende assume a conversa do primeiro “oi” até o horário confirmado. Ele conhece seus serviços, profissionais, preços e regras de agenda, e fala como a sua marca fala. Quando a conversa pede um toque humano, ele passa para a pessoa certa com o histórico completo.",
+    "chatTitle": "Barbearia do Samuel",
+    "chat": [
+      {
+        "from": "cliente",
+        "text": "Oi, tem horário amanhã às 15h para barba?"
+      },
+      {
+        "from": "agente",
+        "text": "Tem sim! 15h com o Samuel. Confirmo pra você?"
+      },
+      {
+        "from": "cliente",
+        "text": "Pode confirmar"
+      },
+      {
+        "from": "agente",
+        "text": "Prontinho, te lembro amanhã."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Entendemos o seu negócio",
+        "text": "Levantamos serviços, duração de cada um, profissionais, preços, regras de agenda e o jeito de falar da sua marca."
+      },
+      {
+        "title": "Configuramos o agente",
+        "text": "Conectamos o WhatsApp e a sua agenda, e ajustamos o agente para o vocabulário do seu nicho."
+      },
+      {
+        "title": "Testamos com você",
+        "text": "Simulamos conversas reais e ajustamos respostas antes de colocar no ar."
+      },
+      {
+        "title": "No ar e acompanhado",
+        "text": "O agente começa a atender e nós seguimos acompanhando, ajustando e melhorando junto com você."
+      }
+    ],
+    "features": [
+      {
+        "title": "Atendimento 24h",
+        "text": "WhatsApp respondido a qualquer hora, todos os dias da semana."
+      },
+      {
+        "title": "Agenda automática",
+        "text": "Marca, confirma, remarca e cancela direto na agenda."
+      },
+      {
+        "title": "Lembretes",
+        "text": "Avisa o cliente na véspera e reduz as faltas."
+      },
+      {
+        "title": "Lista de espera",
+        "text": "Oferece o horário vago para quem estava esperando um encaixe."
+      },
+      {
+        "title": "Tom da sua marca",
+        "text": "Fala do jeito que você fala com os seus clientes."
+      },
+      {
+        "title": "Gente quando precisa",
+        "text": "Chama uma pessoa da equipe e entrega o histórico da conversa."
+      }
+    ],
+    "audienceTitle": "Customizável para o seu nicho",
+    "audience": [
+      {
+        "title": "Barbearia",
+        "text": "Corte, barba e combos, com o profissional preferido do cliente."
+      },
+      {
+        "title": "Pet shop",
+        "text": "Banho e tosa por porte, vacinas e consultas."
+      },
+      {
+        "title": "Odontologia",
+        "text": "Avaliações, retornos e lembretes de consulta."
+      },
+      {
+        "title": "Estética",
+        "text": "Procedimentos, pacotes e orientações antes da sessão."
+      },
+      {
+        "title": "Salão de beleza",
+        "text": "Serviços por profissional e encaixes no mesmo dia."
+      },
+      {
+        "title": "Fisioterapia",
+        "text": "Sessões recorrentes, remarcações e lembretes."
+      }
+    ],
+    "band": "films/keyframes/F1/K6.jpg"
+  },
+  "juridico": {
+    "file": "Southia-Juridico.pdf",
+    "name": "Southia Jurídico",
+    "kicker": "Automação para escritórios de advocacia",
+    "headline": "Pesquisas, andamentos e publicações chegam sozinhos, organizados na sua pasta.",
+    "intro": "Um agente que faz o trabalho repetitivo de buscar informação em vários sistemas: pesquisa decisões e andamentos, acompanha o Diário Oficial, baixa documentos e organiza e prioriza as demandas do escritório, para que a equipe dedique o tempo ao trabalho jurídico.",
+    "cover": "films/keyframes/F1-advocacia/K4.jpg",
+    "side": "media-src/films/prod-4v.png",
+    "challengeTitle": "O desafio",
+    "challenge": [
+      "A informação está espalhada em vários tribunais e sistemas, cada um com seu acesso e seu formato.",
+      "Acompanhar publicações e andamentos de cada processo toma horas todos os dias.",
+      "Documentos baixados à mão acabam em pastas diferentes, com nomes diferentes.",
+      "Com tudo chegando ao mesmo tempo, fica difícil saber o que é mais urgente."
+    ],
+    "solutionTitle": "A solução",
+    "solution": "O Southia Jurídico entra nos sistemas que o escritório já usa, faz as pesquisas e o acompanhamento de forma automática e entrega o resultado organizado: o que chegou, onde está o documento e o que precisa de atenção primeiro.",
+    "chatTitle": "Helena Advocacia",
+    "chat": [
+      {
+        "from": "agente",
+        "text": "Pesquisa realizada no TJSP: novas decisões encontradas."
+      },
+      {
+        "from": "agente",
+        "text": "Dados baixados automaticamente do PJe e do e-SAJ."
+      },
+      {
+        "from": "agente",
+        "text": "Diário Oficial verificado: publicações dos seus processos."
+      },
+      {
+        "from": "agente",
+        "text": "Demandas organizadas por prioridade na sua pasta."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Mapeamos a rotina",
+        "text": "Entendemos quais tribunais, sistemas e tipos de pesquisa fazem parte do dia a dia do escritório."
+      },
+      {
+        "title": "Conectamos as fontes",
+        "text": "Configuramos as consultas aos tribunais, ao Diário Oficial e às pastas do escritório."
+      },
+      {
+        "title": "Definimos as prioridades",
+        "text": "Combinamos com a equipe como classificar e ordenar o que chega."
+      },
+      {
+        "title": "No ar e acompanhado",
+        "text": "O agente passa a trabalhar sozinho e nós seguimos ajustando as regras com o escritório."
+      }
+    ],
+    "features": [
+      {
+        "title": "Pesquisa nos tribunais",
+        "text": "Decisões e andamentos nos TJs, no PJe e no e-SAJ."
+      },
+      {
+        "title": "Diário Oficial",
+        "text": "Acompanha as publicações dos processos do escritório."
+      },
+      {
+        "title": "Prazos em vista",
+        "text": "Avisa sobre publicações e prazos que pedem atenção."
+      },
+      {
+        "title": "Documentos organizados",
+        "text": "Baixa os arquivos e guarda cada um na pasta certa."
+      },
+      {
+        "title": "Demandas priorizadas",
+        "text": "Organiza e prioriza o que chega para a equipe."
+      },
+      {
+        "title": "Sigilo e LGPD",
+        "text": "Tratamento dos dados com segurança e confidencialidade."
+      }
+    ],
+    "audienceTitle": "Para quem é",
+    "audience": [
+      {
+        "title": "Escritórios pequenos e médios",
+        "text": "Que querem crescer sem multiplicar o trabalho manual."
+      },
+      {
+        "title": "Advogados autônomos",
+        "text": "Que precisam de tempo para atender e estudar os casos."
+      },
+      {
+        "title": "Áreas com muito volume",
+        "text": "Cível, trabalhista, previdenciário e consumidor."
+      },
+      {
+        "title": "Departamentos jurídicos",
+        "text": "Que acompanham carteiras de processos em vários tribunais."
+      }
+    ],
+    "band": "films/keyframes/F1-advocacia/K6.jpg"
+  },
+  "criativos": {
+    "file": "Southia-Criativos.pdf",
+    "name": "Southia Criativos",
+    "kicker": "Criativos, publicações e campanhas",
+    "headline": "Presença constante nas redes, com a cara da sua marca.",
+    "intro": "Um agente que cria posts e criativos a partir da identidade da sua marca, monta o calendário, publica sozinho no Instagram e no Facebook e cuida das campanhas no Meta Ads e no Google Ads, ajustando pelo que dá resultado.",
+    "cover": "films/keyframes/F1-clinica/K4.jpg",
+    "side": "media-src/films/prod-2v.png",
+    "challengeTitle": "O desafio",
+    "challenge": [
+      "Postar com frequência exige tempo, ideias e alguém dedicado a isso.",
+      "Sem padrão visual, cada post parece de uma marca diferente.",
+      "Campanhas pagas ficam no ar sem ninguém olhar o que está funcionando.",
+      "Agência nem sempre cabe no orçamento de um negócio pequeno."
+    ],
+    "solutionTitle": "A solução",
+    "solution": "O Southia Criativos aprende a identidade da sua marca (cores, fontes, tom e produtos) e passa a produzir e publicar no seu lugar. Você aprova o calendário quando quiser, e as campanhas são ajustadas conforme os resultados.",
+    "chatTitle": "Clínica Movimento",
+    "chat": [
+      {
+        "from": "agente",
+        "text": "Post de hoje publicado no Instagram: alongamento matinal."
+      },
+      {
+        "from": "agente",
+        "text": "Legenda e imagem criadas a partir da sua marca."
+      },
+      {
+        "from": "agente",
+        "text": "Próximos posts agendados: Seg 9h, Qua 18h, Sex 12h."
+      },
+      {
+        "from": "agente",
+        "text": "Campanha ajustada para o público que mais respondeu."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Lemos a sua marca",
+        "text": "Reunimos logo, cores, fontes, tom de voz, produtos e referências do que você gosta."
+      },
+      {
+        "title": "Montamos o calendário",
+        "text": "Definimos temas, frequência e os melhores horários para o seu público."
+      },
+      {
+        "title": "Você aprova",
+        "text": "Os primeiros posts e campanhas passam pela sua aprovação antes de publicar."
+      },
+      {
+        "title": "No ar e acompanhado",
+        "text": "O agente publica e ajusta as campanhas, e você recebe um relatório simples."
+      }
+    ],
+    "features": [
+      {
+        "title": "Criativos da marca",
+        "text": "Posts, stories e anúncios com a identidade visual do negócio."
+      },
+      {
+        "title": "Calendário",
+        "text": "Planejamento de conteúdo com datas e temas."
+      },
+      {
+        "title": "Publicação automática",
+        "text": "Publica no Instagram e no Facebook nos horários certos."
+      },
+      {
+        "title": "Campanhas",
+        "text": "Cria e acompanha anúncios no Meta Ads e no Google Ads."
+      },
+      {
+        "title": "Ajuste pelos resultados",
+        "text": "Reforça o que funciona e corta o que não funciona."
+      },
+      {
+        "title": "Relatório simples",
+        "text": "Mostra o que aconteceu, sem jargão."
+      }
+    ],
+    "audienceTitle": "Para quem é",
+    "audience": [
+      {
+        "title": "Clínicas e consultórios",
+        "text": "Conteúdo educativo e campanhas para agenda."
+      },
+      {
+        "title": "Lojas e e-commerce",
+        "text": "Lançamentos, promoções e vitrine nas redes."
+      },
+      {
+        "title": "Restaurantes e cafés",
+        "text": "Cardápio, novidades e movimento nos dias fracos."
+      },
+      {
+        "title": "Prestadores de serviço",
+        "text": "Presença constante para ser lembrado na hora certa."
+      }
+    ],
+    "band": "films/keyframes/F1-clinica/K5.jpg"
+  }
+}
