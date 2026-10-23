@@ -22,7 +22,7 @@ export function slotSpec(id, site) {
   let shape;
   if (site.hero.avatars.some((a) => a.id === id)) shape = 'circle';
   else if (site.marquee.some((m) => m.id === id)) shape = site.marquee.find((m) => m.id === id).shape;
-  else if (site.solutions.some((s) => s.media.id === id)) shape = 'rect';
+  else if (site.solutions.some((s) => s.media.id === id) || (site.products ?? []).some((p) => p.media.id === id)) shape = 'rect';
   else if (site.como.media.id === id) shape = 'como';
   else throw new Error(`Unknown slot: ${id}`);
   const [width, height] = SIZES[shape];

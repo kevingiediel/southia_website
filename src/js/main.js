@@ -4,11 +4,12 @@ import { boot } from './boot.js';
 import * as mobileNav from './ui/mobile-nav.js';
 import * as videoSlot from './media/video-slot.js';
 import * as filmPlayer from './ui/film-player.js';
+import * as nicheSwitch from './ui/niche-switch.js';
 
 const html = document.documentElement;
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-const ALWAYS = [['.mobile-nav', mobileNav, 'self'], ['#filmes', filmPlayer, 'self']];
+const ALWAYS = [['.mobile-nav', mobileNav, 'self'], ['#filmes', filmPlayer, 'self'], ['[data-niches]', nicheSwitch, 'self']];
 // Media boots after motion so it also sees the marquee's cloned slots.
 const MEDIA = [['[data-media]', videoSlot, 'doc']];
 

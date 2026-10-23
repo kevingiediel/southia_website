@@ -14,6 +14,7 @@ export function slotIds(site) {
     ...site.hero.avatars.map((a) => a.id),
     ...site.marquee.map((m) => m.id),
     ...site.solutions.map((s) => s.media.id),
+    ...(site.products ?? []).map((p) => p.media.id),
     site.como.media.id,
   ];
 }

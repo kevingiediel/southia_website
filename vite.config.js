@@ -24,7 +24,13 @@ export default defineConfig({
   // Real 404s for missing files in dev/preview, like Hostinger (no SPA fallback).
   appType: 'mpa',
   plugins: [
-    partials({ dir: 'src/partials', data: 'src/data/site.json', extra: { whatsappUrl: wa } }),
+    partials({
+      dir: 'src/partials',
+      data: 'src/data/site.json',
+      extra: { whatsappUrl: wa },
+      // Product buttons: WhatsApp with their own message, or the contact section while the number is a placeholder.
+      helpers: { waLink: (text) => whatsappUrl(WHATSAPP, text) ?? '#contato', waReady: () => Boolean(wa) },
+    }),
     sitemap(),
   ],
   build: {

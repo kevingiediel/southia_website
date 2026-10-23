@@ -1,0 +1,37 @@
+<section id="produtos" class="produtos section--dark" data-screen-label="Produtos">
+  <div class="container produtos__inner">
+    <div class="produtos__head" data-reveal>
+      <p class="eyebrow eyebrow--sage">Produtos</p>
+      <h2 class="h2" data-split>Como podemos <em class="hl">acelerar</em> seu negócio</h2>
+      <p class="lead produtos__lead">Três agentes prontos para entrar na sua roda, configurados para o seu negócio e acompanhados por gente de verdade.</p>
+    </div>
+    <div class="produtos__grid">
+      {{#each products}}
+      <article class="product product--{{id}}" data-reveal>
+        <div class="product__media">{{> media-slot id=media.id alt=media.alt shape="rect"}}</div>
+        <div class="product__body">
+          <p class="product__kicker">{{kicker}}</p>
+          <h3 class="product__name">{{name}}</h3>
+          <p class="product__tagline">{{tagline}}</p>
+          {{#if niches}}
+          {{!-- Niche picker: without JS the first conversation shows; niche-switch.js swaps them. --}}
+          <div class="niches" data-niches>
+            <div class="niches__chips" role="group" aria-label="Escolha um nicho">
+              {{#each niches}}<button class="niches__chip" type="button" data-niche="{{id}}" aria-pressed="{{#if @first}}true{{else}}false{{/if}}">{{label}}</button>{{/each}}
+            </div>
+            {{#each niches}}
+            <div class="niche-chat" data-niche="{{id}}"{{#unless @first}} hidden{{/unless}}>
+              <p class="niche-chat__head"><span class="niche-chat__dot"></span><span>{{business}}<small>Agente Southia · WhatsApp</small></span></p>
+              {{#each chat}}<p class="niche-chat__msg niche-chat__msg--{{from}}">{{text}}</p>{{/each}}
+            </div>
+            {{/each}}
+          </div>
+          {{/if}}
+          <ul class="product__list">{{#each bullets}}<li>{{this}}</li>{{/each}}</ul>
+          <a class="btn {{#if niches}}btn--primary{{else}}btn--ghost{{/if}} product__cta" href="{{waLink wa}}"{{#if (waReady)}} target="_blank" rel="noopener"{{/if}}>{{cta}}</a>
+        </div>
+      </article>
+      {{/each}}
+    </div>
+  </div>
+</section>

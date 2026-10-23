@@ -106,6 +106,154 @@
       "h": 280
     }
   ],
+  "products": [
+    {
+      "id": "atende",
+      "name": "Southia Atende",
+      "kicker": "Agente de atendimento e agendamento",
+      "tagline": "Sua agenda cheia, sem ninguém preso ao celular. Customizável para o seu nicho.",
+      "bullets": [
+        "Atende no WhatsApp 24h, 7 dias por semana, com o tom da sua marca.",
+        "Agenda, confirma, remarca e lembra o cliente na véspera.",
+        "Lista de espera para encaixar quem cancelou.",
+        "Responde preços e serviços e chama uma pessoa quando é preciso."
+      ],
+      "cta": "Quero o Southia Atende",
+      "wa": "Olá! Quero conhecer o Southia Atende.",
+      "media": {
+        "id": "produto-atende",
+        "alt": "Samuel, barbeiro, cortando o cabelo de um cliente que ri, enquanto o agente cuida da agenda"
+      },
+      "niches": [
+        {
+          "id": "barbearia",
+          "label": "Barbearia",
+          "business": "Barbearia do Samuel",
+          "chat": [
+            {
+              "from": "cliente",
+              "text": "Oi, tem horário amanhã às 15h para barba?"
+            },
+            {
+              "from": "agente",
+              "text": "Tem sim! 15h com o Samuel. Confirmo pra você?"
+            }
+          ]
+        },
+        {
+          "id": "pet",
+          "label": "Pet shop",
+          "business": "Pet shop Amigo Fiel",
+          "chat": [
+            {
+              "from": "cliente",
+              "text": "Dá pra marcar banho e tosa do Thor no sábado?"
+            },
+            {
+              "from": "agente",
+              "text": "Dá sim! Sábado às 10h, banho e tosa para porte médio. Confirmo?"
+            }
+          ]
+        },
+        {
+          "id": "odonto",
+          "label": "Odontologia",
+          "business": "Clínica Sorriso",
+          "chat": [
+            {
+              "from": "cliente",
+              "text": "Queria marcar uma avaliação, tem essa semana?"
+            },
+            {
+              "from": "agente",
+              "text": "Tem quinta às 14h com a Dra. Ana. Te lembro na véspera, combinado?"
+            }
+          ]
+        },
+        {
+          "id": "estetica",
+          "label": "Estética",
+          "business": "Estúdio Bella Pele",
+          "chat": [
+            {
+              "from": "cliente",
+              "text": "Como funciona a limpeza de pele?"
+            },
+            {
+              "from": "agente",
+              "text": "Dura cerca de 1h e inclui hidratação. Tenho sexta às 16h, reservo?"
+            }
+          ]
+        },
+        {
+          "id": "salao",
+          "label": "Salão de beleza",
+          "business": "Salão da Lu",
+          "chat": [
+            {
+              "from": "cliente",
+              "text": "Consigo encaixar uma escova hoje à tarde?"
+            },
+            {
+              "from": "agente",
+              "text": "Abriu uma vaga às 17h30 com a Lu. Reservo pra você?"
+            }
+          ]
+        },
+        {
+          "id": "fisio",
+          "label": "Fisioterapia",
+          "business": "Clínica Movimento",
+          "chat": [
+            {
+              "from": "cliente",
+              "text": "Preciso remarcar minha sessão de amanhã."
+            },
+            {
+              "from": "agente",
+              "text": "Sem problema! Tenho quarta às 8h ou quinta às 18h. Qual prefere?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "juridico",
+      "name": "Southia Jurídico",
+      "kicker": "Automação para escritórios de advocacia",
+      "tagline": "Pesquisas, andamentos e publicações chegam sozinhos, organizados na sua pasta.",
+      "bullets": [
+        "Pesquisa decisões e andamentos nos tribunais (TJs, PJe, e-SAJ).",
+        "Acompanha o Diário Oficial e avisa publicações e prazos.",
+        "Baixa documentos e organiza tudo na pasta certa.",
+        "Resumo diário, com sigilo e respeito à LGPD."
+      ],
+      "cta": "Quero o Southia Jurídico",
+      "wa": "Olá! Quero conhecer o Southia Jurídico.",
+      "media": {
+        "id": "produto-juridico",
+        "alt": "Helena, advogada, sorrindo no notebook enquanto pesquisas e dados chegam automaticamente"
+      }
+    },
+    {
+      "id": "criativos",
+      "name": "Southia Criativos",
+      "kicker": "Criativos, publicações e campanhas",
+      "tagline": "Presença constante nas redes, com a cara da sua marca.",
+      "bullets": [
+        "Cria posts e criativos a partir da identidade da sua marca.",
+        "Monta o calendário e publica sozinho no Instagram e no Facebook.",
+        "Cria campanhas no Meta Ads e no Google Ads e ajusta pelos resultados.",
+        "Relatório simples do que funcionou."
+      ],
+      "cta": "Quero o Southia Criativos",
+      "wa": "Olá! Quero conhecer o Southia Criativos.",
+      "media": {
+        "id": "produto-criativos",
+        "alt": "Equipe de uma clínica rindo diante do tablet com os posts publicados automaticamente"
+      }
+    }
+  ],
   "solutions": [
     {
       "n": "01",

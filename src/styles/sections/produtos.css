@@ -1,0 +1,48 @@
+/* Produtos: three ready-made agents on dark green, Southia Atende featured across the full width. */
+.produtos__inner { padding-top: var(--section-y); padding-bottom: var(--section-y); display: flex; flex-direction: column; gap: 48px; }
+.produtos__head { display: flex; flex-direction: column; gap: 16px; max-width: 760px; }
+.produtos__lead { color: var(--sage-pale); max-width: 620px; }
+
+.produtos__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.product { display: flex; flex-direction: column; background: var(--green-mid); border: 1px solid rgba(163, 192, 138, .22); border-radius: var(--radius-card); overflow: hidden; }
+.product__media { aspect-ratio: 16 / 10; }
+.product__body { padding: 28px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
+.product__kicker { font-size: 13px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--sage); }
+.product__name { font-family: var(--font-display); font-weight: 600; font-size: clamp(26px, 2.6vw, 34px); line-height: 1.1; letter-spacing: -.02em; color: var(--cream); }
+.product__tagline { font-size: 17px; line-height: 1.55; color: var(--sage-pale); text-wrap: pretty; }
+.product__list { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.product__list li { position: relative; padding-left: 26px; font-size: 15.5px; line-height: 1.5; color: var(--cream); }
+.product__list li::before { content: ''; position: absolute; left: 0; top: .45em; width: 14px; height: 8px; border-left: 2px solid var(--yellow); border-bottom: 2px solid var(--yellow); transform: rotate(-45deg); }
+.product__cta { align-self: flex-start; margin-top: auto; }
+.product__list { margin-bottom: 10px; } /* buttons line up at the bottom of side-by-side cards */
+
+/* Featured: Southia Atende spans the row, photo on the left, picker and chat on the right. */
+.product--atende { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); background: var(--green-deep); border-color: rgba(242, 194, 48, .35); }
+.product--atende .product__media { aspect-ratio: auto; min-height: 100%; }
+.product--atende .product__body { padding: 36px; }
+
+/* Niche picker */
+.niches { display: flex; flex-direction: column; gap: 14px; margin-top: 4px; }
+.niches__chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.niches__chip { font: inherit; font-size: 13.5px; font-weight: 600; line-height: 1; padding: 9px 14px; border-radius: var(--radius-pill); border: 1px solid rgba(163, 192, 138, .45); background: transparent; color: var(--sage-pale); cursor: pointer; transition: background var(--dur-1) ease, color var(--dur-1) ease, border-color var(--dur-1) ease; }
+.niches__chip:hover { border-color: var(--sage); color: var(--cream); }
+.niches__chip[aria-pressed="true"] { background: var(--yellow); border-color: var(--yellow); color: var(--green); }
+.niches__chip:focus-visible { outline: 2px solid var(--yellow); outline-offset: 2px; }
+
+.niche-chat { display: flex; flex-direction: column; gap: 8px; padding: 14px; border-radius: 16px; background: #F7F5EE; color: var(--green); font-size: 14.5px; line-height: 1.4; }
+.niche-chat[hidden] { display: none; }
+.niche-chat__head { display: flex; align-items: center; gap: 10px; margin: -14px -14px 4px; padding: 10px 14px; border-radius: 16px 16px 0 0; background: var(--green); color: var(--cream); font-weight: 700; font-size: 14px; }
+.niche-chat__head small { display: block; font-weight: 500; font-size: 11.5px; color: var(--sage); }
+.niche-chat__dot { width: 26px; height: 26px; border-radius: 50%; background: var(--sage); flex: none; }
+.niche-chat__msg { max-width: 85%; margin: 0; padding: 8px 11px; border-radius: 12px; }
+.niche-chat__msg--cliente { align-self: flex-start; background: #fff; border-bottom-left-radius: 4px; box-shadow: 0 1px 2px rgba(0, 0, 0, .06); }
+.niche-chat__msg--agente { align-self: flex-end; background: #DCF3C8; border-bottom-right-radius: 4px; }
+.js-motion .niche-chat:not([hidden]) { animation: niche-in .35s var(--ease-out); }
+@keyframes niche-in { from { opacity: 0; transform: translateY(8px); } }
+
+@media (max-width: 900px) {
+  .produtos__grid { grid-template-columns: minmax(0, 1fr); }
+  .product--atende { grid-template-columns: minmax(0, 1fr); }
+  .product--atende .product__media { aspect-ratio: 16 / 10; min-height: 0; }
+  .product--atende .product__body { padding: 28px; }
+}

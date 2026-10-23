@@ -353,3 +353,35 @@ test('hero chat is the Barbearia do Samuel script', async ({ browser }) => {
     'Prontinho, te lembro amanhã.',
   ]);
 });
+
+test('products section lists the three agents, linked from the menu', async ({ page }) => {
+  await page.goto('/');
+  const section = page.locator('#produtos');
+  await expect(section.locator('h2')).toHaveText('Como podemos acelerar seu negócio');
+  await expect(section.locator('.product__name')).toHaveText(['Southia Atende', 'Southia Jurídico', 'Southia Criativos']);
+  await expect(page.locator('#site-nav a[href="#produtos"]')).toHaveCount(1);
+  // Each agent has its own call to action (WhatsApp when the number is set, else the contact section).
+  for (const href of await section.locator('.product__cta').evaluateAll((els) => els.map((a) => a.getAttribute('href')))) {
+    expect(href === '#contato' || href.startsWith('https://wa.me/')).toBe(true);
+  }
+});
+
+test('the Atende niche buttons switch the sample conversation', async ({ page }) => {
+  await page.goto('/');
+  const atende = page.locator('.product--atende');
+  const visibleChat = atende.locator('.niche-chat:not([hidden])');
+  await expect(visibleChat).toHaveCount(1);
+  await expect(visibleChat).toContainText('Samuel');
+  await atende.getByRole('button', { name: 'Pet shop' }).click();
+  await expect(atende.getByRole('button', { name: 'Pet shop' })).toHaveAttribute('aria-pressed', 'true');
+  await expect(atende.getByRole('button', { name: 'Barbearia' })).toHaveAttribute('aria-pressed', 'false');
+  await expect(visibleChat).toHaveCount(1);
+  await expect(visibleChat).toContainText('banho e tosa');
+});
+
+test('without JavaScript the first niche conversation is shown', async ({ browser }) => {
+  const page = await (await browser.newContext({ javaScriptEnabled: false })).newPage();
+  await page.goto('/');
+  await expect(page.locator('.product--atende .niche-chat:not([hidden])')).toHaveCount(1);
+  await expect(page.locator('.product--atende .niche-chat:not([hidden])')).toContainText('Samuel');
+});

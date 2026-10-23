@@ -5,12 +5,13 @@ import { mediaExists, mediaAttrs, readyStops, readyVideos } from './media.js';
 
 // Renders every HTML entry through Handlebars, with src/partials/*.hbs
 // registered as partials and site.json (plus `extra`) as context. Media lists and
-// attributes only include files that exist in `publicDir` (see ./media.js).
-export default function partials({ dir, data, publicDir = 'public', extra = {} }) {
+// attributes only include files that exist in `publicDir` (see ./media.js). `helpers` adds Handlebars helpers.
+export default function partials({ dir, data, publicDir = 'public', extra = {}, helpers = {} }) {
   const hbs = Handlebars.create();
   hbs.registerHelper('eq', (a, b) => a === b);
   hbs.registerHelper('concat', (...args) => args.slice(0, -1).join(''));
   hbs.registerHelper('mediaAttrs', (base) => new hbs.SafeString(mediaAttrs(base, mediaExists(publicDir))));
+  for (const [name, fn] of Object.entries(helpers)) hbs.registerHelper(name, fn);
 
   const files = () => fs.readdirSync(dir).filter((f) => f.endsWith('.hbs'));
   const register = () => {
