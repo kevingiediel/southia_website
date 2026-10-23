@@ -9,14 +9,18 @@ export function init(root, ctx) {
   const state = new Map(); // figure -> { posterFailed, videoFailed }
   const markFallback = (fig) => {
     const s = state.get(fig);
-    if (s.posterFailed && (s.videoFailed || !allowVideo)) fig.classList.add('media--fallback');
+    if (s.posterFailed && (s.videoFailed || !s.hasVideo)) fig.classList.add('media--fallback');
   };
 
   const load = (fig) => {
     const s = { posterFailed: false, videoFailed: false };
     state.set(fig, s);
-    const video = allowVideo ? makeVideo(fig) : null;
+    // Photo-only slots get no <video>: the photo is the slot's background, which every browser shows
+    // (an empty video's poster isn't drawn everywhere).
+    const hasClip = Boolean(fig.dataset.src || fig.dataset.webm);
+    const video = allowVideo && hasClip ? makeVideo(fig) : null;
 
+    s.hasVideo = Boolean(video);
     const poster = fig.dataset.poster;
     if (poster) {
       const img = new Image();
@@ -36,7 +40,7 @@ export function init(root, ctx) {
       if (!e.isIntersecting) continue;
       nearObserver.unobserve(e.target);
       load(e.target);
-      if (allowVideo) playObserver.observe(e.target);
+      if (e.target.querySelector('video')) playObserver.observe(e.target);
     }
   }, { rootMargin: '200px' });
 

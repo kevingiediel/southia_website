@@ -385,3 +385,18 @@ test('without JavaScript the first niche conversation is shown', async ({ browse
   await expect(page.locator('.product--atende .niche-chat:not([hidden])')).toHaveCount(1);
   await expect(page.locator('.product--atende .niche-chat:not([hidden])')).toContainText('Samuel');
 });
+
+test('a photo-only slot shows its photo as the background, without a <video>', async ({ page }) => {
+  // The test server pretends every clip exists; make prod-1 a photo-only slot, as in production.
+  await page.addInitScript(() => document.addEventListener('DOMContentLoaded', () => {
+    const fig = document.querySelector('[data-media="prod-1"]');
+    delete fig.dataset.src; delete fig.dataset.webm;
+  }));
+  await page.route('**/media/prod-1.jpg', (r) => r.fulfill({ path: 'tests/fixtures/tiny.jpg' }));
+  await page.goto('/');
+  const fig = page.locator('[data-media="prod-1"]');
+  await fig.scrollIntoViewIfNeeded();
+  await expect(fig).toHaveClass(/media--poster/);
+  await expect(fig.locator('video')).toHaveCount(0);
+  expect(await fig.evaluate((el) => el.style.backgroundImage)).toContain('/media/prod-1.jpg');
+});
